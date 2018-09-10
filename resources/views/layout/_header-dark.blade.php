@@ -5,7 +5,7 @@
                                 <!-- header-top-first start -->
                                 <!-- ================ -->
                                 <div class="header-top-first clearfix">
-                                        <ul class="social-links circle small clearfix hidden-xs">
+                                    <ul class="social-links circle small clearfix hidden-xs">
                                         <li class="twitter"><a target="_blank" href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
                                         <li class="skype"><a target="_blank" href="http://www.skype.com/"><i class="fa fa-skype"></i></a></li>
                                         <li class="linkedin"><a target="_blank" href="http://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
