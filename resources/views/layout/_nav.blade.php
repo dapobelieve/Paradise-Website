@@ -16,19 +16,19 @@
                 <!-- main-menu -->
                 <ul class="nav navbar-nav ">
                     <li class="active">
-                        <a href="#">Home</a>
+                        <a href="{{ route('site.home') }}">Home</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="{{ route('site.services') }}">Services</a>
                     </li>
                     <li>
-                        <a href="#">Store</a>
+                        <a href="{{ route('site.store') }}">Store</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="{{ route('site.about') }}">About</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="{{ route('site.contact') }}">Contact Us</a>
                     </li>
                 </ul>
                 <!-- main-menu end -->

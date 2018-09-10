@@ -4,7 +4,7 @@
             <ul class="slides">
                 <!-- slide 1 start -->
                 <!-- ================ -->
-                <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
+                <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
                 
                 <!-- main image -->
                 <img src="/assets/images/slider-fullwidth-slide-1.jpg" alt="slidebg1" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
@@ -60,7 +60,7 @@
 
                 <!-- slide 2 start -->
                 <!-- ================ -->
-                <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
+                <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                 <!-- main image -->
                 <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
@@ -114,6 +114,7 @@
                 </li>
                 <!-- slide 2 end -->
             </ul>
+            {{-- <div class="tp-bannertimer"></div> --}}
         </div>
     </div>
 </div>

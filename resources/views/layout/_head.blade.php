@@ -28,9 +28,9 @@
         <link href="/assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
         <link href="/assets/plugins/rs-plugin/css/settings.css" rel="stylesheet">
         <link href="/assets/css/animations.css" rel="stylesheet">
-        {{-- <link href="plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
-        <link href="plugins/owl-carousel/owl.transitions.css" rel="stylesheet"> --}}
-        <link href="plugins/hover/hover-min.css" rel="stylesheet">      
+        <link href="/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+        <link href="/assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+        <link href="/assets/plugins/hover/hover-min.css" rel="stylesheet">      
         
         
         

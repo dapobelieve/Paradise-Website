@@ -118,7 +118,8 @@
                         <div class="subfooter-inner">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="text-center">Copyright © 2015 The Project by <a target="_blank" class="link-light" href="http://htmlcoder.me/">HtmlCoder</a>. All Rights Reserved</p>
+                                    <p class="text-center">{{ config()->get('site.defaults.name') }} © {{ date('Y') }} Built by
+                                        <a target="_blank" class="link-light" href="#">Dapo Michaels</a>. </p>
                                 </div>
                             </div>
                         </div>

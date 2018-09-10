@@ -54,12 +54,9 @@
         </div>
     </section>
     <!-- section end -->
+    @include('layout._choose')
 
-    <!-- section start -->
-    <!-- ================ -->
-    <section class="light-gray-bg pv-20">
-    </section>
-
+    
     @include('layout._cta')
 
 
