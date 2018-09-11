@@ -11,23 +11,7 @@
                     <div class="tab-pane active" id="pill-1">                       
                         <div class="row masonry-grid-fitrows grid-space-10">
                             <div v-for="product in store" class="col-md-3 col-sm-6 masonry-grid-item">
-                                <div class="listing-item white-bg bordered mb-20">
-                                    <div class="overlay-container">
-                                        <img src="/assets/images/product-1.jpg" alt="">
-                                    </div>
-                                    <div class="body">
-                                        <h5><a href="#">{{ product.title }}</a></h5>
-                                        <p class="small">
-                                            
-                                        </p>
-                                        <div class="elements-list clearfix">
-                                            <span class="price">
-                                                <span>&#x20A6</span>{{ product.price }}
-                                            </span>
-                                            <a href="#" class="pull-right margin-clear btn btn-sm btn-default-transparent btn-animated">Add To Cart<i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <product :product="product"></product>
                             </div>
                         </div>
                     </div>
@@ -40,9 +24,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import nav from './nav.vue'
+import Product from './product'
 export default {
     components: {
-        'navy': nav
+        'navy': nav,
+        'product': Product
     },
     data () {
         return {

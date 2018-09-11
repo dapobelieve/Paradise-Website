@@ -8,3 +8,8 @@ export const getProducts = ({ commit }) => {
         commit('setProducts', response.data)
     })
 }
+
+export const addProductToCart = ({ commit }, { product, quantity }) => {
+    commit('appendToCart', product);
+    alert('Added to cart')
+}

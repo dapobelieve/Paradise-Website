@@ -1,4 +1,8 @@
 <?php
+
+Route::get('/session', 'SessionController@add');
+
+
 Route::get('/', function () {
     return view('pages.home');
 })->name('site.home');

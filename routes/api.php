@@ -2,4 +2,6 @@
 
 Route::group(['middleware' => 'api'], function () {
     Route::get('store', 'Store\StoreController@index');
+
+    Route::post('cart', 'SessionController@add');
 });
