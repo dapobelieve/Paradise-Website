@@ -5,6 +5,16 @@ export const setProducts = (state, products) => {
     }
 }
 
+export const setCart = (state, cart) => {
+    state.cart = cart;
+}
+
+export const updateCart = (state, cart) => {
+    // console.log(cart)
+    localStorage.setItem('cart', JSON.stringify(cart))
+    alert('Cart Updated')
+}
+
 export const appendToCart = (state, product) => {
     const existing = state.cart.find(item => {
         return item.product.id === product.id
@@ -23,4 +33,15 @@ export const appendToCart = (state, product) => {
     }else {
         localStorage.setItem('cart', JSON.stringify(state.cart))
     }
+}
+
+
+export const removeItem = (state, productId) => {
+    state.cart = state.cart.filter(item => {
+        return item.product.id !== productId
+    })
+
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+
+    alert('Item Removed')
 }

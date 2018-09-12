@@ -12,7 +12,8 @@ Vue.use(Router)
  */
 
 import {
-    Home
+    Home,
+    Cart
 } from './../components'
 
 
@@ -21,6 +22,11 @@ const routes = [
         path: '/',
         component: Home,
         name: 'home'
+    },
+    {
+        path: '/cart',
+        component: Cart,
+        name: 'cart'
     }
 ];
 

@@ -9,7 +9,19 @@ export const getProducts = ({ commit }) => {
     })
 }
 
+export const getCart = ({ commit }) => {
+    commit('setCart', JSON.parse(localStorage.getItem('cart')))
+}
+
 export const addProductToCart = ({ commit }, { product, quantity }) => {
     commit('appendToCart', product);
     alert('Added to cart')
+}
+
+export const updateCart = ({ commit }, { cart }) => {
+    commit('updateCart', cart)
+}
+
+export const removeFromCart = ({ commit }, productId) => {
+    commit('removeItem', productId)
 }
