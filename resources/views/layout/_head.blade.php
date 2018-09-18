@@ -1,6 +1,6 @@
 <meta charset="utf-8">
         <title>@yield('site.title')</title>
-        <meta name="description" content="Paradise World">
+        <meta name="description" content="{{ config()->get('site.defaults.name') }}">
         <meta name="author" content="dapobelieve 07069494803">
 
         <!-- Mobile Meta -->
@@ -8,12 +8,6 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
-
-        <!-- Web Fonts -->
-        <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'> -->
 
         <!-- Bootstrap core CSS -->
         <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -31,9 +25,6 @@
         <link href="/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
         <link href="/assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
         <link href="/assets/plugins/hover/hover-min.css" rel="stylesheet">      
-        
-        
-        
         <!-- the project core CSS file -->
         <link href="/assets/css/style.css" rel="stylesheet" >
         <!-- Custom css --> 

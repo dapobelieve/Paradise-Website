@@ -9,7 +9,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel content-slider-with-large-controls">
+                <div class="content-slider-with-large-controls">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
@@ -35,8 +35,8 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Packed Full Of Features</h4>
-                                        Cras sit amet nibh libero. Nulla vel metus scelerisque.
+                                        <h4 class="media-heading">Worldclass Services</h4>
+                                        As a company with years of experience with diverse clients, we guarantee the delivery of Worldclass features on all our products and services.
                                     </div>
                                 </div>
                                 <div class="media">
@@ -47,10 +47,10 @@
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">24/7 Support</h4>
-                                        Cras sit amet nibh libero. Nulla vel metus scelerisque.
+                                        Our teams are redily available to provide support and solutions to any issues you might have.
                                     </div>
                                 </div>
-                                <p><a href="page-services.html" class="btn btn-default-transparent btn-animated">Learn More <i class="fa fa-arrow-right pl-10"></i></a></p>
+                                <p><a href="{{ route('site.about') }}" class="btn btn-default-transparent btn-animated">Learn More <i class="fa fa-arrow-right pl-10"></i></a></p>
                             </div>
                         </div>
                     </div>

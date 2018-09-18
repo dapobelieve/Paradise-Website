@@ -40,12 +40,12 @@
 
                                     <!-- logo -->
                                     <div id="logo" class="logo">
-                                        <a href="index.html"><img id="logo_img" src="/assets/images/logo_light_blue.png" alt="The Project"></a>
+                                        <a href="{{ route('site.home') }}"><img id="logo_img" src="/assets/images/logo_light_blue.png" alt="The Project"></a>
                                     </div>
 
                                     <!-- name-and-slogan -->
                                     <div class="site-slogan">
-                                        Paradise Enterprises
+                                        Paradise Digital World
                                     </div>
                                     
                                 </div>

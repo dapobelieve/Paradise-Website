@@ -6,11 +6,11 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <h1 class="title">Solar Installation Seminar</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
+                            <p>Register for the upcoming training seminar on Solar Panel Installation and maintenance. You will learn all you need to know about Solar power, complete from installation to maintenance.</p>
                         </div>
                         <div class="col-sm-4">
                             <br>
-                            <p><a href="#" class="btn btn-lg btn-gray-transparent btn-animated">Register<i class="fa fa-shopping-cart pl-20"></i></a></p>
+                            <p><a href="{{ route('site.solar') }}" class="btn btn-lg btn-gray-transparent btn-animated">Register<i class="fa fa-paper-plane pl-20"></i></a></p>
                         </div>
                     </div>
                 </div>

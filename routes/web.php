@@ -12,6 +12,10 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('site.contact');
 
+Route::get('/solar-training', function () {
+    return view('pages.solar');
+})->name('site.solar');
+
 
 Route::get('/about', function () {
     return view('pages.about');
