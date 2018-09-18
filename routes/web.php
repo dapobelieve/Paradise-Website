@@ -30,3 +30,5 @@ Route::get('/services', function () {
 Route::get('/store', function () {
     return view('pages.store');
 })->name('site.store');
+
+Route::post('/solar/register', 'SolarController@save')->name('solar.register');
