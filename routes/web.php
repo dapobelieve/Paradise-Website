@@ -1,7 +1,5 @@
 <?php
 
-Route::get('/session', 'SessionController@add');
-
 
 Route::get('/', function () {
     return view('pages.home');
@@ -32,3 +30,8 @@ Route::get('/store', function () {
 })->name('site.store');
 
 Route::post('/solar/register', 'SolarController@save')->name('solar.register');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

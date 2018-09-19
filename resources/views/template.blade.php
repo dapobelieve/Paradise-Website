@@ -19,7 +19,7 @@
                 <!-- "dark": dark version of header top e.g. class="header-top dark" -->
                 <!-- "colored": colored version of header top e.g. class="header-top colored" -->
                 <!-- ================ -->
-                {{-- @include('layout._header-dark') --}}
+                @include('layout._header-dark')
                 <!-- header-top end -->
                 
                 <!-- header start -->
