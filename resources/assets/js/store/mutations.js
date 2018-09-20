@@ -5,6 +5,11 @@ export const setProducts = (state, products) => {
     }
 }
 
+export const storeUserDetails = (state, data) => {
+    localStorage.setItem('userData', JSON.stringify(data))
+    state.userData = JSON.parse(localStorage.getItem('userData'))
+}
+
 export const setCart = (state, cart) => {
     state.cart = cart;
 }

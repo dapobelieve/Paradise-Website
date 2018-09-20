@@ -22,6 +22,10 @@ export const updateCart = ({ commit }, { cart }) => {
     commit('updateCart', cart)
 }
 
+export const userData = ({ commit }, { data }) => {
+    commit('storeUserDetails', data)
+}
+
 export const removeFromCart = ({ commit }, productId) => {
     commit('removeItem', productId)
 }

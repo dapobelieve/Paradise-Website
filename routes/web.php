@@ -29,9 +29,17 @@ Route::get('/store', function () {
     return view('pages.store');
 })->name('site.store');
 
+Route::get('/register', function () {
+    return view('pages.register');
+})->name('site.register');
+
+Route::post('/register', 'AuthController@register')->name('site.register');
+
 Route::post('/solar/register', 'SolarController@save')->name('solar.register');
 
 
-Auth::routes();
+Route::post('/login', 'AuthController@login')->name('site.login');
+
+Route::get('/logout', 'AuthController@logout')->name('site.logout');
 
 Route::get('/home', 'HomeController@index')->name('home');

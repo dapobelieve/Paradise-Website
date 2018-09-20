@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
-    //
+    public function cart()
+    {
+        return $this->hasMany(Detail::class, 'store_id');
+    }
 }

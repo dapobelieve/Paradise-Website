@@ -33,12 +33,16 @@
                     </tr>
                 </tbody>
                 <tbody v-else>
-                    No items in cart
+                    No items in cart <br>
+                    <router-link :to="{name: 'home'}" class="btn btn-lg btn-default">
+                        Start Shopping
+                    </router-link>
                 </tbody>
             </table>
             <div class="text-right">    
                 <button :disabled="!cart.length" @click.prevent="update" class="btn btn-group btn-default">Update Cart</button>
-                <button :disabled="!cart.length" class="btn btn-group btn-default">Checkout</button>
+                <router-link :disabled="!cart.length" class="btn btn-group btn-default" :to="{name: 'info'}">Chedfckout</router-link>
+                <!-- <button >Checkout</button> -->
             </div>
         </div>
     </div>

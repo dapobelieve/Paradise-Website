@@ -10,6 +10,9 @@
             <li>
                 <router-link :to="{name: 'home'}"><i class="icon-star"></i> Scratch Cards </router-link>
             </li>
+            <li>
+                <router-link class="checkout" :to="{name: 'info'}"><i class="icon-cart"></i> Checkout </router-link>
+            </li>
             <li class="pull-right">
                 <div class="btn-group dropdown">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-basket-1"></i><span class="cart-count default-bg">{{ cart.length }}</span></button>
@@ -44,6 +47,15 @@
         </ul>
     </div>
 </template>
+
+<style>
+.checkout {
+    font-size: 15px !important;
+    list-style: arabic-indic;
+    color: #2ecc25 !important;
+    font-weight: bold !important;
+}
+</style>
 <script>
 import { mapGetters } from 'vuex'
 export default {

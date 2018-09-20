@@ -16,7 +16,6 @@
                                 <img src="/assets/images/section-image-1.png" alt="">
                             </div>
                             <div class="col-md-6">
-                                <p class="space-top">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At provident modi nobis dolores ratione, maiores beatae vel iste illo incidunt officia sed id cupiditate quasi excepturi</p>
                                 <div class="media">
                                     <div class="media-left pr-20">
                                         <a href="#">

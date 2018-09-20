@@ -13,7 +13,8 @@ Vue.use(Router)
 
 import {
     Home,
-    Cart
+    Cart,
+    Info
 } from './../components'
 
 
@@ -27,6 +28,11 @@ const routes = [
         path: '/cart',
         component: Cart,
         name: 'cart'
+    },
+    {
+        path: '/info',
+        component: Info,
+        name: 'info'
     }
 ];
 

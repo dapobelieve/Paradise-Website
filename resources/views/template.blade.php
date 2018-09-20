@@ -63,12 +63,16 @@
                 <!-- header end -->
             </div>
             <!-- header-container end -->
-
             @yield('site.content')
 
             @include('layout._footer')
         </div>
 
         @include('layout._scripts')
+<script>
+    @if(Session::has('errorMessage'))
+        alert('{{ Session::get('errorMessage') }}')
+    @endif
+</script>
     </body>
 </html>
