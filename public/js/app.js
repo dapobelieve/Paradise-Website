@@ -18385,7 +18385,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "info" }, [
     _c("fieldset", [
-      _c("legend", [_vm._v("Billing information")]),
+      _c("legend", [_vm._v("Personal Information")]),
       _vm._v(" "),
       _c(
         "form",
@@ -18497,7 +18497,26 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(4)
+    _c(
+      "div",
+      { staticClass: "text-right" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: " btn btn-group btn-default ",
+            attrs: { to: { name: "cart" } }
+          },
+          [
+            _c("i", { staticClass: "icon-left-open-big" }),
+            _vm._v(" Back to Cart")
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(4)
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -18558,16 +18577,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-right" }, [
-      _c("a", { staticClass: "btn btn-group btn-default" }, [
-        _c("i", { staticClass: "icon-left-open-big" }),
-        _vm._v(" Go Back To Cart")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-group btn-default" }, [
-        _vm._v("Next Step "),
-        _c("i", { staticClass: "icon-right-open-big" })
-      ])
+    return _c("a", { staticClass: "btn btn-group btn-default" }, [
+      _vm._v("Next Step "),
+      _c("i", { staticClass: "icon-right-open-big" })
     ])
   }
 ]

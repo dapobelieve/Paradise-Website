@@ -1,7 +1,7 @@
 <template>
     <div class="info">
         <fieldset>
-            <legend>Billing information</legend>
+            <legend>Personal Information</legend>
             <form @submit.prevent="send()" role="form" class="form-horizontal" id="billing-information">
                 <div class="row">
                     <div class="col-lg-3">
@@ -33,7 +33,7 @@
             </form>
         </fieldset>
         <div class="text-right">    
-            <a class="btn btn-group btn-default"><i class="icon-left-open-big"></i> Go Back To Cart</a>
+            <router-link class=" btn btn-group btn-default " :to="{name: 'cart'}"> <i class="icon-left-open-big"></i> Back to Cart</router-link>
             <a class="btn btn-group btn-default">Next Step <i class="icon-right-open-big"></i></a>
         </div>
     </div>
