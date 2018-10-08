@@ -11,6 +11,11 @@ class AddController extends Controller
 {
     public function store(Request $request)
     {
+        // validate the product here
+        
+        Store::create([
+            'title' => $request->title
+        ]);
 
     }
 }
