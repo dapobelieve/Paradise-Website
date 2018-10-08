@@ -47,6 +47,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+/**
+ * Dashboard Section
+ */
+
 Route::get('dashboard', function () {
     return view('admin.home');
 });
+
+Route::get('add-product', function () {
+    return view('admin.add-product');
+})->name('store.add');
+
+Route::post('add/product', 'Store\AddController@store')->name('store.add');
