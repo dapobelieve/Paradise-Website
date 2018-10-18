@@ -55,8 +55,13 @@ Route::get('dashboard', function () {
     return view('admin.home');
 });
 
+Route::get('all-products', 'Store\AddController@index')->name('store.index');
+
 Route::get('add-product', function () {
     return view('admin.add-product');
 })->name('store.add');
 
 Route::post('add/product', 'Store\AddController@store')->name('store.add');
+
+
+Route::get('training', 'SolarController@index')->name('solar.index');

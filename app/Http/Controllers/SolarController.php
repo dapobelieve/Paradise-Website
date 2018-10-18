@@ -40,5 +40,12 @@ class SolarController extends Controller
 
         dd($request->all());
     }
+
+    public function index()
+    {
+        $users = Training::all();
+
+        return view('admin.solar', compact('users'));
+    }
     
 }

@@ -17,10 +17,13 @@
 
         <div class="row">
             <div class="col-xs-12">
-                {{-- <div class="alert alert-info">
-                    Welcome in the <strong>Unicorn Admin Theme</strong>. Don't forget to check all the pages!
-                    <a href="#" data-dismiss="alert" class="close">×</a>
-                </div> --}}
+                @if(Session::has('message'))
+                    <div class="alert alert-info">
+                        <strong>*</strong>
+                        {{Session::get('message')}}
+                        <a href="#" data-dismiss="alert" class="close">×</a>
+                    </div>
+                @endif
                 <div class="widget-box">
                     <div class="widget-content">
                         <div class="row">
@@ -41,13 +44,13 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 col-md-3 col-lg-2 control-label">Product Image: </label>
                                         <div class="col-sm-9 col-md-9 col-lg-10">
-                                            <input type="file" name="image" class="form-control input-sm" />
+                                            <input type="file" name="pimage" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 col-md-3 col-lg-2 control-label">Product Details: </label>
                                         <div class="col-sm-9 col-md-9 col-lg-10">
-                                            <textarea name="details" class="form-control" name="" id="" cols="30" rows="8"></textarea>
+                                            <textarea name="desc" class="form-control" name="" id="" cols="30" rows="8"></textarea>
                                         </div>
                                     </div>
 
