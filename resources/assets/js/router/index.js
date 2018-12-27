@@ -14,7 +14,9 @@ Vue.use(Router)
 import {
     Home,
     Cart,
-    Info
+    Info,
+    FunaabReg,
+    PartTime
 } from './../components'
 
 
@@ -28,6 +30,16 @@ const routes = [
         path: '/cart',
         component: Cart,
         name: 'cart'
+    },
+    {
+        path: '/funaab-registrations',
+        component: FunaabReg,
+        name: 'funaab-reg'
+    },
+    {
+        path: '/parttime-registrations',
+        component: PartTime,
+        name: 'part-time'
     },
     {
         path: '/info',
