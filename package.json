@@ -19,7 +19,10 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "luxon": "^1.8.3",
+        "vue-datetime": "^1.0.0-beta.8",
         "vue-router": "^3.0.1",
-        "vuex": "^3.0.1"
+        "vuex": "^3.0.1",
+        "weekstart": "^1.0.0"
     }
 }
