@@ -157,7 +157,7 @@
               <a style="color: red; cursor: pointer; text-decoration: none" @click="removeSubject(sub.id)">Remove</a>
             </div>
           </form>
-          <button v-if="subjects.length < 9" @click.prevent="addSubject" class="btn btn-success">Add Subject</button>
+          <button v-if="subjects.length < 9" @click.prevent="addSubject" class="btn btn-success btn-sm">Add Subject</button>
         </div>
       </div>
       <div v-if="tab === 5" class="row">
@@ -234,22 +234,43 @@
           </div>
         </div>
       </div>
+      <div v-if="tab === 7" class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
+          <h3>Profile</h3>
+          <div class="form-group">
+            <label for="surname">Upload passport</label>
+            <vueDropzone @vdropzone-removed-file="removeImage" @vdropzone-file-added="imageSelected" id='uploader1' :options="dropOptions"></vueDropzone>
+          </div>
+          <div class="form-group">
+            <label for="surname">Choose a Password</label>
+            <small>We use this to create an account for you on our site.</small>
+            <input type="password" v-model="form.password"  class="form-control" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success btn-lg" @click="save">Submit</button>
+          </div>
+        </div>
+      </div>
+      
       <div class="actions">
+
         <div class="prev">
           <button v-if="tab > 1 " @click.prevent="tab--" type="submit" class="btn btn-default btn-sm">Previous</button>
         </div>
         <div class="next">
-          <button @click.prevent="tab++" type="submit" class="btn btn-default btn-sm">Next</button>
+          <button v-if="tab < max" @click.prevent="tab++" type="submit" class="btn btn-default btn-sm">Next</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import vueDropzone from "vue2-dropzone";
 export default {
   data () {
     return {
-      tab: 4,
+      tab: 1,
+      max: 7,
       form: {},
       states: [],
       subjects: [
@@ -260,10 +281,43 @@ export default {
         }
       ],
       locations: [],
-      section: 'Bio Data'
+      section: 'Bio Data',
+      dropOptions: {
+          url: "http://localhost:8000/api/image",
+          maxFilesize: 2, // MB
+          maxFiles: 1,
+          chunking: true,
+          preventDuplicates: true,
+          chunkSize: 500, // Bytes
+          thumbnailWidth: 150, // px
+          thumbnailHeight: 150,
+          addRemoveLinks: true,
+          autoProcessQueue:false,
+          dictDefaultMessage: `<i class='fa fa-upload' style='font-size:100px; text-align: center'></i> 
+            <br> Upload a Recent Passport Photograph <span style='color: red'>Browse Device</span>`
+      },
+      image: null
     }
   },
+  components: {
+    vueDropzone 
+  },
   methods: {
+    save () {
+      axios.post('api/save_pt_record')
+      .then()
+      .catch(error => {
+        console.log(error.response)
+      })
+      localStorage.setItem('partTimeUser', JSON.stringify(this.form));
+      console.log(this.form) 
+    },
+    imageSelected (e) {
+      this.image = e; 
+    },
+    removeImage () {
+      this.image = '';
+    },
     addSubject() {
       if (this.subjects.length === 9) {
         return;
@@ -308,6 +362,8 @@ export default {
         this.section = 'Next of Kin Details'
       }else if (newValue === 6) {
         this.section = 'Direct Entry if Applicable'
+      }else if (newValue === 7) {
+        this.section = 'Passport & Password'
       }
     }
   },

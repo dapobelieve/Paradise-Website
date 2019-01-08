@@ -29,8 +29,9 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('phone');
             $table->bigInteger('phone2')->nullable();
             $table->string('email2')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('sponsor');
+            $table->string('session');
             $table->string('type');
             $table->timestamps();
         });
