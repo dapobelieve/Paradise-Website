@@ -48,7 +48,9 @@
                     <div class="header-top-dropdown text-right">
                         @if (Auth::check())
                         <div class="btn-group">
-                            <i class="fa fa-user pr-10"></i>Hello, {{ Auth::user()->name }}
+                            <a href="#" class="btn btn-default btn-sm">
+                                <i class="fa fa-user pr-10"></i>Hello, {{ Auth::user()->name }}
+                            </a>
                         </div>
                         <div class="btn-group">
                             <a href="{{ route('site.logout') }}">Logout</a>
