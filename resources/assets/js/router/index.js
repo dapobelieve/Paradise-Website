@@ -16,7 +16,9 @@ import {
     Cart,
     Info,
     FunaabReg,
-    PartTime
+    PartTime,
+    PostGradute,
+    Payment
 } from './../components'
 
 
@@ -37,14 +39,24 @@ const routes = [
         name: 'funaab-reg'
     },
     {
-        path: '/parttime-registrations',
+        path: '/part-time-registrations',
         component: PartTime,
         name: 'part-time'
+    },
+    {
+        path: '/post-graduate-registration',
+        component: PostGradute,
+        name: 'post-graduate'
     },
     {
         path: '/info',
         component: Info,
         name: 'info'
+    },
+    {
+        path: '/pay/:id',
+        component: Payment,
+        name: 'regPay'
     }
 ];
 

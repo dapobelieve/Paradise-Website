@@ -29,11 +29,17 @@ class CreateStudentsTable extends Migration
             $table->string('lga');
             $table->string('phone');
             $table->string('phone2')->nullable();
-            $table->string('email2')->nullable();
+            // $table->string('email2')->nullable();
             $table->string('image')->nullable();
-            $table->string('sponsor');
+            $table->string('sponsor')->nullable();
+            $table->text('pg_course')->nullable();
+            $table->text('pg_prizes')->nullable();
+            $table->text('pg_refrees')->nullable();
             $table->string('session');
             $table->string('birth')->nullable();
+            $table->text('address')->nullable();
+            $table->text('kin_sponsor')->nullable();
+            $table->text('courses')->nullable();
             $table->string('type');
             $table->timestamps();
 

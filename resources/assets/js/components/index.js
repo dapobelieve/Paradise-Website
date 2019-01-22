@@ -9,3 +9,10 @@ export const Info = Vue.component('Info', require('./info.vue'));
 export const FunaabReg = Vue.component('FunaabReg', require('./Reg/RegHomeComponent.vue'));
 
 export const PartTime  = Vue.component('PartTime', require('./Reg/ParttimeComponent.vue'));
+
+export const PostGradute  = Vue.component('PostGradute', require('./Reg/PostGraduate.vue'));
+
+
+
+// payment component for registrations
+export const Payment  = Vue.component('Payment', require('./Payment/PaymentComponent.vue'));

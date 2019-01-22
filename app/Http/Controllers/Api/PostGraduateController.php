@@ -5,19 +5,15 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-//use App\Transaction;
 use App\Student;
-//use Carbon\Carbon;
+use Carbon\Carbon;
 use Image;
-
-
-class PartTimeController extends Controller
+class PostGraduateController extends Controller
 {
     private $regImage;
 
     public function save(Request $request)
     {
-        // return response()->json();
         // Carbon::parse('-1 year')->year."/".Carbon::now()->year prints 2018/2019
         // fetch user
         $user = User::find($request->userId);
@@ -30,7 +26,6 @@ class PartTimeController extends Controller
         $this->validate($request, [
             'phone'    => 'required|unique:students,phone|digits:11',
             'surname'    => 'required|string',
-            'email' => 'required|unique:students,email|email',
             'firstname'    => 'required|string',
             'dob'    => 'required|date',
             'nation' => 'required',
@@ -40,9 +35,9 @@ class PartTimeController extends Controller
             'first_choice' => 'required',
             // kin validation
             'kin_name' => 'required',
-            'kin_Email' => 'required|email',
+            'kin_Email' => 'required',
             'kin_address' => 'required',
-            'kin_Phone' => 'required|digits:11',
+            'kin_Phone' => 'required',
             'second_choice' => 'required',
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
@@ -52,8 +47,8 @@ class PartTimeController extends Controller
             'madd_state' => 'required',
             'sponsor_name' => 'required',
             'sponsor_address' => 'required',
-            'sponsor_Email' => 'required|email',
-            'sponsor_Phone' => 'required|digits:11',
+            'sponsor_Email' => 'required',
+            'sponsor_Phone' => 'required',
             'madd_city' => 'required',
             'marital' => 'required',
             'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
@@ -79,17 +74,16 @@ class PartTimeController extends Controller
             'nation.required' => 'Select your nationality'
         ]);
         
-        // check number if subjects >= 5
-        // if (count($request->subjects) < 5) {
-        //     return response()->json('Add at least 5 subjects', 500);
-        // }
+        // check number of subjects
+         if (count($request->subjects) < 5) {
+             return response()->json('Add at least 5 subjects', 500);
+         }
         
         // courses array
         $courses = [
             'fc' => $request->first_choice,
             'sc' => $request->second_choice
         ];
-
 
         // build and json encode addresses
         $addressArr = [
@@ -116,10 +110,10 @@ class PartTimeController extends Controller
                 'email' => $request->kin_Email
             ],
             'sponsor' => [
-                'name'    => $request->sponsor_name,
-                'phone'   => $request->sponsor_Phone,
+                'name' => $request->sponsor_name,
+                'phone' => $request->sponsor_Phone,
                 'address' => $request->sponsor_address,
-                'email'   => $request->sponsor_Email
+                'email' => $request->sponsor_Email
             ]
         ];
 
@@ -135,7 +129,7 @@ class PartTimeController extends Controller
                 $constraint->upsize();
         })->save($originalImagePath.$imageName, 65);       
 
-        // use the user instance to create record
+        // use the user intance to create record
         $student = $user->students()->firstOrCreate([
             'surname' => $request->surname,
             'image'  => $this->regImage,
@@ -155,7 +149,7 @@ class PartTimeController extends Controller
             'address' => json_encode($addressArr),
             'kin_sponsor' => json_encode($kinSponsor),
             'phone2'   => $request->phone2,
-            // 'email2'   => $request->email2,
+            'email2'   => $request->email2,
             'birth'   => $request->birthplace,
             'session' => config('site.defaults.session'),
             'type'    => 'Part Time',
@@ -168,23 +162,9 @@ class PartTimeController extends Controller
                 'grade'   =>   $key->grade,
             ]);
         }
-
-        // create a transaction
-        $transaction = $this->createTransaction($student);
-
-        // return transaction
-        return response()->json($transaction->trxn_ref);
+        
+        return response()->json($student);
+        
     }
 
-    /**
-     * Create a transaction for this record
-     */
-    protected function createTransaction(Student $student)
-    {
-        $transaction = $student->transactions()->create([
-            'trxn_ref' => str_random(10),
-        ]);
-
-        return $transaction;
-    }
 }

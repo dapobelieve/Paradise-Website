@@ -7,6 +7,7 @@ Route::group(['middleware' => 'api'], function () {
     // parttime endpoint
     Route::post('save_pt_record', 'Api\PartTimeController@save');
 
+    Route::get('verify/{student}', 'Api\VerifyController@hasPaid');
 
     // store cart details
     Route::post('record-transaction', 'Store\StoreController@record');

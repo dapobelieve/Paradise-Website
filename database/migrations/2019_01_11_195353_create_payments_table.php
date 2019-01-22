@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDegreesTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,18 @@ class CreateDegreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('degrees', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id')->unsigned();
-            $table->text('name');
-            $table->string('reg_number');
-            $table->string('country');
-            $table->string('town')->nullable();
-            $table->date('joined');
-            $table->date('obtained');
-            $table->string('major');
-            $table->string('degree_class');
-            $table->string('certificate');
-            $table->string('cgpa');
+            $table->string('amount');
+            $table->boolean('support')->default(false);
+            $table->string('trxn_ref');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
+
+        
     }
 
     /**
@@ -39,6 +34,6 @@ class CreateDegreesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('degrees');
+        Schema::dropIfExists('payments');
     }
 }

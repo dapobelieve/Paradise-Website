@@ -7,6 +7,8 @@
         <script>
             @if(Auth::check())
                 localStorage.setItem('paraUser', '{!! Auth::user() !!}')
+            @else
+                localStorage.removeItem('paraUser');
             @endif
         </script>
     <div id="store" class="store">
