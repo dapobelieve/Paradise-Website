@@ -132,8 +132,8 @@ class PartTimeController extends Controller
         $this->regImage = 'reg/'.$imageName;
 
         $image->resize(360, 230, function($constraint) {
-                $constraint->upsize();
-        })->save($originalImagePath.$imageName, 65);       
+//                $constraint->upsize();
+        })->save($originalImagePath.$imageName, 65);
 
         // use the user instance to create record
         $student = $user->students()->firstOrCreate([
@@ -162,12 +162,12 @@ class PartTimeController extends Controller
         ]);
         
         // create all the students ssce results
-        foreach (json_decode($request->subjects) as $key) {
-            $student->results()->firstOrCreate([
-                'subject' => $key->name,
-                'grade'   =>   $key->grade,
-            ]);
-        }
+//        foreach (json_decode($request->subjects) as $key) {
+//            $student->results()->firstOrCreate([
+//                'subject' => $key->name,
+//                'grade'   =>   $key->grade,
+//            ]);
+//        }
 
         // create a transaction
         $transaction = $this->createTransaction($student);

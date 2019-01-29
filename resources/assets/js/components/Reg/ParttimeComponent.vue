@@ -365,7 +365,7 @@ import moment from 'moment';
 export default {
   data () {
     return {
-      tab: 7,
+      tab: 1,
       authUser: false,
       max: 7,
       errors: [],
@@ -410,7 +410,7 @@ export default {
       this.form.dob = moment(this.form.dob).format('YYYY-MM-DD');
 
       //persist to ls
-      localStorage.setItem('partTimeUser', this.form);
+      localStorage.setItem('partTimeUser', JSON.stringify(this.form));
 
       /**
        * use fd to send form data with image
@@ -483,7 +483,7 @@ export default {
         this.$router.push({
           name: 'regPay',
           params: {
-            id: response.data.trxn_ref,
+            id: response.data,
           }
         })
       })
@@ -560,8 +560,8 @@ export default {
       this.authUser = true;
     }
 
-    // this.form = JSON.parse(localStorage.getItem('partTimeUser'));
-    // this.subjects = this.form.subjects
+    this.form = JSON.parse(localStorage.getItem('partTimeUser'));
+    this.subjects = this.form.subjects
     // console.log(paraUser);
   }
 }

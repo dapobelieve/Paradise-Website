@@ -1,26 +1,38 @@
 <template>
-    <div class="payment">
-        <button @click="payWithPaystack">Pay Now</button>
+    <div class="payment text-xs-center">
+        <div class="heading">
+            <h1>Pay Now</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="form-group">
+                        <input v-model="support" type="checkbox" > Select if you want us to follow up your registration process till the very end.
+                        <span style="color: green;">&#8358;2,500</span>
+                    </div>
+                    <div class="form-group">
+                        <button :disabled="button.enable" @click="payWithPaystack" class="btn btn-success btn-lg">Pay &#8358;{{ pricing }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+
 <script>
     export default {
         data () {
             return {
-                activeNav: true,
-                bookRef: '',
+                support: false,
                 button: {
                     enable: false,
                 },
+                transaction: {},
                 payObj: {
-                    addAmount: 2500,
-                    stdAmount: 19750,
+                    addAmount: 250000,
                     email:     'dredsn@gmail.com',
-                    amount:    0,
+                    amount:    1975000,
                     format:    '',
                     reference: '',
                     psKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
-                    // secretKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
                     bearer: 'ParadiseDigitalWorld'
                 },
             }
@@ -37,39 +49,56 @@
                 if (this.button.enable){
                     return 'Please wait...'
                 }else{
-                    return `Pay NGN ${this.payObj.format}`;
+                    return `${this.payObj.format}`;
+                }
+            },
+            pricing () {
+                return  (this.payObj.amount / 100).toLocaleString();
+            }
+        },
+        watch: {
+            support (newValue, oldValue) {
+                if (newValue === true) {
+                    this.payObj.amount = this.payObj.amount + this.payObj.addAmount;
+                }else if (newValue === false) {
+                    this.payObj.amount = 1975000;
                 }
             }
         },
         methods: {
-            payNow (response) {
-                alert('Processing your Payment. This would take few seconds, Please wait...');
 
-                axios.post('api/payment', {
-                    ref: response,
-                    admin: false
-                })
+            payNow (ref) {
+                axios.get('api/verify-payment/'+this.transaction.id+'/'+ref)
                 .then(response => {
-                    window.location = window.url+`success/${this.bookRef}`;
-                    // console.log(response.data);
+                    alert('Payment Successful');
+                    console.log(response.data)
                 })
                 .catch(error => {
-                    alert(error.data)
+                    // alert(error.data)
                 })
             },
-            close: function(){
-                console.log("Payment closed")
+            close (){
+                alert("INCOMPLETE PAYMENT!!!");
+            },
+            updateRefCode () {
+              axios.get(`api/ref-update/${this.transaction.id}`)
+                  .then(response => {
+                      console.log("UPDATED REF CODE");
+                  })
+                  .catch(error => {
+                      console.log("ERROR UPDATING REF CODE");
+                  })
             },
             loadScript(callback) {
                 // load paystack's inline js script
-                const script = document.createElement('script')
-                script.src = 'https://js.paystack.co/v1/inline.js'
-                document.getElementsByTagName('head')[0].appendChild(script)
+                const script = document.createElement('script');
+                script.src = 'https://js.paystack.co/v1/inline.js';
+                document.getElementsByTagName('head')[0].appendChild(script);
                 if (script.readyState) {
                     // IE
                     script.onreadystatechange = () => {
                         if (script.readyState === 'loaded' || script.readyState === 'complete') {
-                            script.onreadystatechange = null
+                            script.onreadystatechange = null;
                             callback()
                         }
                     }
@@ -82,7 +111,9 @@
             },
             payWithPaystack() {
                 this.button.enable = true;
+                this.updateRefCode();
                 this.scriptLoaded.then(() => {
+
                     const paystackOptions = {
                         key: this.payObj.psKey,
                         email: this.payObj.email,
@@ -94,15 +125,15 @@
                         onClose: () => {
                             this.close()
                         },
-                        metadata: this.metadata,
+                        metadata: null,
                         currency: this.currency,
-                    }
+                    };
 
                     if (this.embed) {
                         paystackOptions.container = 'paystackEmbedContainer'
                     }
 
-                    const handler = window.PaystackPop.setup(paystackOptions)
+                    const handler = window.PaystackPop.setup(paystackOptions);
                     if (!this.embed) {
                         handler.openIframe()
                     }
@@ -110,44 +141,32 @@
             }
         },
         mounted() {
-            this.payObj.amount = this.payObj.stdAmount * 100;
-            alert(this.payObj.amount);
+            this.payObj.format = `Pay NGN ${this.payObj.amount}`;
             if (this.embed) {
                 this.payWithPaystack()
             }
         },
-        beforeRouteEnter(to, from, next)
-        {
+        beforeRouteEnter(to, from, next) {
             axios.get(`api/verify/${to.params.id}`)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error.response);
-            });
+                .then(response => {
+                    next((vm) => {
+                        vm.transaction = response.data;
+                    });
 
-            next();
+                })
+                .catch(error => {
+                    alert('INVALID TRANSACTION');
+                    console.log(error.response);
+                });
         }
-        // beforeRouteEnter(to, from, next)
-        // {
-        //     let bookRef = to.params.bookRef;
-
-        //     axios.get('/api/getpay/'+bookRef)
-        //     .then( response => {
-        //         // console.log(response.data);
-        //         next(vm => {
-        //             vm.payObj.amount = parseInt(response.data.amount * 100);
-        //             vm.payObj.format = response.data.format;
-        //             vm.payObj.email  = response.data.email;
-        //             vm.payObj.key    = response.data.psKey;
-        //             vm.payObj.reference = response.data.ref;
-        //             vm.bookRef = bookRef;
-
-        //         });
-        //     })
-        //     .catch( error => {
-        //         alert('Couldnt get your booking details. Unauthorised Access!');
-        //     });
-        // }
     }
 </script>
+
+
+<style>
+    .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>

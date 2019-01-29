@@ -5,7 +5,7 @@ import Vue from 'vue'
 
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 /**
  * import components to be used
@@ -62,12 +62,11 @@ const routes = [
 
 const router = new Router({
     routes: routes
-})
+});
 
 /**
  * Do all the beforeEach logics here
  */
-
 
 
 /**

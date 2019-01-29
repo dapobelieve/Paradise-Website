@@ -7,12 +7,15 @@ Route::group(['middleware' => 'api'], function () {
     // parttime endpoint
     Route::post('save_pt_record', 'Api\PartTimeController@save');
 
-    Route::get('verify/{student}', 'Api\VerifyController@hasPaid');
+    Route::get('verify/{ref}', 'Api\VerifyController@verifyTransaction');
 
     // store cart details
     Route::post('record-transaction', 'Store\StoreController@record');
 
+    // update refcode status
+    Route::get('ref-update/{transaction}', 'Api\VerifyController@updateRefCode');
 
+    Route::get('verify-payment/{transaction}/{ref}', 'Api\VerifyPayment@verify');
 
 
 });

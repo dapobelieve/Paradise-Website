@@ -8,7 +8,7 @@ class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *ws2q
      * @return void
      */
     public function up()
@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->integer('payment_id')->unsigned()->nullable();
             $table->string('amount')->nullable()->default(0);
+            $table->integer('used')->default(0);
             $table->string('status');
             $table->string('trxn_ref');
             $table->text('meta')->nullable();
