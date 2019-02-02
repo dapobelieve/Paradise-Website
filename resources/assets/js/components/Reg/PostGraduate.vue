@@ -93,12 +93,20 @@
         <div v-if="tab === 2" class="row">
           <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
             <div class="form-group">
-              <label for="surname">First Choice Degree</label>
-              <input type="text" v-model="form.first_choice" required  class="form-control" placeholder="First Choice Degree">
+              <label for="surname">Department</label>
+              <input type="text" v-model="form.department" required  class="form-control" placeholder="Department">
             </div>
             <div class="form-group">
-              <label for="surname">Second Choice Degree</label>
-              <input type="text" v-model="form.second_choice" required  class="form-control" placeholder="Second Choice Degree">
+              <label for="surname">Degree/Program</label>
+              <input type="text" v-model="form.program" required  class="form-control" placeholder="Degree/Program">
+            </div>
+            <div class="form-group">
+              <label for="surname">Field of Interest</label>
+              <input type="text" v-model="form.field" required  class="form-control" placeholder="Field of Interest">
+            </div>
+            <div class="form-group">
+              <label for="surname">Mode of Study</label>
+              <input type="text" v-model="form.mode" required  class="form-control" placeholder="Mode of Study">
             </div>
           </div>
         </div>
@@ -162,42 +170,51 @@
           </div>
         </div>
         <div v-if="tab === 5" class="row">
-          <div class="col-md-6">
-            <h3>Next of Kin Details</h3>
+          <span>
+
+          </span>
+          <div v-for="(school, index) in degrees" class="col-sm-6" :key="index">
             <div class="form-group">
-              <label for="surname">Full Name (surname first)</label>
-              <input type="text" v-model="form.kin_name" required  class="form-control" placeholder="Next of kin name">
+              <label for="surname">School/Institution Name</label>
+              <input type="text" v-model="school.name" required  class="form-control" placeholder="School/Institution Name">
             </div>
             <div class="form-group">
-              <label for="surname">Address</label>
-              <input type="text" v-model="form.kin_address" required  class="form-control" placeholder="Address">
+              <label for="surname">Reg.Number/ Matric Number</label>
+              <input type="text" v-model="school.matric" required  class="form-control" placeholder="Reg.Number/ Matric Number">
             </div>
             <div class="form-group">
-              <label for="surname">Email</label>
-              <input type="text" v-model="form.kin_Email" required  class="form-control" placeholder="Email">
+              <label for="surname">Country</label>
+              <input type="text" v-model="school.country" required  class="form-control" placeholder="Country">
             </div>
             <div class="form-group">
-              <label for="surname">Phone Number</label>
-              <input type="text" v-model="form.kin_Phone" required  class="form-control" placeholder="Phone Number">
+              <label for="surname">Town</label>
+              <input type="text" v-model="school.town" required  class="form-control" placeholder="Town">
+            </div>
+            <div class="form-group">
+              <label for="surname">Year Joined</label>
+              <input type="text" v-model="school.year" required  class="form-control" placeholder="Year Joined">
             </div>
           </div>
           <div class="col-md-6">
-            <h3>Sponsor Details</h3>
             <div class="form-group">
-              <label for="surname">Full Name (surname first)</label>
-              <input type="text" v-model="form.sponsor_name" required  class="form-control" placeholder="Sponsor's name">
+              <label for="surname">Date Obtained</label>
+              <input type="text" v-model="school.obtained" required  class="form-control" placeholder="Date Obtained">
             </div>
             <div class="form-group">
-              <label for="surname">Address</label>
-              <input type="text" v-model="form.sponsor_address" required  class="form-control" placeholder="Address">
+              <label for="surname">Major Subject</label>
+              <input type="text" v-model="school.major" required  class="form-control" placeholder="Major Subject">
             </div>
             <div class="form-group">
-              <label for="surname">Email</label>
-              <input type="text" v-model="form.sponsor_Email" required  class="form-control" placeholder="Email">
+              <label for="surname">Class of Degree</label>
+              <input type="text" v-model="school.class" required  class="form-control" placeholder="Class of Degree">
             </div>
             <div class="form-group">
-              <label for="surname">Phone Number</label>
-              <input type="text" v-model="form.sponsor_Phone" required  class="form-control" placeholder="Phone Number">
+              <label for="surname">Certificate</label>
+              <input type="text" v-model="school.certificate" required  class="form-control" placeholder="Certificate">
+            </div>
+            <div class="form-group">
+              <label for="surname">CGPA on 5 point scale</label>
+              <input type="text" v-model="school.cgpa" required  class="form-control" placeholder="CGPA on 5 point scale">
             </div>
           </div>
         </div>
@@ -247,7 +264,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="actions">
 
           <div class="prev">
@@ -267,29 +284,44 @@
   </div>
 </template>
 <script>
-import vueDropzone from "vue2-dropzone";
-import moment from 'moment';
-export default {
-  data () {
-    return {
-      tab: 7,
-      authUser: false,
-      max: 7,
-      user: {},
-      form: {},
-      states: [],
-      subjects: [
-        {
-          id: Date.now(),
-          name: "",
-          grade: ""
-        }
-      ],
-      locations: [],
-      section: 'Bio Data',
-      dropOptions: {
+  import vueDropzone from "vue2-dropzone";
+  import moment from 'moment';
+  export default {
+    data () {
+      return {
+        tab: 5,
+        authUser: false,
+        max: 7,
+        user: {},
+        form: {},
+        states: [],
+        degrees: [
+          {
+            id: Date.now(),
+            name: '',
+            matric: '',
+            country: '',
+            town: '',
+            year: '',
+            obtained: '',
+            major: '',
+            class: '',
+            certificate: '',
+            cgpa: '',
+          }
+        ],
+        subjects: [
+          {
+            id: Date.now(),
+            name: "",
+            grade: ""
+          }
+        ],
+        locations: [],
+        section: 'Bio Data',
+        dropOptions: {
           url: "http://localhost:8000/api/image",
-          maxFilesize: 2, // MB
+          maxFilesize: 2, //MB
           maxFiles: 1,
           chunking: true,
           preventDuplicates: true,
@@ -298,175 +330,177 @@ export default {
           thumbnailHeight: 150,
           addRemoveLinks: true,
           autoProcessQueue:false,
-          dictDefaultMessage: `<i class='fa fa-upload' style='font-size:100px; text-align: center'></i> 
+          dictDefaultMessage: `<i class='fa fa-upload' style='font-size:100px; text-align: center'></i>
             <br> Upload a Recent Passport Photograph <span style='color: red'>Browse Device</span>`
+        },
+        image: null
+      }
+    },
+    components: {
+      vueDropzone
+    },
+    methods: {
+      save () {
+        // set user
+        this.form.userId = this.user.id;
+
+        // format date
+        this.form.dob = moment(this.form.dob).format('YYYY-MM-DD')
+
+        // persisit to LS
+        // use form data to send form for procesing
+        const fd = new FormData();
+        fd.append('userId', this.form.userId);
+        fd.append('surname', this.form.surname);
+        fd.append('email', this.form.email);
+        fd.append('firstname', this.form.firstname);
+        fd.append('middlename', this.form.middlename);
+        fd.append('phone', this.form.phone);
+        fd.append('sex', this.form.sex);
+        fd.append('state', this.form.state);
+        fd.append('lga', this.form.lga);
+        fd.append('sponsor', this.form.sponsor);
+        fd.append('marital', this.form.marital);
+        fd.append('nation', this.form.nationality);
+        fd.append('dob', this.form.dob);
+        fd.append('religion', this.form.religion);
+        fd.append('birthplace', this.form.birthplace);
+        // tab 2
+        fd.append('first_choice', this.form.first_choice)
+        fd.append('second_choice', this.form.second_choice)
+
+        // tab 3
+        fd.append('hmadd_country', this.form.hmadd_country)
+        fd.append('hmadd_state', this.form.hmadd_state)
+        fd.append('hmadd_city', this.form.hmadd_city)
+        fd.append('hmadd_street', this.form.hmadd_street)
+
+        fd.append('madd_country', this.form.madd_country);
+        fd.append('madd_state', this.form.madd_state);
+        fd.append('madd_city', this.form.madd_city);
+        fd.append('madd_pcode', this.form.madd_pcode);
+
+        // tab 4
+        fd.append('subjects', JSON.stringify(this.subjects))
+
+        // tab 5
+        fd.append('kin_name', this.form.kin_name);
+        fd.append('kin_Email', this.form.kin_Email);
+        fd.append('kin_address', this.form.kin_address);
+        fd.append('kin_Phone', this.form.kin_Phone);
+
+        // sponsor
+        fd.append('sponsor_name', this.form.sponsor_name)
+        fd.append('sponsor_Email', this.form.sponsor_Email)
+        fd.append('sponsor_Phone', this.form.sponsor_Phone)
+        fd.append('sponsor_address', this.form.sponsor_address)
+
+        // tab 6
+        fd.append('de_name', this.form.de_name);
+        fd.append('de_grad', this.form.de_grad);
+        fd.append('de_entry', this.form.de_entry);
+        fd.append('de_course', this.form.de_course);
+        fd.append('de_class', this.form.de_class);
+        fd.append('de_cert', this.form.de_cert);
+        fd.append('de_add', this.form.de_add);
+
+        // tab 7
+        fd.append('image', this.image);
+
+        // send axios request
+        axios.post('api/save_pt_record', fd)
+                .then((response) => {
+                  console.log(JSON.parse(response.data.address));
+                })
+                .catch(error => {
+                  this.errors = error.response.data
+                  console.log(error.response.data)
+                })
+
       },
-      image: null
-    }
-  },
-  components: {
-    vueDropzone 
-  },
-  methods: {
-    save () {
-      // set user
-      this.form.userId = this.user.id;
+      imageSelected (e) {
+        this.image = e;
+      },
+      removeImage () {
+        this.image = '';
+      },
+      addSubject() {
+        if (this.subjects.length === 9) {
+          return;
+        }
+        this.subjects.push({
+          id: Date.now(),
+          name: '',
+          grade: ''
+        })
+      },
+      removeSubject(id) {
+        if (this.subjects.length === 1)
+          return;
+        this.subjects = this.subjects.filter(x => x.id !== id);
+      },
+      addDegree() {
 
-      // format date
-      this.form.dob = moment(this.form.dob).format('YYYY-MM-DD')
+      },
+      getStates() {
+        axios.get('api/get-states')
+                .then(response => {
+                  this.states = response.data;
+                })
+      },
+      loadLga (e) {
+        let stateId = e.target.value;
+        let loc = this.states.filter((x) => {
+          return x.id == stateId;
+        })
 
-      // persisit to LS
-      // use form data to send form for procesing
-      const fd = new FormData();
-      fd.append('userId', this.form.userId);
-      fd.append('surname', this.form.surname);
-      fd.append('email', this.form.email);
-      fd.append('firstname', this.form.firstname);
-      fd.append('middlename', this.form.middlename);
-      fd.append('phone', this.form.phone);
-      fd.append('sex', this.form.sex);
-      fd.append('state', this.form.state);
-      fd.append('lga', this.form.lga);
-      fd.append('sponsor', this.form.sponsor);
-      fd.append('marital', this.form.marital);
-      fd.append('nation', this.form.nationality);
-      fd.append('dob', this.form.dob);
-      fd.append('religion', this.form.religion);
-      fd.append('birthplace', this.form.birthplace);
-      // tab 2
-      fd.append('first_choice', this.form.first_choice)
-      fd.append('second_choice', this.form.second_choice)
-
-      // tab 3
-      fd.append('hmadd_country', this.form.hmadd_country)
-      fd.append('hmadd_state', this.form.hmadd_state)
-      fd.append('hmadd_city', this.form.hmadd_city)
-      fd.append('hmadd_street', this.form.hmadd_street)
-
-      fd.append('madd_country', this.form.madd_country);
-      fd.append('madd_state', this.form.madd_state);
-      fd.append('madd_city', this.form.madd_city);
-      fd.append('madd_pcode', this.form.madd_pcode);
-
-      // tab 4
-      fd.append('subjects', JSON.stringify(this.subjects))
-
-      // tab 5
-      fd.append('kin_name', this.form.kin_name);
-      fd.append('kin_Email', this.form.kin_Email);
-      fd.append('kin_address', this.form.kin_address);
-      fd.append('kin_Phone', this.form.kin_Phone);
-
-      // sponsor
-      fd.append('sponsor_name', this.form.sponsor_name)
-      fd.append('sponsor_Email', this.form.sponsor_Email)
-      fd.append('sponsor_Phone', this.form.sponsor_Phone)
-      fd.append('sponsor_address', this.form.sponsor_address)
-
-      // tab 6
-      fd.append('de_name', this.form.de_name);
-      fd.append('de_grad', this.form.de_grad);
-      fd.append('de_entry', this.form.de_entry);
-      fd.append('de_course', this.form.de_course);
-      fd.append('de_class', this.form.de_class);
-      fd.append('de_cert', this.form.de_cert);
-      fd.append('de_add', this.form.de_add);
-      
-      // tab 7
-      fd.append('image', this.image);
-      
-      // send axios request
-      axios.post('api/save_pt_record', fd)
-      .then((response) => {
-        console.log(JSON.parse(response.data.address));
-      })
-      .catch(error => {
-        this.errors = error.response.data
-        console.log(error.response.data)
-      })
-      
-    },
-    imageSelected (e) {
-      console.log(e)
-      this.image = e; 
-    },
-    removeImage () {
-      this.image = '';
-    },
-    addSubject() {
-      if (this.subjects.length === 9) {
-        return;
+        this.locations = loc[0].locations;
       }
-      this.subjects.push({
-        id: Date.now(),
-        name: '',
-        grade: ''
-      }) 
     },
-    removeSubject(id) {
-      if (this.subjects.length === 1)
-        return;
-      this.subjects = this.subjects.filter(x => x.id !== id);
-    },
-    getStates() {
-      axios.get('api/get-states')
-      .then(response => {
-        this.states = response.data;
-      }) 
-    },
-    loadLga (e) {
-      let stateId = e.target.value;
-      let loc = this.states.filter((x) => {
-        return x.id == stateId;
-      })
-
-      this.locations = loc[0].locations;
-    }
-  },
-  watch: {
-    tab (newValue, oldValue) {
-      if (newValue === 1) {
-        this.section = 'Bio Data'
-      }else if (newValue === 2) {
-        this.section = 'Preferred Courses'
-      }else if (newValue === 3) {
-        this.section = 'Contact Information' //
-      }else if (newValue === 4) {
-        this.section = 'SSCE Information'
-      }else if (newValue === 5) {
-        this.section = 'Next of Kin Details'
-      }else if (newValue === 6) {
-        this.section = 'Direct Entry if Applicable'
-      }else if (newValue === 7) {
-        this.section = 'Passport & Password'
+    watch: {
+      tab (newValue, oldValue) {
+        if (newValue === 1) {
+          this.section = 'Bio Data'
+        }else if (newValue === 2) {
+          this.section = 'Course/Degree in view'
+        }else if (newValue === 3) {
+          this.section = 'Contact Information' //
+        }else if (newValue === 4) {
+          this.section = 'SSCE Information'
+        }else if (newValue === 5) {
+          this.section = 'Other Degrees'
+        }else if (newValue === 6) {
+          this.section = 'Direct Entry if Applicable'
+        }else if (newValue === 7) {
+          this.section = 'Passport & Password'
+        }
       }
-    }
-  },
-  mounted () {
-    this.getStates()
-    // check if user is logged in from LS
-    var paraUser = JSON.parse(localStorage.getItem('paraUser'));
-    console.log(paraUser);
-    // this.tab = 7;
-    if (paraUser != undefined) {
-      this.user = paraUser;
-      this.authUser = true;
-    }
+    },
+    mounted () {
+      this.getStates()
+      // check if user is logged in from LS
+      var paraUser = JSON.parse(localStorage.getItem('paraUser'));
+      console.log(paraUser);
+      // this.tab = 7;
+      if (paraUser != undefined) {
+        this.user = paraUser;
+        this.authUser = true;
+      }
 
-    this.form = JSON.parse(localStorage.getItem('partTimeUser'));
-    this.subjects = this.form.subjects
-    // console.log(paraUser);
+      // this.form = JSON.parse(localStorage.getItem('partTimeUser'));
+      // this.subjects = this.form.subjects
+      // console.log(paraUser);
+    }
   }
-}
 </script>
 <style scoped>
-.actions {
-  display: flex;
-  justify-content: space-around;
-}
-.heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 </style>

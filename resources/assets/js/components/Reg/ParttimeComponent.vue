@@ -331,7 +331,7 @@
           <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
             <h3>Profile</h3>
             <div class="form-group">
-              <label for="surname">Upload passport</label>
+              <label for="surname">Upload a recent and clear passport photograph</label>
               <vueDropzone @vdropzone-removed-file="removeImage" @vdropzone-file-added="imageSelected" id='uploader1' :options="dropOptions"></vueDropzone>
               <span v-if="errors.image" class="has-error">
                 {{ errors.image[0] }}
@@ -529,7 +529,7 @@ export default {
 
       this.locations = loc[0].locations;
     }
-  },
+  }, //192.168.8.102
   watch: {
     tab (newValue, oldValue) {
       if (newValue === 1) {
@@ -545,7 +545,7 @@ export default {
       }else if (newValue === 6) {
         this.section = 'Direct Entry if Applicable'
       }else if (newValue === 7) {
-        this.section = 'Passport & Password'
+        this.section = 'Passport'
       }
     }
   },
@@ -560,8 +560,8 @@ export default {
       this.authUser = true;
     }
 
-    this.form = JSON.parse(localStorage.getItem('partTimeUser'));
-    this.subjects = this.form.subjects
+    // this.form = JSON.parse(localStorage.getItem('partTimeUser'));
+    // this.subjects = this.form.subjects
     // console.log(paraUser);
   }
 }

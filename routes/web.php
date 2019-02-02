@@ -63,5 +63,7 @@ Route::get('add-product', function () {
 
 Route::post('add/product', 'Store\AddController@store')->name('store.add');
 
+Route::get('/registrations', 'Api\RegController@index')->name('get-regs');
+
 
 Route::get('training', 'SolarController@index')->name('solar.index');

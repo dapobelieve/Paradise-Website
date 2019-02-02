@@ -9,6 +9,9 @@
         <li><a href="#">
             <i class="fa fa-home"></i> <span>Dashboard</span></a>
         </li>
+        <li><a href="{{ url('registrations#/list') }}">
+                <i class="fa fa-users"></i> <span>Registrations</span></a>
+        </li>
 
         <li class="submenu">
             <a href="#"><i class="fa fa-flask"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>

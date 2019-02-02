@@ -27,4 +27,14 @@ class Student extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    public  function state()
+    {
+        return $this->belongsTo(State::class, 'state');
+    }
+
+    public  function lga()
+    {
+        return $this->belongsTo(Location::class, 'lga');
+    }
 }

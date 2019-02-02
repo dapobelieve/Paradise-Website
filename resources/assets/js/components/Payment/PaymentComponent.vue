@@ -1,17 +1,27 @@
 <template>
     <div class="payment text-xs-center">
-        <div class="heading">
+        <div v-if="!paySuccess" class="heading">
             <h1>Pay Now</h1>
             <div class="container">
                 <div class="row">
-                    <div class="form-group">
-                        <input v-model="support" type="checkbox" > Select if you want us to follow up your registration process till the very end.
-                        <span style="color: green;">&#8358;2,500</span>
-                    </div>
-                    <div class="form-group">
-                        <button :disabled="button.enable" @click="payWithPaystack" class="btn btn-success btn-lg">Pay &#8358;{{ pricing }}</button>
+                    <div class="col-md-6 col-md-offset-3">
+                        <div v-if="!button.enable" class="form-group">
+                            <input v-model="support" type="checkbox" > Select if you want us to follow up your registration process till the very end.
+                            <span style="color: green;">&#8358;2,500</span>
+                        </div>
+                        <div class="form-group">
+                            <button v-if="!button.enable" :disabled="button.enable" @click="payWithPaystack" class="btn btn-success btn-lg">Pay &#8358;{{ pricing }}</button>
+                            <button v-if="button.enable" disabled class="btn btn-success btn-lg">
+                                {{ loadText }}... <i class='fa fa-spinner fa-spin fa-2x'></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div v-if="paySuccess" class="heading">
+            <div class="container">
+                <p>Payment Successful, you will be notified</p>
             </div>
         </div>
     </div>
@@ -25,10 +35,12 @@
                 button: {
                     enable: false,
                 },
+                loadText: 'Processing ',
+                paySuccess: false,
                 transaction: {},
                 payObj: {
                     addAmount: 250000,
-                    email:     'dredsn@gmail.com',
+                    email:     'support@paradisedigitalworld.net',
                     amount:    1975000,
                     format:    '',
                     reference: '',
@@ -47,7 +59,7 @@
             },
             payBtn () {
                 if (this.button.enable){
-                    return 'Please wait...'
+                    return "Please wait... ";
                 }else{
                     return `${this.payObj.format}`;
                 }
@@ -66,15 +78,15 @@
             }
         },
         methods: {
-
             payNow (ref) {
                 axios.get('api/verify-payment/'+this.transaction.id+'/'+ref)
                 .then(response => {
+                    this.paySuccess = true;
                     alert('Payment Successful');
                     console.log(response.data)
                 })
                 .catch(error => {
-                    // alert(error.data)
+                    alert(error.response);
                 })
             },
             close (){
@@ -111,7 +123,7 @@
             },
             payWithPaystack() {
                 this.button.enable = true;
-                this.updateRefCode();
+                // this.updateRefCode();
                 this.scriptLoaded.then(() => {
 
                     const paystackOptions = {
@@ -120,6 +132,7 @@
                         amount: this.payObj.amount,
                         ref: this.payObj.reference,
                         callback: (response) => {
+                            this.loadText = 'Verifying your payment';
                             this.payNow(response.trxref)
                         },
                         onClose: () => {
@@ -155,7 +168,7 @@
 
                 })
                 .catch(error => {
-                    alert('INVALID TRANSACTION');
+                    alert(error.response);
                     console.log(error.response);
                 });
         }

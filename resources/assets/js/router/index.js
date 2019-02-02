@@ -8,8 +8,7 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 /**
- * import components to be used
- */
+ * import components to be used */
 
 import {
     Home,
@@ -20,6 +19,12 @@ import {
     PostGradute,
     Payment
 } from './../components'
+
+import {
+    StudentList,
+    Index,
+    StudentDetails
+} from './../components/Admin'
 
 
 const routes = [
@@ -57,6 +62,22 @@ const routes = [
         path: '/pay/:id',
         component: Payment,
         name: 'regPay'
+    },
+    {
+        path: '',
+        component: Index,
+        children: [
+            {
+                path: '/list',
+                component: StudentList,
+                name: 'students-list'
+            },
+            {
+                path: '/details/:studentId',
+                component: StudentDetails,
+                name: 'student-details'
+            }
+        ]
     }
 ];
 

@@ -17,5 +17,11 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::get('verify-payment/{transaction}/{ref}', 'Api\VerifyPayment@verify');
 
+    /**
+     * Registration Parts
+     */
+    Route::get('get-students', 'Api\RegController@getAllReg');
+    Route::get('student-detail/{student}', 'Api\RegController@getStudent');
+
 
 });
