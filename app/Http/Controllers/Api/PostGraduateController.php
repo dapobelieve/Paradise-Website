@@ -14,7 +14,6 @@ class PostGraduateController extends Controller
 
     public function save(Request $request)
     {
-        // Carbon::parse('-1 year')->year."/".Carbon::now()->year prints 2018/2019
         // fetch user
         $user = User::find($request->userId);
 
@@ -33,11 +32,6 @@ class PostGraduateController extends Controller
             'religion' => 'required',
             'birthplace' => 'required',
             'first_choice' => 'required',
-            // kin validation
-            'kin_name' => 'required',
-            'kin_Email' => 'required',
-            'kin_address' => 'required',
-            'kin_Phone' => 'required',
             'second_choice' => 'required',
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
@@ -45,19 +39,11 @@ class PostGraduateController extends Controller
             'hmadd_street' => 'required',
             'madd_country' => 'required',
             'madd_state' => 'required',
-            'sponsor_name' => 'required',
-            'sponsor_address' => 'required',
-            'sponsor_Email' => 'required',
-            'sponsor_Phone' => 'required',
             'madd_city' => 'required',
             'marital' => 'required',
             'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
         ], [
             'image.required' => 'An image is required',
-            'kin_name.required' => 'Next of kin Name is required',
-            'kin_Email.required' => 'Next of kin Email is required',
-            'kin_address.required' => 'Next of kin Address is required',
-            'kin_Phone.required' => 'Next of kin Address is required',
             'madd_country.required' => 'Enter Country of mailing address',
             'madd_state.required' => 'Enter State of mailing address',
             'madd_city.required' => 'Enter City of mailing address',

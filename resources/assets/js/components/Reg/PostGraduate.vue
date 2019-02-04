@@ -170,89 +170,129 @@
           </div>
         </div>
         <div v-if="tab === 5" class="row">
-          <span>
-
-          </span>
-          <div v-for="(school, index) in degrees" class="col-sm-6" :key="index">
-            <div class="form-group">
-              <label for="surname">School/Institution Name</label>
-              <input type="text" v-model="school.name" required  class="form-control" placeholder="School/Institution Name">
+          <span v-for="(school, index) in degrees" :key="index">
+              <div  class="col-sm-6" >
+                <div class="form-group">
+                <label for="surname">School/Institution Name</label>
+                <input type="text" v-model="school.name" required  class="form-control" placeholder="School/Institution Name">
+              </div>
+                <div class="form-group">
+                <label for="surname">Reg.Number/ Matric Number</label>
+                <input type="text" v-model="school.matric" required  class="form-control" placeholder="Reg.Number/ Matric Number">
+              </div>
+                <div class="form-group">
+                <label for="surname">Country</label>
+                <input type="text" v-model="school.country" required  class="form-control" placeholder="Country">
+              </div>
+                <div class="form-group">
+                <label for="surname">Town</label>
+                <input type="text" v-model="school.town" required  class="form-control" placeholder="Town">
+              </div>
+                <div class="form-group">
+                <label for="surname">Year Joined</label>
+                <input type="text" v-model="school.year" required  class="form-control" placeholder="Year Joined">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="surname">Reg.Number/ Matric Number</label>
-              <input type="text" v-model="school.matric" required  class="form-control" placeholder="Reg.Number/ Matric Number">
-            </div>
-            <div class="form-group">
-              <label for="surname">Country</label>
-              <input type="text" v-model="school.country" required  class="form-control" placeholder="Country">
-            </div>
-            <div class="form-group">
-              <label for="surname">Town</label>
-              <input type="text" v-model="school.town" required  class="form-control" placeholder="Town">
-            </div>
-            <div class="form-group">
-              <label for="surname">Year Joined</label>
-              <input type="text" v-model="school.year" required  class="form-control" placeholder="Year Joined">
-            </div>
-          </div>
-          <div class="col-md-6">
+            <div class="col-md-6">
             <div class="form-group">
               <label for="surname">Date Obtained</label>
               <input type="text" v-model="school.obtained" required  class="form-control" placeholder="Date Obtained">
             </div>
-            <div class="form-group">
-              <label for="surname">Major Subject</label>
-              <input type="text" v-model="school.major" required  class="form-control" placeholder="Major Subject">
+              <div class="form-group">
+                <label for="surname">Major Subject</label>
+                <input type="text" v-model="school.major" required  class="form-control" placeholder="Major Subject">
+              </div>
+              <div class="form-group">
+                <label for="surname">Class of Degree</label>
+                <input type="text" v-model="school.class" required  class="form-control" placeholder="Class of Degree">
+              </div>
+              <div class="form-group">
+                <label for="surname">Certificate</label>
+                <input type="text" v-model="school.certificate" required  class="form-control" placeholder="Certificate">
+              </div>
+              <div class="form-group">
+                <label for="surname">CGPA on 5 point scale</label>
+                <input type="text" v-model="school.cgpa" required  class="form-control" placeholder="CGPA on 5 point scale">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="surname">Class of Degree</label>
-              <input type="text" v-model="school.class" required  class="form-control" placeholder="Class of Degree">
+            <div class="col-md-4 col-md-offset-8">
+              <a v-if="degrees.length >= 2" @click.prevent="removeDegree(school.id)"href="#"  style="color: red; text-decoration: none">Remove Degree</a>
             </div>
-            <div class="form-group">
-              <label for="surname">Certificate</label>
-              <input type="text" v-model="school.certificate" required  class="form-control" placeholder="Certificate">
-            </div>
-            <div class="form-group">
-              <label for="surname">CGPA on 5 point scale</label>
-              <input type="text" v-model="school.cgpa" required  class="form-control" placeholder="CGPA on 5 point scale">
-            </div>
+            <hr>
+            <hr>
+          </span>
+          <div class="col-md-4 col-md-offset-4">
+            <button @click="addDegree" class="btn btn-success">Add Degree</button>
           </div>
         </div>
         <div v-if="tab === 6" class="row">
-          <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
-            <h3>Direct Entry Information</h3>
-            <h3></h3>
-            <div class="form-group">
-              <label for="surname">Institution Name</label>
-              <input type="text" v-model="form.de_name"  class="form-control" placeholder="Institution Name">
-            </div>
-            <div class="form-group">
-              <label for="surname">Institution Address</label>
-              <input type="text" v-model="form.de_add"  class="form-control" placeholder="Institution Address">
-            </div>
-            <div class="form-group">
-              <label for="surname">Course Studied</label>
-              <input type="text" v-model="form.de_course"  class="form-control" placeholder="Course Studied">
-            </div>
-            <div class="form-group">
-              <label for="surname">Certificate Type</label>
-              <input type="text" v-model="form.de_cert" required  class="form-control" placeholder="Certificate Type">
-            </div>
-            <div class="form-group">
-              <label for="surname">Entry Year</label>
-              <input type="number" v-model="form.de_entry" required  class="form-control" placeholder="Entry Year">
-            </div>
-            <div class="form-group">
-              <label for="surname">Year Graduated</label>
-              <input type="number" v-model="form.de_grad" required  class="form-control" placeholder="Year Graduated">
-            </div>
-            <div class="form-group">
-              <label for="surname">Certificate Class</label>
-              <input type="text" v-model="form.de_class" required  class="form-control" placeholder="Certificate Class">
-            </div>
+          <div class="col-md-6 col-md-offset-3 ">
+            <!--<h3>Direct Entry Information</h3>-->
+            <form v-for="(pub, i) in publications" :key="i" class="form-inline" role="form">
+              <span>{{ i + 1 }}. </span>
+              <div class="form-group">
+                <label class="sr-only">Title</label>
+                <input type="text" v-model="pub.title" required class="form-control" placeholder="Title">
+              </div>
+              <div class="form-group">
+              <label class="sr-only">Date Published</label>
+                <input type="text" v-model="pub.date" required class="form-control" placeholder="Date Published dd/mm/yyyy">
+              </div>
+              <div class="form-group">
+                <a style="color: red; cursor: pointer; text-decoration: none" @click="removePublication(sub.id)">Remove</a>
+              </div>
+            </form>
+            <button v-if="publications.length < 3" @click.prevent="addPublication" class="btn btn-success btn-sm">Add Publication</button>
           </div>
         </div>
         <div v-if="tab === 7" class="row">
+          <div class="col-md-6 col-md-offset-3 ">
+            <!--<h3>Direct Entry Information</h3>-->
+            <form v-for="(pub, i) in prizes" :key="i" class="form-inline" role="form">
+              <span>{{ i + 1 }}. </span>
+              <div class="form-group">
+                <label class="sr-only">Title</label>
+                <input type="text" v-model="pub.title" required class="form-control" placeholder="Title">
+              </div>
+              <div class="form-group">
+                <a style="color: red; cursor: pointer; text-decoration: none" @click="removePrize(pub.id)">Remove</a>
+              </div>
+            </form>
+            <button v-if="prizes.length < 3" @click.prevent="addPrize" class="btn btn-success btn-sm">Add Prize</button>
+          </div>
+        </div>
+        <div v-if="tab === 8" class="row">
+          <div class="col-md-12">
+            <form v-for="(ref, i) in refs" :key="i" class="form-inline" role="form">
+              <span>{{ i + 1 }}. </span>
+              <div class="form-group">
+                <label class="sr-only">Name (Surname first)</label>
+                <input type="text" v-model="ref.name" required class="form-control" placeholder="Name (Surname first)">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Post</label>
+                <input type="text" v-model="ref.post" required class="form-control" placeholder="Post">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Address</label>
+                <input type="text" v-model="ref.address" required class="form-control" placeholder="Address">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Phone</label>
+                <input type="text" v-model="ref.phone" required class="form-control" placeholder="Phone">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Email</label>
+                <input type="text" v-model="ref.email" required class="form-control" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <a style="color: red; cursor: pointer; text-decoration: none" @click="removeRef(ref.id)">Remove</a>
+              </div>
+            </form>
+            <button v-if="refs.length < 3" @click.prevent="addRefs" class="btn btn-success btn-sm">Add Referee</button>
+          </div>
+        </div>
+        <div v-if="tab === 9" class="row">
           <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
             <h3>Profile</h3>
             <div class="form-group">
@@ -264,9 +304,7 @@
             </div>
           </div>
         </div>
-
         <div class="actions">
-
           <div class="prev">
             <button v-if="tab > 1 " @click.prevent="tab--" type="submit" class="btn btn-default btn-sm">Previous</button>
           </div>
@@ -289,12 +327,22 @@
   export default {
     data () {
       return {
-        tab: 5,
+        tab: 8,
         authUser: false,
-        max: 7,
+        max: 9,
         user: {},
         form: {},
         states: [],
+        refs: [
+          {
+            id: Date.now(),
+            name: '',
+            post: '',
+            address: '',
+            phone: '',
+            email: '',
+          }
+        ],
         degrees: [
           {
             id: Date.now(),
@@ -310,11 +358,24 @@
             cgpa: '',
           }
         ],
+        publications: [
+          {
+            id: Date(),
+            title: '',
+            date: ''
+          }
+        ],
         subjects: [
           {
             id: Date.now(),
             name: "",
             grade: ""
+          }
+        ],
+        prizes: [
+          {
+            id: Date.now(),
+            prize: ''
           }
         ],
         locations: [],
@@ -434,13 +495,77 @@
           grade: ''
         })
       },
+      addRefs() {
+        if (this.refs.length === 3) {
+          return;
+        }
+        this.refs.push({
+          id: Date.now(),
+          name: '',
+          grade: ''
+        })
+      },
+      addPrize() {
+        if (this.prizes.length === 10) {
+          return;
+        }
+        this.prizes.push({
+          id: Date.now(),
+          prize: ''
+        })
+      },
+      addDegree() {
+        if (this.degrees.length === 9) {
+          return;
+        }
+        this.degrees.push({
+          id: Date.now(),
+          name: '',
+          matric: '',
+          country: '',
+          town: '',
+          year: '',
+          obtained: '',
+          major: '',
+          class: '',
+          certificate: '',
+          cgpa: '',
+        })
+      },
+      addPublication() {
+        if (this.publications.length === 3) {
+          return;
+        }
+        this.publications.push({
+          id: Date(),
+          title: '',
+          date: ''
+        })
+      },
       removeSubject(id) {
         if (this.subjects.length === 1)
           return;
         this.subjects = this.subjects.filter(x => x.id !== id);
       },
-      addDegree() {
-
+      removePublication(id) {
+        if (this.publications.length === 1)
+          return;
+        this.publications = this.publications.filter(x => x.id !== id);
+      },
+      removeDegree(id) {
+        if (this.degrees.length === 1)
+          return;
+        this.degrees = this.degrees.filter(x => x.id !== id);
+      },
+      removePrize(id) {
+        if (this.prizes.length === 1)
+          return;
+        this.prizes = this.prizes.filter(x => x.id !== id);
+      },
+      removeRef(id) {
+        if (this.refs.length === 1)
+          return;
+        this.refs = this.refs.filter(x => x.id !== id);
       },
       getStates() {
         axios.get('api/get-states')
@@ -470,9 +595,13 @@
         }else if (newValue === 5) {
           this.section = 'Other Degrees'
         }else if (newValue === 6) {
-          this.section = 'Direct Entry if Applicable'
+          this.section = 'Publications (Maximum of 3)'
         }else if (newValue === 7) {
-          this.section = 'Passport & Password'
+          this.section = 'Prize(s) Optional'
+        }else if (newValue === 8) {
+          this.section = 'Referess (Minimum of 3)'
+        }else if (newValue === 9) {
+          this.section = 'Passport Photograph'
         }
       }
     },

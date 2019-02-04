@@ -98,18 +98,18 @@
         },
         beforeRouteEnter (to, from, next) {
             axios.get('api/student-detail/'+to.params.studentId)
-                .then(response =>
+                .then(response => {
                     next(be => {
                         be.student = response.data;
-                        be.student.courses = JSON.parse(response.data.courses);
-                        be.student.address = Object.entries(JSON.parse(response.data.address));
+                        be.student.courses     = JSON.parse(response.data.courses);
+                        be.student.address     = Object.entries(JSON.parse(response.data.address));
                         be.student.kin_sponsor = Object.entries(JSON.parse(response.data.kin_sponsor));
-                    });
+                    })
                 })
                 .catch(error => {
-                    console.log(error.response)
-                });
-        },
+                    console.log(error.response);
+                })
+            }
     }
 </script>
 
@@ -119,5 +119,4 @@
     font-weight: 30px;
     font-size: 30px !important;
 }
-
 </style>

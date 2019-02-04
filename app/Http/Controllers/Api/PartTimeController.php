@@ -17,8 +17,6 @@ class PartTimeController extends Controller
 
     public function save(Request $request)
     {
-        // return response()->json();
-        // Carbon::parse('-1 year')->year."/".Carbon::now()->year prints 2018/2019
         // fetch user
         $user = User::find($request->userId);
 
@@ -80,9 +78,9 @@ class PartTimeController extends Controller
         ]);
         
         // check number if subjects >= 5
-        // if (count($request->subjects) < 5) {
-        //     return response()->json('Add at least 5 subjects', 500);
-        // }
+         if (count($request->subjects) < 5) {
+             return response()->json('Add at least 5 subjects', 500);
+         }
         
         // courses array
         $courses = [
