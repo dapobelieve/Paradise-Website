@@ -28,11 +28,7 @@ class PostGraduateController extends Controller
             'firstname'    => 'required|string',
             'dob'    => 'required|date',
             'nation' => 'required',
-            'sponsor' => 'required',
             'religion' => 'required',
-            'birthplace' => 'required',
-            'first_choice' => 'required',
-            'second_choice' => 'required',
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
             'hmadd_city' => 'required',
@@ -53,22 +49,38 @@ class PostGraduateController extends Controller
             'hmadd_street.required' => 'Enter your home address Street',
             'image.max' => 'image shpuld not be more than 1mb',
             'phone.required' => 'Phone Number Required',
-            'surname.required' => 'Enter your surname',
-            'firstname.required' => 'Enter your Firstname',
             'dob.required' => 'Select your date of birth',
             'marital.required' => 'Select your marital status',
             'nation.required' => 'Select your nationality'
         ]);
         
         // check number of subjects
-         if (count($request->subjects) < 5) {
+         if (count(json_decode($request->subjects)) < 5) {
              return response()->json('Add at least 5 subjects', 500);
          }
+
+         //check number of degrees
+        if (count(json_decode($request->degrees)) < 1) {
+            return response()->json('Add at least 1 Degree', 500);
+        }
+
+        // check number of publications
+        if(count(json_decode($request->publications)) < 1) {
+            return response()->json('Add at least 1 Publication', 500);
+        }
+
+        //referees
+        if (count(json_decode($request->refs)) < 3) {
+            return response()->json('Add at least 3 Referees');
+        }
+
         
         // courses array
-        $courses = [
-            'fc' => $request->first_choice,
-            'sc' => $request->second_choice
+        $course = [
+            'department' => $request->department,
+            'program' => $request->program,
+            'field' => $request->field,
+            'mode' => $request->mode,
         ];
 
         // build and json encode addresses
@@ -87,21 +99,6 @@ class PostGraduateController extends Controller
             ]
         ];
 
-        // build and json encode next of kin & sponsor details
-        $kinSponsor = [
-            'kin' => [
-                'name' => $request->kin_name,
-                'phone' => $request->kin_Phone,
-                'address' => $request->kin_address,
-                'email' => $request->kin_Email
-            ],
-            'sponsor' => [
-                'name' => $request->sponsor_name,
-                'phone' => $request->sponsor_Phone,
-                'address' => $request->sponsor_address,
-                'email' => $request->sponsor_Email
-            ]
-        ];
 
         //store image
         $originalImagePath = public_path('storage/reg/');
@@ -128,17 +125,15 @@ class PostGraduateController extends Controller
             'religion'   => $request->religion,
             'Nationality'   => $request->nation,
             'state'   => $request->state,
-            'sponsor' => $request->sponsor,
             'lga'   => $request->lga,
-            'courses' => json_encode($courses),
+            'pg_course' => json_encode($course),
+            'pg_prizes' => json_encode($request->prizes),
+            'pg_refrees' => json_encode($request->refs),
+            'pg_degree'  => json_decode($request->degrees),
             'phone'   => $request->phone,
             'address' => json_encode($addressArr),
-            'kin_sponsor' => json_encode($kinSponsor),
-            'phone2'   => $request->phone2,
-            'email2'   => $request->email2,
-            'birth'   => $request->birthplace,
             'session' => config('site.defaults.session'),
-            'type'    => 'Part Time',
+            'type'    => 'Post Graduate',
         ]);
         
         // create all the students ssce results
@@ -146,6 +141,14 @@ class PostGraduateController extends Controller
             $student->results()->firstOrCreate([
                 'subject' => $key->name,
                 'grade'   =>   $key->grade,
+            ]);
+        }
+
+        //create publications
+        foreach(json_decode($request->publications) as $key) {
+            $student->publications()->firstOrCreate([
+                'title' => $key->title,
+                'date'  => $key->date
             ]);
         }
         

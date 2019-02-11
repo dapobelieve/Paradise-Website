@@ -449,7 +449,7 @@ export default {
       fd.append('madd_pcode', this.form.madd_pcode ? this.form.madd_pcode : '');
 
       // tab 4
-      fd.append('subjects', JSON.stringify(this.subjects))
+      fd.append('subjects', JSON.stringify(this.subjects));
 
       // tab 5
       fd.append('kin_name', this.form.kin_name ? this.form.kin_name : '');

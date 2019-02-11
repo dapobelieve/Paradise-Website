@@ -37,10 +37,6 @@
                 <option value="Female">Female</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="Sex">Type of Sponsor</label>
-              <input type="text" placeholder="Type of Sponsor" v-model="form.sponsor" class="form-control">
-            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -51,10 +47,6 @@
                 <option value="Married">Married</option>
                 <option value="Divorced">Divorced</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="surname">Birth Place</label>
-              <input type="text" v-model="form.birthplace" placeholder="Place of Birth" class="form-control">
             </div>
             <div class="form-group">
               <label for="dob">Date of Birth</label>
@@ -327,7 +319,7 @@
   export default {
     data () {
       return {
-        tab: 8,
+        tab: 1,
         authUser: false,
         max: 9,
         user: {},
@@ -420,21 +412,22 @@
         fd.append('sex', this.form.sex);
         fd.append('state', this.form.state);
         fd.append('lga', this.form.lga);
-        fd.append('sponsor', this.form.sponsor);
         fd.append('marital', this.form.marital);
         fd.append('nation', this.form.nationality);
         fd.append('dob', this.form.dob);
         fd.append('religion', this.form.religion);
-        fd.append('birthplace', this.form.birthplace);
+
         // tab 2
-        fd.append('first_choice', this.form.first_choice)
-        fd.append('second_choice', this.form.second_choice)
+        fd.append('department', this.form.department);
+        fd.append('program', this.form.program);
+        fd.append('field', this.form.field);
+        fd.append('mode', this.form.mode);
 
         // tab 3
-        fd.append('hmadd_country', this.form.hmadd_country)
-        fd.append('hmadd_state', this.form.hmadd_state)
-        fd.append('hmadd_city', this.form.hmadd_city)
-        fd.append('hmadd_street', this.form.hmadd_street)
+        fd.append('hmadd_country', this.form.hmadd_country);
+        fd.append('hmadd_state', this.form.hmadd_state);
+        fd.append('hmadd_city', this.form.hmadd_city);
+        fd.append('hmadd_street', this.form.hmadd_street);
 
         fd.append('madd_country', this.form.madd_country);
         fd.append('madd_state', this.form.madd_state);
@@ -442,41 +435,41 @@
         fd.append('madd_pcode', this.form.madd_pcode);
 
         // tab 4
-        fd.append('subjects', JSON.stringify(this.subjects))
+        fd.append('subjects', JSON.stringify(this.subjects));
+
 
         // tab 5
-        fd.append('kin_name', this.form.kin_name);
-        fd.append('kin_Email', this.form.kin_Email);
-        fd.append('kin_address', this.form.kin_address);
-        fd.append('kin_Phone', this.form.kin_Phone);
+        fd.append('degrees', JSON.stringify(this.degrees));
 
-        // sponsor
-        fd.append('sponsor_name', this.form.sponsor_name)
-        fd.append('sponsor_Email', this.form.sponsor_Email)
-        fd.append('sponsor_Phone', this.form.sponsor_Phone)
-        fd.append('sponsor_address', this.form.sponsor_address)
+        //tab 6
+        fd.append('publications', JSON.stringify(this.publications));
 
-        // tab 6
-        fd.append('de_name', this.form.de_name);
-        fd.append('de_grad', this.form.de_grad);
-        fd.append('de_entry', this.form.de_entry);
-        fd.append('de_course', this.form.de_course);
-        fd.append('de_class', this.form.de_class);
-        fd.append('de_cert', this.form.de_cert);
-        fd.append('de_add', this.form.de_add);
 
-        // tab 7
+        //tab 7
+        fd.append('prizes', JSON.stringify(this.prizes));
+
+        //tab 8
+        fd.append('refs', JSON.stringify(this.refs));
+
+        // tab 9
         fd.append('image', this.image);
 
         // send axios request
-        axios.post('api/save_pt_record', fd)
-                .then((response) => {
-                  console.log(JSON.parse(response.data.address));
-                })
-                .catch(error => {
-                  this.errors = error.response.data
-                  console.log(error.response.data)
-                })
+        axios.post('api/save-pg-record', fd, {
+          onUploadProgress: uploadEvent => {
+            console.log('Uploading...');
+          },
+          headers: {
+            'Content-Type': "multipart/form-data",
+          }
+        })
+          .then((response) => {
+            console.log(JSON.parse(response.data));
+          })
+          .catch(error => {
+            this.errors = error.response.data;
+            console.log(error.response.data)
+          })
 
       },
       imageSelected (e) {
@@ -569,9 +562,9 @@
       },
       getStates() {
         axios.get('api/get-states')
-                .then(response => {
-                  this.states = response.data;
-                })
+          .then(response => {
+            this.states = response.data;
+          })
       },
       loadLga (e) {
         let stateId = e.target.value;
@@ -609,8 +602,7 @@
       this.getStates()
       // check if user is logged in from LS
       var paraUser = JSON.parse(localStorage.getItem('paraUser'));
-      console.log(paraUser);
-      // this.tab = 7;
+
       if (paraUser != undefined) {
         this.user = paraUser;
         this.authUser = true;

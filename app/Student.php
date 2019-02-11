@@ -37,4 +37,9 @@ class Student extends Model
     {
         return $this->belongsTo(Location::class, 'lga');
     }
+
+    public function publications()
+    {
+        return $this->hasMany(Publication::class);
+    }
 }

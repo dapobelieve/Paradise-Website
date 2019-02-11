@@ -17,6 +17,8 @@ class PartTimeController extends Controller
 
     public function save(Request $request)
     {
+
+
         // fetch user
         $user = User::find($request->userId);
 
@@ -25,60 +27,60 @@ class PartTimeController extends Controller
         }
 
         //handle students validation
-        $this->validate($request, [
-            'phone'    => 'required|unique:students,phone|digits:11',
-            'surname'    => 'required|string',
-            'email' => 'required|unique:students,email|email',
-            'firstname'    => 'required|string',
-            'dob'    => 'required|date',
-            'nation' => 'required',
-            'sponsor' => 'required',
-            'religion' => 'required',
-            'birthplace' => 'required',
-            'first_choice' => 'required',
-            // kin validation
-            'kin_name' => 'required',
-            'kin_Email' => 'required|email',
-            'kin_address' => 'required',
-            'kin_Phone' => 'required|digits:11',
-            'second_choice' => 'required',
-            'hmadd_country' => 'required',
-            'hmadd_state' => 'required',
-            'hmadd_city' => 'required',
-            'hmadd_street' => 'required',
-            'madd_country' => 'required',
-            'madd_state' => 'required',
-            'sponsor_name' => 'required',
-            'sponsor_address' => 'required',
-            'sponsor_Email' => 'required|email',
-            'sponsor_Phone' => 'required|digits:11',
-            'madd_city' => 'required',
-            'marital' => 'required',
-            'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
-        ], [
-            'image.required' => 'An image is required',
-            'kin_name.required' => 'Next of kin Name is required',
-            'kin_Email.required' => 'Next of kin Email is required',
-            'kin_address.required' => 'Next of kin Address is required',
-            'kin_Phone.required' => 'Next of kin Address is required',
-            'madd_country.required' => 'Enter Country of mailing address',
-            'madd_state.required' => 'Enter State of mailing address',
-            'madd_city.required' => 'Enter City of mailing address',
-            'hmadd_country.required' => 'Enter your home address country',
-            'hmadd_state.required' => 'Enter your home address State',
-            'hmadd_city.required' => 'Enter your home address City',
-            'hmadd_street.required' => 'Enter your home address Street',
-            'image.max' => 'image shpuld not be more than 1mb',
-            'phone.required' => 'Phone Number Required',
-            'surname.required' => 'Enter your surname',
-            'firstname.required' => 'Enter your Firstname',
-            'dob.required' => 'Select your date of birth',
-            'marital.required' => 'Select your marital status',
-            'nation.required' => 'Select your nationality'
-        ]);
+//        $this->validate($request, [
+//            'phone'    => 'required|unique:students,phone|digits:11',
+//            'surname'    => 'required|string',
+//            'email' => 'required|unique:students,email|email',
+//            'firstname'    => 'required|string',
+//            'dob'    => 'required|date',
+//            'nation' => 'required',
+//            'sponsor' => 'required',
+//            'religion' => 'required',
+//            'birthplace' => 'required',
+//            'first_choice' => 'required',
+//            // kin validation
+//            'kin_name' => 'required',
+//            'kin_Email' => 'required|email',
+//            'kin_address' => 'required',
+//            'kin_Phone' => 'required|digits:11',
+//            'second_choice' => 'required',
+//            'hmadd_country' => 'required',
+//            'hmadd_state' => 'required',
+//            'hmadd_city' => 'required',
+//            'hmadd_street' => 'required',
+//            'madd_country' => 'required',
+//            'madd_state' => 'required',
+//            'sponsor_name' => 'required',
+//            'sponsor_address' => 'required',
+//            'sponsor_Email' => 'required|email',
+//            'sponsor_Phone' => 'required|digits:11',
+//            'madd_city' => 'required',
+//            'marital' => 'required',
+//            'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
+//        ], [
+//            'image.required' => 'An image is required',
+//            'kin_name.required' => 'Next of kin Name is required',
+//            'kin_Email.required' => 'Next of kin Email is required',
+//            'kin_address.required' => 'Next of kin Address is required',
+//            'kin_Phone.required' => 'Next of kin Address is required',
+//            'madd_country.required' => 'Enter Country of mailing address',
+//            'madd_state.required' => 'Enter State of mailing address',
+//            'madd_city.required' => 'Enter City of mailing address',
+//            'hmadd_country.required' => 'Enter your home address country',
+//            'hmadd_state.required' => 'Enter your home address State',
+//            'hmadd_city.required' => 'Enter your home address City',
+//            'hmadd_street.required' => 'Enter your home address Street',
+//            'image.max' => 'image shpuld not be more than 1mb',
+//            'phone.required' => 'Phone Number Required',
+//            'surname.required' => 'Enter your surname',
+//            'firstname.required' => 'Enter your Firstname',
+//            'dob.required' => 'Select your date of birth',
+//            'marital.required' => 'Select your marital status',
+//            'nation.required' => 'Select your nationality'
+//        ]);
         
         // check number if subjects >= 5
-         if (count($request->subjects) < 5) {
+         if (count(json_decode($request->subjects)) < 5) {
              return response()->json('Add at least 5 subjects', 500);
          }
         
