@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+
+use App\Jobs\SendPaymentEmail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaction;
@@ -57,7 +59,8 @@ class VerifyPayment extends Controller
                 'pay_ref'   => $res['data']['reference'],
             ]);
 
-            //send payment email here
+            //call job to send payment email here
+            SendPaymentEmail::dispatch($student, $payment);
 
             return response()->json($payment);
         }else {

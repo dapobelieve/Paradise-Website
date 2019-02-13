@@ -11,23 +11,37 @@
             <div class="form-group">
               <label for="surname">Surname</label>
               <input type="text" v-model="form.surname" required  class="form-control" placeholder="Surname">
+              <span v-if="errors.surname" class="has-error">
+                {{ errors.surname[0] }}
+              </span>
             </div>
-            
             <div class="form-group">
               <label for="Firstname">Firstname</label>
               <input type="text" v-model="form.firstname" required  class="form-control" placeholder="Firstname">
+              <span v-if="errors.firstname" class="has-error">
+                {{ errors.firstname[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="Middlename">Middlename</label>
               <input type="text" v-model="form.middlename"  class="form-control" placeholder="Middlename">
+              <span v-if="errors.middlename" class="has-error">
+                {{ errors.middlename[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="surname">Email</label>
               <input type="email" v-model="form.email" placeholder="Enter a Valid Email Address" class="form-control">
+              <span v-if="errors.email" class="has-error">
+                {{ errors.email[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="surname">Phone</label>
               <input type="text" v-model="form.phone" placeholder="Enter a Valid Phone Number" class="form-control">
+              <span v-if="errors.phone" class="has-error">
+                {{ errors.phone[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="Sex">Sex</label>
@@ -36,6 +50,9 @@
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
+              <span v-if="errors.sex" class="has-error">
+                {{ errors.sex[0] }}
+              </span>
             </div>
           </div>
           <div class="col-md-6">
@@ -47,10 +64,23 @@
                 <option value="Married">Married</option>
                 <option value="Divorced">Divorced</option>
               </select>
+              <span v-if="errors.marital" class="has-error">
+                {{ errors.marital[0] }}
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="surname">Birth Place</label>
+              <input type="text" v-model="form.birthplace" placeholder="Place of Birth" class="form-control">
+              <span v-if="errors.birthplace" class="has-error">
+                {{ errors.birthplace[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="dob">Date of Birth</label>
               <datetime v-model="form.dob" class="form-control" format="yyyy-MM-dd" placeholder="Date of birth"></datetime>
+              <span v-if="errors.dob" class="has-error">
+                {{ errors.dob[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="surname">Religion</label>
@@ -59,12 +89,18 @@
                 <option value="Christianity">Christianity</option>
                 <option value="Islam">Islam</option>
               </select>
+              <span v-if="errors.religion" class="has-error">
+                {{ errors.religion[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="surname">Nationality</label>
               <select v-model="form.nationality" class="form-control" name="lga" >
                 <option selected value="Nigerian">Nigerian</option>
               </select>
+              <span v-if="errors.nation" class="has-error">
+                {{ errors.nation[0] }}
+              </span>
             </div>
             <div class="form-group">
               <label for="surname">State of Origin</label>
@@ -72,6 +108,9 @@
                 <option selected></option>
                 <option v-for="state in states" :value="state.id">{{ state.state }}</option>
               </select>
+              <span v-if="errors.state" class="has-error">
+                {{ errors.state[0] }}
+              </span>
             </div>
             <div v-if="locations.length" class="form-group">
               <label for="surname">Local Govt</label>
@@ -79,6 +118,9 @@
                 <option selected>Select your LGA</option>
                 <option v-for="lga in locations" :value="lga.id">{{ lga.lga }}</option>
               </select>
+              <span v-if="errors.lga" class="has-error">
+                {{ errors.lga[0] }}
+              </span>
             </div>
           </div>
         </div>
@@ -325,6 +367,7 @@
         user: {},
         form: {},
         states: [],
+        errors: [],
         refs: [
           {
             id: Date.now(),
@@ -465,10 +508,16 @@
         })
           .then((response) => {
             console.log(JSON.parse(response.data));
+            this.$router.push({
+              name: 'regPay',
+              params: {
+                id: response.data,
+              }
+            })
           })
           .catch(error => {
+            alert('There are errors in your form please go through and correct them');
             this.errors = error.response.data;
-            console.log(error.response.data)
           })
 
       },
@@ -599,7 +648,7 @@
       }
     },
     mounted () {
-      this.getStates()
+      this.getStates();
       // check if user is logged in from LS
       var paraUser = JSON.parse(localStorage.getItem('paraUser'));
 

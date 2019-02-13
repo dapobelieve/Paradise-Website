@@ -127,9 +127,9 @@ class PostGraduateController extends Controller
             'state'   => $request->state,
             'lga'   => $request->lga,
             'pg_course' => json_encode($course),
-            'pg_prizes' => json_encode($request->prizes),
-            'pg_refrees' => json_encode($request->refs),
-            'pg_degree'  => json_decode($request->degrees),
+            'pg_prizes' => $request->prizes,
+            'pg_refrees' => $request->refs,
+            'pg_degree'  => $request->degrees,
             'phone'   => $request->phone,
             'address' => json_encode($addressArr),
             'session' => config('site.defaults.session'),
@@ -151,9 +151,24 @@ class PostGraduateController extends Controller
                 'date'  => $key->date
             ]);
         }
-        
-        return response()->json($student);
-        
+        // create a transaction
+        $transaction = $this->createTransaction($student);
+
+        // return transaction
+        return response()->json($transaction->trxn_ref);
+    }
+
+
+    /**
+     * Create a transaction for this record
+     */
+    protected function createTransaction(Student $student)
+    {
+        $transaction = $student->transactions()->create([
+            'trxn_ref' => str_random(10),
+        ]);
+
+        return $transaction;
     }
 
 }

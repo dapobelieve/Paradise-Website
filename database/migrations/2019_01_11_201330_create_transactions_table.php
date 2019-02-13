@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('payment_id')->unsigned()->nullable();
             $table->string('amount')->nullable()->default(0);
             $table->integer('used')->default(0);
-            $table->string('status');
+            $table->string('status')->default('NOT PAID');
             $table->string('trxn_ref');
             $table->text('meta')->nullable();
             $table->timestamps();

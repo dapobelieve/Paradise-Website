@@ -21,7 +21,7 @@
         </div>
         <div v-if="paySuccess" class="heading">
             <div class="container">
-                <p>Payment Successful, you will be notified</p>
+                <p>Payment Successful, Please check your mail for further instructions.</p>
             </div>
         </div>
     </div>
@@ -93,13 +93,13 @@
                 alert("INCOMPLETE PAYMENT!!!");
             },
             updateRefCode () {
-              axios.get(`api/ref-update/${this.transaction.id}`)
-                  .then(response => {
-                      console.log("UPDATED REF CODE");
-                  })
-                  .catch(error => {
-                      console.log("ERROR UPDATING REF CODE");
-                  })
+              // axios.get(`api/ref-update/${this.transaction.id}`)
+              //     .then(response => {
+              //         console.log("UPDATED REF CODE");
+              //     })
+              //     .catch(error => {
+              //         console.log("ERROR UPDATING REF CODE");
+              //     })
             },
             loadScript(callback) {
                 // load paystack's inline js script

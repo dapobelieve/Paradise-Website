@@ -21,9 +21,9 @@ class VerifyController extends Controller
         }
 
         // transaction has been paid for
-//        if ($transaction->status === 'PAID') {
-//            return response()->json('Transaction already paid for', 500);
-//        }
+        if ($transaction->status === 'PAID') {
+            return response()->json('Transaction already paid for', 500);
+        }
 
         return response()->json($transaction);
     }

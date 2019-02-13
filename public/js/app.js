@@ -39320,6 +39320,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -39332,6 +39374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       user: {},
       form: {},
       states: [],
+      errors: [],
       refs: [{
         id: Date.now(),
         name: '',
@@ -39461,9 +39504,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         console.log(JSON.parse(response.data));
+        _this.$router.push({
+          name: 'regPay',
+          params: {
+            id: response.data
+          }
+        });
       }).catch(function (error) {
+        alert('There are errors in your form please go through and correct them');
         _this.errors = error.response.data;
-        console.log(error.response.data);
       });
     },
     imageSelected: function imageSelected(e) {
@@ -39666,7 +39715,17 @@ var render = function() {
                             _vm.$set(_vm.form, "surname", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.surname
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.surname[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -39698,7 +39757,17 @@ var render = function() {
                             _vm.$set(_vm.form, "firstname", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.firstname
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.firstname[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -39730,7 +39799,17 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.middlename
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.middlename[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -39761,7 +39840,17 @@ var render = function() {
                             _vm.$set(_vm.form, "email", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.email
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.email[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -39792,7 +39881,17 @@ var render = function() {
                             _vm.$set(_vm.form, "phone", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.phone
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.phone[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -39842,7 +39941,17 @@ var render = function() {
                             _vm._v("Female")
                           ])
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.sex
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.sex[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -39900,7 +40009,59 @@ var render = function() {
                             _vm._v("Divorced")
                           ])
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.marital
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.marital[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "surname" } }, [
+                        _vm._v("Birth Place")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.birthplace,
+                            expression: "form.birthplace"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Place of Birth" },
+                        domProps: { value: _vm.form.birthplace },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "birthplace",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.birthplace
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.birthplace[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c(
@@ -39924,7 +40085,17 @@ var render = function() {
                             },
                             expression: "form.dob"
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _vm.errors.dob
+                          ? _c("span", { staticClass: "has-error" }, [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(_vm.errors.dob[0]) +
+                                  "\n            "
+                              )
+                            ])
+                          : _vm._e()
                       ],
                       1
                     ),
@@ -39980,7 +40151,17 @@ var render = function() {
                             _vm._v("Islam")
                           ])
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.religion
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.religion[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -40028,7 +40209,17 @@ var render = function() {
                             [_vm._v("Nigerian")]
                           )
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.nation
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.nation[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -40084,7 +40275,17 @@ var render = function() {
                           })
                         ],
                         2
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.state
+                        ? _c("span", { staticClass: "has-error" }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.errors.state[0]) +
+                                "\n            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _vm.locations.length
@@ -40141,7 +40342,17 @@ var render = function() {
                               })
                             ],
                             2
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.errors.lga
+                            ? _c("span", { staticClass: "has-error" }, [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(_vm.errors.lga[0]) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e()
                   ])
@@ -41850,11 +42061,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             alert("INCOMPLETE PAYMENT!!!");
         },
         updateRefCode: function updateRefCode() {
-            axios.get('api/ref-update/' + this.transaction.id).then(function (response) {
-                console.log("UPDATED REF CODE");
-            }).catch(function (error) {
-                console.log("ERROR UPDATING REF CODE");
-            });
+            // axios.get(`api/ref-update/${this.transaction.id}`)
+            //     .then(response => {
+            //         console.log("UPDATED REF CODE");
+            //     })
+            //     .catch(error => {
+            //         console.log("ERROR UPDATING REF CODE");
+            //     })
         },
         loadScript: function loadScript(callback) {
             // load paystack's inline js script
@@ -42042,7 +42255,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("p", [_vm._v("Payment Successful, you will be notified")])
+      _c("p", [
+        _vm._v(
+          "Payment Successful, Please check your mail for further instructions."
+        )
+      ])
     ])
   }
 ]
