@@ -212,6 +212,9 @@
         </div>
         <div v-if="tab === 4" class="row">
           <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.ssce">
+              {{ errors.ssce }}
+            </div>
             <form v-for="(sub, i) in subjects" :key="i" class="form-inline" role="form">
               <span>{{ i + 1 }}. </span>
               <div class="form-group">
@@ -436,10 +439,12 @@
                 this.form.userId = this.user.id;
 
                 // format date
+              if(this.form.dob !== null) {
                 this.form.dob = moment(this.form.dob).format('YYYY-MM-DD');
+              }
 
-                //persist to ls
-                localStorage.setItem('partTimeUser', JSON.stringify(this.form));
+              //persist to ls
+              localStorage.setItem('partTimeUser', JSON.stringify(this.form));
 
                 /**
                  * use fd to send form data with image
@@ -507,7 +512,13 @@
                 // send axios request
                 axios.post('api/save_pd_record', fd)
                     .then((response) => {
-                        console.log(response.data);
+                      this.$swal({
+                        title: 'Registration Successful',
+                        type: 'success',
+                        // showConfirmButton: false,
+                        timer: 2000
+                      });
+
                         // go to payment component
                         this.$router.push({
                             name: 'regPay',
@@ -517,8 +528,8 @@
                         })
                     })
                     .catch(error => {
-                        alert('There are errors in your form please go through and correct them');
                         this.errors = error.response.data.errors
+                        this.tab = error.response.data.tab
                     })
 
             },
@@ -589,7 +600,7 @@
                 }else if (newValue === 6) {
                     this.section = 'Previous Scool Details'
                 }else if (newValue === 7) {
-                    this.section = 'Refrees '
+                    this.section = 'Refrees (at least 3 Referees)'
                 }else if (newValue === 8) {
                   this.section = 'Passport Photo'
                 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Student;
 use Image;
+use Validator;
 
 class PreDegreeController extends Controller
 {
@@ -14,8 +15,6 @@ class PreDegreeController extends Controller
 
     public function save(Request $request)
     {
-//        return response()->json($request->all());
-
         // fetch user
         $user = User::find($request->userId);
 
@@ -23,63 +22,161 @@ class PreDegreeController extends Controller
             return response()->json('INVALID USER', 500);
         }
 
+        /**
+         * due to the nature of the frontend, we have to validate
+         * each request according to their tabs
+         * i.e Tab by Tab validation
+         */
         //handle students validation
-        $this->validate($request, [
+        // validate Tab 1
+        $validator = Validator::make($request->all(), [
             'phone'    => 'required|unique:students,phone|digits:11',
             'surname'    => 'required|string',
             'email' => 'required|unique:students,email|email',
             'firstname'    => 'required|string',
             'dob'    => 'required|date',
             'nation' => 'required',
+            'sex' => 'required',
             'sponsor' => 'required',
             'religion' => 'required',
             'birthplace' => 'required',
+            'marital' => 'required',
+        ], [
+            'phone.required' => 'Phone Number Required',
+            'surname.required' => 'Enter your surname',
+            'firstname.required' => 'Enter your Firstname',
+            'dob.required' => 'Select your date of birth',
+            'religion.required' => 'Select your religion',
+            'marital.required' => 'Select your marital status',
+            'nation.required' => 'Select your nationality',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'tab'    => 1
+            ], 422);
+        }
+
+
+        // validate Tab 2
+        $validator = Validator::make($request->all(), [
             'first_choice' => 'required',
-            // kin validation
-            'kin_name' => 'required',
-            'kin_Email' => 'required|email',
-            'kin_address' => 'required',
-            'kin_Phone' => 'required|digits:11',
-            'second_choice' => 'required',
+            'second_choice' => 'required'
+        ],[
+            'first_choice.required' => 'Enter your first choice course',
+            'second_choice.required' => 'Enter your second choice course'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'tab' => 2
+            ], 422);
+        }
+
+        // validate tab 3
+        $validator = Validator::make($request->all(), [
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
             'hmadd_city' => 'required',
             'hmadd_street' => 'required',
             'madd_country' => 'required',
             'madd_state' => 'required',
-            'sponsor_name' => 'required',
-            'sponsor_address' => 'required',
-            'sponsor_Email' => 'required|email',
-            'sponsor_Phone' => 'required|digits:11',
             'madd_city' => 'required',
-            'marital' => 'required',
-            'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
-        ], [
-            'image.required' => 'An image is required',
-            'kin_name.required' => 'Next of kin Name is required',
-            'kin_Email.required' => 'Next of kin Email is required',
-            'kin_address.required' => 'Next of kin Address is required',
-            'kin_Phone.required' => 'Next of kin Address is required',
-            'madd_country.required' => 'Enter Country of mailing address',
-            'madd_state.required' => 'Enter State of mailing address',
-            'madd_city.required' => 'Enter City of mailing address',
+        ],[
             'hmadd_country.required' => 'Enter your home address country',
             'hmadd_state.required' => 'Enter your home address State',
             'hmadd_city.required' => 'Enter your home address City',
             'hmadd_street.required' => 'Enter your home address Street',
-            'image.max' => 'image shpuld not be more than 1mb',
-            'phone.required' => 'Phone Number Required',
-            'surname.required' => 'Enter your surname',
-            'firstname.required' => 'Enter your Firstname',
-            'dob.required' => 'Select your date of birth',
-            'marital.required' => 'Select your marital status',
-            'nation.required' => 'Select your nationality'
+            'madd_country.required' => 'Enter Country of mailing address',
+            'madd_state.required' => 'Enter State of mailing address',
+            'madd_city.required' => 'Enter City of mailing address',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'tab' => 3
+            ], 422);
+        }
+
+        // check number if subjects >= 5 validate tab 4
+        if (count(json_decode($request->subjects)) < 5) {
+            return response()->json([
+                'tab' => 4,
+                'errors' => [
+                    'ssce' => 'Add at least 5 subjects'
+                ]
+            ], 422);
+        }
+
+        //validate tab 5
+        $validator = Validator::make($request->all(), [
+            'kin_name' => 'required',
+            'kin_Email' => 'required|email',
+            'kin_address' => 'required',
+            'kin_Phone' => 'required|digits:11',
+            'sponsor_name' => 'required',
+            'sponsor_address' => 'required',
+            'sponsor_Email' => 'required|email',
+            'sponsor_Phone' => 'required|digits:11',
+        ],[
+            'kin_name.required' => 'Next of kin Name is required',
+            'kin_Email.required' => 'Next of kin Email is required',
+            'kin_address.required' => 'Next of kin Address is required',
+            'kin_Phone.required' => 'Next of kin Address is required',
+            'sponsor_name.required' => 'Sponsors name required',
+            'sponsor_address.required' => 'Sponsors address required',
+            'sponsor_Email.required' => 'Sponsors email required',
+            'sponsor_Phone.required' => 'Sponsors phone number required',
+            'sponsor_Phone.digits' => 'Sponsors phone number should be 11 digits',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'tab' => 5
+            ], 422);
+        }
+
+        //prev school validation
+        if (empty($request->de_name) || empty($request->de_add) || empty($request->joined) || empty($request->finished)){
+            return response()->json([
+                'errors' => [
+                    'prev_school' => 'Details of your previous school is required',
+                ],
+                'tab' => 6
+            ], 422);
+        }
+
+
+        //validate tab 7
+        //referees
+        if (count(json_decode($request->refs)) < 3) {
+            return response()->json([
+                'tab' => 7,
+                'errors' => [
+                    'ref' => 'Add at least 3 Referees'
+                ]
+            ], 422);
+        }
+
+
+        // validate tab 8
+        $validator = Validator::make($request->all(), [
+            'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
+        ],[
+            'image.required' => 'An image is required',
+            'image.max' => 'image should not be more than 1mb',
         ]);
 
-        // check number if subjects >= 5
         if (count(json_decode($request->subjects)) < 5) {
-            return response()->json('Add at least 5 subjects', 500);
+            return response()->json([
+                'tab' => 8,
+                'errors' => $validator->errors(),
+            ], 422);
         }
+
+
+
 
         // courses array
         $courses = [
@@ -87,10 +184,7 @@ class PreDegreeController extends Controller
             'sc' => $request->second_choice
         ];
 
-        //referees
-        if (count(json_decode($request->refs)) < 3) {
-            return response()->json('Add at least 3 Referees');
-        }
+
 
         // build and json encode addresses
         $addressArr = [

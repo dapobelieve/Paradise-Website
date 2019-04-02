@@ -44,7 +44,7 @@
                 <h3 class="text-center">Make Payment for any of our services</h3>
                 <ul class="resetAll text-center">
                         <li class="btn btn-default btn-sm" title="Reset">
-                                <a href="#">Pay Now</a>
+                                <a href="https://paystack.com/pay/q76vbu2cxv">Pay Now</a>
                         </li>
                 </ul>
         </div>

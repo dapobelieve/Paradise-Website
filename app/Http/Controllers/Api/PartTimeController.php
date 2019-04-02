@@ -16,8 +16,6 @@ class PartTimeController extends Controller
 
     public function save(Request $request)
     {
-
-
         // fetch user
         $user = User::find($request->userId);
 
@@ -30,8 +28,6 @@ class PartTimeController extends Controller
          * each request according to their tabs
          * i.e Tab by Tab validation
          */
-
-
         //handle students validation
         // validate Tab 1
         $validator = Validator::make($request->all(), [
@@ -45,7 +41,6 @@ class PartTimeController extends Controller
             'sponsor' => 'required',
             'religion' => 'required',
             'birthplace' => 'required',
-//            'first_choice' => 'required',
             'marital' => 'required',
         ], [
 
@@ -106,6 +101,28 @@ class PartTimeController extends Controller
             ], 422);
         }
 
+        // check number if subjects >= 5 validate tab 4
+        if (count(json_decode($request->subjects)) < 5) {
+            return response()->json([
+                'tab' => 4,
+                'errors' => [
+                    'ssce' => 'Add at least 5 subjects'
+                ]
+            ], 422);
+        }
+
+        foreach(json_decode($request->subjects) as $key) {
+
+            if($key->name == "" || $key->grade == "") {
+                return response()->json([
+                    'tab' => 4,
+                    'errors' => [
+                        'ssce' => 'Fill all fields',
+                    ]
+                ], 422);
+            }
+        }
+
         //validate tab 5
         $validator = Validator::make($request->all(), [
             'kin_name' => 'required',
@@ -121,6 +138,11 @@ class PartTimeController extends Controller
             'kin_Email.required' => 'Next of kin Email is required',
             'kin_address.required' => 'Next of kin Address is required',
             'kin_Phone.required' => 'Next of kin Address is required',
+            'sponsor_name.required' => 'Sponsors name required',
+            'sponsor_address.required' => 'Sponsors address required',
+            'sponsor_Email.required' => 'Sponsors email required',
+            'sponsor_Phone.required' => 'Sponsors phone number required',
+            'sponsor_Phone.digits' => 'Sponsors phone number should be 11 digits',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -129,13 +151,7 @@ class PartTimeController extends Controller
             ], 422);
         }
 
-        // check number if subjects >= 5 validate tab 4
-         if (count(json_decode($request->subjects)) < 5) {
-             return response()->json([
-                 'tab' => 4,
-                 'message' => 'Add at least 5 subjects'
-             ], 422);
-         }
+
 
          $validator = Validator::make($request->all(), [
              'image'  => 'required|image|mimes:jpeg,jpg,png|max:1024'
@@ -143,7 +159,6 @@ class PartTimeController extends Controller
              'image.required' => 'An image is required',
              'image.max' => 'image should not be more than 1mb',
          ]);
-
         // validate tab 7
         if (count(json_decode($request->subjects)) < 5) {
             return response()->json([

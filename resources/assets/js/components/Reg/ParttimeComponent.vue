@@ -212,6 +212,9 @@
         </div>
         <div v-if="tab === 4" class="row">
           <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.ssce">
+              {{ errors.ssce }}
+            </div>
             <form v-for="(sub, i) in subjects" :key="i" class="form-inline" role="form">
               <span>{{ i + 1 }}. </span>
               <div class="form-group">
@@ -478,7 +481,12 @@ export default {
       // send axios request
       axios.post('api/save_pt_record', fd)
       .then((response) => {
-        console.log(response.data);
+        this.$swal({
+          title: 'Registration Successful',
+          type: 'success',
+          // showConfirmButton: false,
+          timer: 2000
+        });
         // go to payment component
         this.$router.push({
           name: 'regPay',

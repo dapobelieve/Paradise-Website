@@ -186,6 +186,9 @@
         </div>
         <div v-if="tab === 4" class="row">
           <div class="col-md-6 col-md-offset-3 col-sm-offset-2">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.ssce">
+              {{ errors.ssce }}
+            </div>
             <form v-for="(sub, i) in subjects" :key="i" class="form-inline" role="form">
               <span>{{ i + 1 }}. </span>
               <div class="form-group">
@@ -204,6 +207,9 @@
           </div>
         </div>
         <div v-if="tab === 5" class="row">
+          <div class="alert alert-danger alert-dismissable" v-if="errors.degrees">
+              {{ errors.degrees }}
+            </div>
           <span v-for="(school, index) in degrees" :key="index">
               <div  class="col-sm-6" >
                 <div class="form-group">
@@ -261,6 +267,9 @@
         </div>
         <div v-if="tab === 6" class="row">
           <div class="col-md-6 col-md-offset-3 ">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.publication">
+              {{ errors.publication }}
+            </div>
             <!--<h3>Direct Entry Information</h3>-->
             <form v-for="(pub, i) in publications" :key="i" class="form-inline" role="form">
               <span>{{ i + 1 }}. </span>
@@ -297,6 +306,9 @@
         </div>
         <div v-if="tab === 8" class="row">
           <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.refs">
+              {{ errors.refs }}
+            </div>
             <form v-for="(ref, i) in refs" :key="i" class="form-inline" role="form">
               <span>{{ i + 1 }}. </span>
               <div class="form-group">
@@ -361,7 +373,7 @@
   export default {
     data () {
       return {
-        tab: 1,
+        tab: 8,
         authUser: false,
         max: 9,
         user: {},
@@ -441,7 +453,10 @@
         this.form.userId = this.user.id;
 
         // format date
-        this.form.dob = moment(this.form.dob).format('YYYY-MM-DD')
+        if(this.form.dob !== "") {
+          this.form.dob = moment(this.form.dob).format('YYYY-MM-DD')
+        }
+
 
         // persisit to LS
         // use form data to send form for procesing
@@ -500,7 +515,7 @@
         // send axios request
         axios.post('api/save-pg-record', fd, {
           onUploadProgress: uploadEvent => {
-            console.log('Uploading...');
+            // console.log('Uploading...');
           },
           headers: {
             'Content-Type': "multipart/form-data",
@@ -516,8 +531,9 @@
             })
           })
           .catch(error => {
-            alert('There are errors in your form please go through and correct them');
-            this.errors = error.response.data;
+            this.errors = error.response.data.errors
+            this.tab = error.response.data.tab
+            window.scrollTo(20, 0);
           })
 
       },

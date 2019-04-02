@@ -5,6 +5,11 @@ import store from './store'
 import Datetime from 'vue-datetime'
 import '../../../node_modules/vue-datetime/dist/vue-datetime.css'
 import 'vue2-dropzone/dist/vue2Dropzone.css';
+import VueSweetalert2 from 'vue-sweetalert2';
+
+
+
+Vue.use(VueSweetalert2);
 
 // admin section
 Vue.component('admin-app', require('./components/Admin/index.vue'));
