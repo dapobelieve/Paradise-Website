@@ -13,7 +13,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="/assets/images/section-image-1.png" alt="">
+                                <img src="/assets/1.svg" alt="">
                             </div>
                             <div class="col-md-6">
                                 <div class="media">

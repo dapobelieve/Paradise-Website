@@ -27,6 +27,6 @@ class RegController extends Controller
     // get a student
     public function getStudent(Student $student)
     {
-        return response()->json($student->load('payment', 'results', 'user',  'state', 'lga'));
+        return response()->json($student->load('payment', 'results', 'user',  'state', 'lga', 'publications'));
     }
 }

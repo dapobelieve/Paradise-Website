@@ -15,7 +15,6 @@ export const setCart = (state, cart) => {
 }
 
 export const updateCart = (state, cart) => {
-    // console.log(cart)
     localStorage.setItem('cart', JSON.stringify(cart))
     alert('Cart Updated')
 }

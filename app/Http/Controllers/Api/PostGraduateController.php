@@ -108,9 +108,7 @@ class PostGraduateController extends Controller
 
         $this->regImage = 'reg/'.$imageName;
 
-        $image->resize(360, 230, function($constraint) {
-                $constraint->upsize();
-        })->save($originalImagePath.$imageName, 65);       
+        $image->save($originalImagePath.$imageName, 80);
 
         // use the user intance to create record
         $student = $user->students()->firstOrCreate([

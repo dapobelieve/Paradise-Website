@@ -365,7 +365,7 @@ import moment from 'moment';
 export default {
   data () {
     return {
-      tab: 1,
+      tab: 7,
       authUser: false,
       max: 7,
       errors: [],
@@ -488,8 +488,9 @@ export default {
         })
       })
       .catch(error => {
-        alert('There are errors in your form please go through and correct them');
+        // console.log(error.response)
         this.errors = error.response.data.errors
+        this.tab = error.response.data.tab
       })
       
     },

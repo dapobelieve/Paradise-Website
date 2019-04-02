@@ -82,7 +82,7 @@
     <!-- section end -->
     @include('layout._choose')
 
-    
+    @include('layout._stats')
     @include('layout._cta')
 
 

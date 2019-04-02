@@ -13,6 +13,9 @@ Route::group(['middleware' => 'api'], function () {
     //postgradute endpoint
     Route::post('save-pg-record', 'Api\PostGraduateController@save');
 
+    //save predegree record
+    Route::post('save_pd_record', 'Api\PreDegreeController@save');
+
     /**
      * Payments stuffs
      */

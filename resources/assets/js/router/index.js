@@ -17,6 +17,7 @@ import {
     FunaabReg,
     PartTime,
     PostGradute,
+    PreDegree,
     Payment
 } from './../components'
 
@@ -52,6 +53,11 @@ const routes = [
         path: '/post-graduate-registration',
         component: PostGradute,
         name: 'post-graduate'
+    },
+    {
+        path: '/pre-degree',
+        component: PreDegree,
+        name: 'pre-degree'
     },
     {
         path: '/info',

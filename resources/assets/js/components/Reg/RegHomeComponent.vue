@@ -12,7 +12,7 @@
                               <div class="body shadow ">
                                 <h3>Part Time Programme</h3>
                                 <div class="separator"></div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque ipsam nihil, adipisci rem minus? Voluptatem distinctio laborum porro aspernatur.</p>
+                                <p class="desc">Begin Part Time Programme Registration.</p>
                                 <router-link class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear" :to="{name: 'part-time'}">Start Now<i class="fa fa-arrow-right pl-10"></i></router-link>
                                 <a ></a>                       
                               </div>
@@ -23,7 +23,7 @@
                               <div class="body shadow ">
                                 <h3>Post Graduate Programme</h3>
                                 <div class="separator"></div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque ipsam nihil, adipisci rem minus? Voluptatem distinctio laborum porro aspernatur.</p>
+                                <p class="desc">Begin Post Graduate Programme Registration.</p>
                                 <router-link class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear" :to="{name: 'post-graduate'}">Start Now<i class="fa fa-arrow-right pl-10"></i></router-link>                       
                               </div>
                             </div>
@@ -33,8 +33,8 @@
                               <div class="body shadow ">
                                 <h3>Pre Degree Programme</h3>
                                 <div class="separator"></div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque ipsam nihil, adipisci rem minus? Voluptatem distinctio laborum porro aspernatur.</p>
-                                <a class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear">Start Now<i class="fa fa-arrow-right pl-10"></i></a>                       
+                                <p class="desc">Begin Pre Degree Programme Registration.</p>
+                                  <router-link class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear" :to="{name: 'pre-degree'}">Start Now<i class="fa fa-arrow-right pl-10"></i></router-link>
                               </div>
                             </div>
                           </div>

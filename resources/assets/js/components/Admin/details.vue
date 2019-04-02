@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5 class="heady">Applicants Bio</h5>
-                    <p> <strong>Full Name</strong>: {{student.firstname}}, {{ student.middlename }}, {{ student.lastname }}</p>
+                    <p> <strong>Full Name</strong>: {{student.surname}}, {{ student.firstname }} {{ student.middlename }},</p>
                     <p><strong>Session</strong>: {{ student.session }}</p>
                     <p><strong>Email</strong>: {{ student.email }}</p>
                     <p><strong>Phone</strong>: {{ student.phone }}</p>
@@ -20,12 +20,45 @@
                     <p><strong>Lga</strong>: {{ student.lga.lga }}</p>
                 </div>
                 <div class="col-md-6">
-                    <h5 class="heady">Preferred Courses</h5>
-                    <p><strong>First Choice</strong>: {{ student.courses.fc }}</p>
-                    <p><strong>Second Choice</strong>: {{ student.courses.sc }}</p>
-                    <p class="heady">Addresses</p>
-                    <p><strong>Home Address</strong>: {{ student.address[0][1] }}</p>
-                    <p><strong>Mailing Address</strong>: {{ student.address[1][1] }}</p>
+                    <span v-if="student.type === 'Pre Degree' || student.type === 'Part Time'">
+                        <h5 class="heady">Preferred Courses</h5>
+                        <p><strong>First Choice</strong>: {{ student.courses.fc }}</p>
+                        <p><strong>Second Choice</strong>: {{ student.courses.sc }}</p>
+                    </span>
+
+                    <span>
+                        <p class="heady">Addresses</p>
+                        <p><strong>Home Address</strong> </p>
+                        <p><strong>Country</strong>: {{ student.address[0][1].country }}</p>
+                        <p><strong>State</strong>: {{ student.address[0][1].state }}</p>
+                        <p><strong>City</strong>: {{ student.address[0][1].city }}</p>
+                        <p><strong>Street</strong>: {{ student.address[0][1].street }}</p>
+                        <p><strong>Mailing Address</strong> </p>
+                        <p><strong>Mail Box</strong>: {{ student.address[1][1]['mail-box'] }}</p>
+                        <p><strong>Country</strong>: {{ student.address[1][1].country }}</p>
+                        <p><strong>State</strong>: {{ student.address[1][1].state }}</p>
+                        <p><strong>City</strong>: {{ student.address[1][1].city }}</p>
+                    </span>
+
+                </div>
+                <div class="col-md-6">
+                    <h5 class="heady">Refrees</h5>
+                    <span v-for="(ref, index) in student.refs">
+                        <p>{{index + 1}}.</p>
+                        <p><strong>Name:</strong> {{ ref.name }}</p>
+                        <p><strong>Post:</strong> {{ ref.post }}</p>
+                        <p><strong>Address:</strong> {{ ref.address }}</p>
+                        <p><strong>Email:</strong> {{ ref.email }}</p>
+                        <p><strong>Phone:</strong> {{ ref.phone }}</p>
+                    </span>
+                    <hr>
+                </div>
+                <div v-if="student.type === 'Pre Degree'" class="col-md-6">
+                    <h5 class="heady">Previous School Details</h5>
+                    <p><strong>Name</strong>: {{ student.school.name }}</p>
+                    <p><strong>Address</strong>: {{ student.school.address }}</p>
+                    <p><strong>Year Joined</strong>: {{ student.school.joined }}</p>
+                    <p><strong>Year Finished</strong>: {{ student.school.finished }}</p>
                 </div>
                 <div v-if="student.payment" class="col-md-6">
                     <h5 class="heady">Payment Details</h5>
@@ -47,14 +80,14 @@
                         </div>
                     </span>
                 </div>
-                <div class="col-md-6">
+                <div v-if="student.type === 'Pre Degree' || student.type === 'Part Time'" class="col-md-6">
                     <h5 class="heady">Next of Kin Details</h5>
                     <p><strong>Name</strong>: {{ student.kin_sponsor[0][1].name }}</p>
                     <p><strong>Email</strong>: {{ student.kin_sponsor[0][1].email }}</p>
                     <p><strong>Phone</strong>: {{ student.kin_sponsor[0][1].phone }}</p>
                     <p><strong>Address</strong>: {{ student.kin_sponsor[0][1].address }}</p>
                 </div>
-                <div class="col-md-6">
+                <div v-if="student.type === 'Pre Degree' || student.type === 'Part Time'" class="col-md-6">
                     <h5 class="heady">Sponsor Details</h5>
                     <p><strong>Name</strong>: {{ student.kin_sponsor[1][1].name }}</p>
                     <p><strong>Email</strong>: {{ student.kin_sponsor[1][1].email }}</p>
@@ -104,6 +137,10 @@
                         be.student.courses     = JSON.parse(response.data.courses);
                         be.student.address     = Object.entries(JSON.parse(response.data.address));
                         be.student.kin_sponsor = Object.entries(JSON.parse(response.data.kin_sponsor));
+                        if (be.student.type === 'Pre Degree' || be.student.type === 'Post Graduate') {
+                            be.student.school = JSON.parse(response.data.pd_school);
+                            be.student.refs = JSON.parse(response.data.pg_refrees);
+                        }
                     })
                 })
                 .catch(error => {

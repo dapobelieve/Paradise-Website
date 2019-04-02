@@ -22,7 +22,6 @@
                                         <th>Phone</th>
                                         <th>Sex</th>
                                         <th>Type</th>
-                                        <th>Image</th>
                                         <th>Paid?</th>
                                         <th>Date</th>
                                         <th>Details</th>
@@ -35,13 +34,20 @@
                                         <td>{{ data.phone }}</td>
                                         <td>{{ data.sex }}</td>
                                         <td>{{ data.type }}</td>
-                                        <td>{{ data.image }}</td>
-                                        <td>{{ data.payment.id }}</td>
+                                        <td>
+                                            <span v-if="data.payment.id">
+                                                Yes
+                                            </span>
+                                            <span v-else>
+                                                No
+                                            </span>
+                                        </td>
                                         <td>{{ formatDate(data.created_at) }}</td>
                                         <td><router-link :to="{name: 'student-details', params: {studentId: data.id}}">View More</router-link></td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <loader></loader>
                             </div>
                         </div>
                     </div>
@@ -52,6 +58,7 @@
 </template>
 
 <script>
+    import loader from '../../helpers/loader.vue'
     import moment from 'moment'
     export default {
         name: "students",
@@ -59,6 +66,9 @@
             return {
                 resource: []
             }
+        },
+        components: {
+            loader
         },
         computed: {
             filterResource () {
@@ -69,6 +79,7 @@
             getStudents () {
                 axios.get('api/get-students')
                     .then(response => {
+                        // console.log(response.data);
                         this.resource = response.data;
                     })
                     .catch(error => {

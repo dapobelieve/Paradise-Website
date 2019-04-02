@@ -25,6 +25,9 @@
                         <a href="{{ route('site.store') }}">Store</a>
                     </li>
                     <li>
+                        <a href="{{ route('site.store') }}">Solar </a>
+                    </li>
+                    <li>
                         <a href="{{ url('store#/funaab-registrations') }}">Funaab Registrations</a>
                     </li>
                     <li>
