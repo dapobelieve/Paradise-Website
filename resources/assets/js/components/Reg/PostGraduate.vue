@@ -68,13 +68,13 @@
                 {{ errors.marital[0] }}
               </span>
             </div>
-            <div class="form-group">
-              <label for="surname">Birth Place</label>
-              <input type="text" v-model="form.birthplace" placeholder="Place of Birth" class="form-control">
-              <span v-if="errors.birthplace" class="has-error">
-                {{ errors.birthplace[0] }}
-              </span>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<label for="surname">Birth Place</label>-->
+              <!--<input type="text" v-model="form.birthplace" placeholder="Place of Birth" class="form-control">-->
+              <!--<span v-if="errors.birthplace" class="has-error">-->
+                <!--{{ errors.birthplace[0] }}-->
+              <!--</span>-->
+            <!--</div>-->
             <div class="form-group">
               <label for="dob">Date of Birth</label>
               <datetime v-model="form.dob" class="form-control" format="yyyy-MM-dd" placeholder="Date of birth"></datetime>
@@ -126,6 +126,9 @@
         </div>
         <div v-if="tab === 2" class="row">
           <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+            <div class="alert alert-danger alert-dismissable" v-if="errors.message">
+              {{ errors.message }}
+            </div>
             <div class="form-group">
               <label for="surname">Department</label>
               <input type="text" v-model="form.department" required  class="form-control" placeholder="Department">
@@ -373,7 +376,7 @@
   export default {
     data () {
       return {
-        tab: 8,
+        tab: 9,
         authUser: false,
         max: 9,
         user: {},
@@ -462,35 +465,35 @@
         // use form data to send form for procesing
         const fd = new FormData();
         fd.append('userId', this.form.userId);
-        fd.append('surname', this.form.surname);
-        fd.append('email', this.form.email);
-        fd.append('firstname', this.form.firstname);
-        fd.append('middlename', this.form.middlename);
-        fd.append('phone', this.form.phone);
-        fd.append('sex', this.form.sex);
-        fd.append('state', this.form.state);
-        fd.append('lga', this.form.lga);
-        fd.append('marital', this.form.marital);
-        fd.append('nation', this.form.nationality);
-        fd.append('dob', this.form.dob);
-        fd.append('religion', this.form.religion);
+        fd.append('surname', this.form.surname ? this.form.surname : '');
+        fd.append('email', this.form.email ? this.form.email : '');
+        fd.append('firstname', this.form.firstname ? this.form.firstname : '');
+        fd.append('middlename', this.form.middlename ? this.form.middlename : '');
+        fd.append('phone', this.form.phone ? this.form.phone : '');
+        fd.append('sex', this.form.sex ? this.form.sex : '');
+        fd.append('state', this.form.state ? this.form.state : '');
+        fd.append('lga', this.form.lga ? this.form.lga : '');
+        fd.append('marital', this.form.marital ? this.form.marital : '');
+        fd.append('nation', this.form.nationality ? this.form.nationality : '');
+        fd.append('dob', this.form.dob ? this.form.dob : '');
+        fd.append('religion', this.form.religion ? this.form.religion : '');
 
         // tab 2
-        fd.append('department', this.form.department);
-        fd.append('program', this.form.program);
-        fd.append('field', this.form.field);
-        fd.append('mode', this.form.mode);
+        fd.append('department', this.form.department ? this.form.department : '');
+        fd.append('program', this.form.program ? this.form.program : '');
+        fd.append('field', this.form.field ? this.form.field : '');
+        fd.append('mode', this.form.mode ? this.form.mode : '');
 
         // tab 3
-        fd.append('hmadd_country', this.form.hmadd_country);
-        fd.append('hmadd_state', this.form.hmadd_state);
-        fd.append('hmadd_city', this.form.hmadd_city);
-        fd.append('hmadd_street', this.form.hmadd_street);
+        fd.append('hmadd_country', this.form.hmadd_country ? this.form.hmadd_country : '')
+        fd.append('hmadd_state', this.form.hmadd_state ? this.form.hmadd_state : '')
+        fd.append('hmadd_city', this.form.hmadd_city ? this.form.hmadd_city : '')
+        fd.append('hmadd_street', this.form.hmadd_street ? this.form.hmadd_street : '')
 
-        fd.append('madd_country', this.form.madd_country);
-        fd.append('madd_state', this.form.madd_state);
-        fd.append('madd_city', this.form.madd_city);
-        fd.append('madd_pcode', this.form.madd_pcode);
+        fd.append('madd_country', this.form.madd_country ? this.form.madd_country : '');
+        fd.append('madd_state', this.form.madd_state ? this.form.madd_state : '');
+        fd.append('madd_city', this.form.madd_city ? this.form.madd_city : '');
+        fd.append('madd_pcode', this.form.madd_pcode ? this.form.madd_pcode : '');
 
         // tab 4
         fd.append('subjects', JSON.stringify(this.subjects));
@@ -513,7 +516,7 @@
         fd.append('image', this.image);
 
         // send axios request
-        axios.post('api/save-pg-record', fd, {
+        axios.post('api/save_pg_record', fd, {
           onUploadProgress: uploadEvent => {
             // console.log('Uploading...');
           },
@@ -522,7 +525,12 @@
           }
         })
           .then((response) => {
-            console.log(JSON.parse(response.data));
+            this.$swal({
+              title: 'Registration Successful',
+              type: 'success',
+              // showConfirmButton: false,
+              timer: 2000
+            });
             this.$router.push({
               name: 'regPay',
               params: {
@@ -533,7 +541,7 @@
           .catch(error => {
             this.errors = error.response.data.errors
             this.tab = error.response.data.tab
-            window.scrollTo(20, 0);
+            // window.scrollTo(20, 0);
           })
 
       },

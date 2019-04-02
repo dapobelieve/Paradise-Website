@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Student;
-use Validator;
 use Image;
-
+use Validator;
 
 class PostGraduateController extends Controller
 {
@@ -19,9 +18,9 @@ class PostGraduateController extends Controller
         // fetch user
         $user = User::find($request->userId);
 
-        if (!$user) {
-            return response()->json('INVALID USER', 500);
-        }
+//        if (!$user) {
+//            return response()->json('INVALID USER', 500);
+//        }
 
 //        return response()->json($request->surname);
         /**
@@ -32,23 +31,18 @@ class PostGraduateController extends Controller
         //handle students validation
         // validate Tab 1
         $validator = Validator::make($request->all(), [
-            'surname'    => 'required',
+            'surname' => 'required',
             'phone'    => 'required|unique:students,phone|digits:11',
-            'email' => 'required|unique:students,email|email',
+            'email'    => 'required|unique:students,email|email',
             'firstname'    => 'required|string',
-            'dob'    => 'required|date',
-            'nation' => 'required',
-            'sex' => 'required',
+            'dob'      => 'required|date',
+            'nation'   => 'required',
+            'sex'      => 'required',
             'religion' => 'required',
-            'marital' => 'required',
-        ], [
-//            'phone.required' => 'Phone Number Required',
-//            'surname.required' => 'Enter your surname',
-//            'firstname.required' => 'Enter your Firstname',
-//            'dob.required' => 'Select your date of birth',
-//            'marital.required' => 'Select your marital status',
-//            'nation.required' => 'Select your nationality',
+            'marital' => 'required'
         ]);
+
+
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors(),
@@ -68,7 +62,7 @@ class PostGraduateController extends Controller
 
 
         // validate tab 3
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request, [
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
             'hmadd_city' => 'required',
@@ -161,8 +155,6 @@ class PostGraduateController extends Controller
                 ], 422);
             }
         }
-
-
 
         //validate tab 8
         //referees

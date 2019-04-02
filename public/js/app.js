@@ -39412,13 +39412,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tab: 8,
+      tab: 9,
       authUser: false,
       max: 9,
       user: {},
@@ -39498,35 +39501,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // use form data to send form for procesing
       var fd = new FormData();
       fd.append('userId', this.form.userId);
-      fd.append('surname', this.form.surname);
-      fd.append('email', this.form.email);
-      fd.append('firstname', this.form.firstname);
-      fd.append('middlename', this.form.middlename);
-      fd.append('phone', this.form.phone);
-      fd.append('sex', this.form.sex);
-      fd.append('state', this.form.state);
-      fd.append('lga', this.form.lga);
-      fd.append('marital', this.form.marital);
-      fd.append('nation', this.form.nationality);
-      fd.append('dob', this.form.dob);
-      fd.append('religion', this.form.religion);
+      fd.append('surname', this.form.surname ? this.form.surname : '');
+      fd.append('email', this.form.email ? this.form.email : '');
+      fd.append('firstname', this.form.firstname ? this.form.firstname : '');
+      fd.append('middlename', this.form.middlename ? this.form.middlename : '');
+      fd.append('phone', this.form.phone ? this.form.phone : '');
+      fd.append('sex', this.form.sex ? this.form.sex : '');
+      fd.append('state', this.form.state ? this.form.state : '');
+      fd.append('lga', this.form.lga ? this.form.lga : '');
+      fd.append('marital', this.form.marital ? this.form.marital : '');
+      fd.append('nation', this.form.nationality ? this.form.nationality : '');
+      fd.append('dob', this.form.dob ? this.form.dob : '');
+      fd.append('religion', this.form.religion ? this.form.religion : '');
 
       // tab 2
-      fd.append('department', this.form.department);
-      fd.append('program', this.form.program);
-      fd.append('field', this.form.field);
-      fd.append('mode', this.form.mode);
+      fd.append('department', this.form.department ? this.form.department : '');
+      fd.append('program', this.form.program ? this.form.program : '');
+      fd.append('field', this.form.field ? this.form.field : '');
+      fd.append('mode', this.form.mode ? this.form.mode : '');
 
       // tab 3
-      fd.append('hmadd_country', this.form.hmadd_country);
-      fd.append('hmadd_state', this.form.hmadd_state);
-      fd.append('hmadd_city', this.form.hmadd_city);
-      fd.append('hmadd_street', this.form.hmadd_street);
+      fd.append('hmadd_country', this.form.hmadd_country ? this.form.hmadd_country : '');
+      fd.append('hmadd_state', this.form.hmadd_state ? this.form.hmadd_state : '');
+      fd.append('hmadd_city', this.form.hmadd_city ? this.form.hmadd_city : '');
+      fd.append('hmadd_street', this.form.hmadd_street ? this.form.hmadd_street : '');
 
-      fd.append('madd_country', this.form.madd_country);
-      fd.append('madd_state', this.form.madd_state);
-      fd.append('madd_city', this.form.madd_city);
-      fd.append('madd_pcode', this.form.madd_pcode);
+      fd.append('madd_country', this.form.madd_country ? this.form.madd_country : '');
+      fd.append('madd_state', this.form.madd_state ? this.form.madd_state : '');
+      fd.append('madd_city', this.form.madd_city ? this.form.madd_city : '');
+      fd.append('madd_pcode', this.form.madd_pcode ? this.form.madd_pcode : '');
 
       // tab 4
       fd.append('subjects', JSON.stringify(this.subjects));
@@ -39547,7 +39550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       fd.append('image', this.image);
 
       // send axios request
-      axios.post('api/save-pg-record', fd, {
+      axios.post('api/save_pg_record', fd, {
         onUploadProgress: function onUploadProgress(uploadEvent) {
           // console.log('Uploading...');
         },
@@ -39555,7 +39558,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'Content-Type': "multipart/form-data"
         }
       }).then(function (response) {
-        console.log(JSON.parse(response.data));
+        _this.$swal({
+          title: 'Registration Successful',
+          type: 'success',
+          // showConfirmButton: false,
+          timer: 2000
+        });
         _this.$router.push({
           name: 'regPay',
           params: {
@@ -39565,7 +39573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         _this.errors = error.response.data.errors;
         _this.tab = error.response.data.tab;
-        window.scrollTo(20, 0);
+        // window.scrollTo(20, 0);
       });
     },
     imageSelected: function imageSelected(e) {
@@ -40075,48 +40083,6 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "surname" } }, [
-                        _vm._v("Birth Place")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.birthplace,
-                            expression: "form.birthplace"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Place of Birth" },
-                        domProps: { value: _vm.form.birthplace },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form,
-                              "birthplace",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.birthplace
-                        ? _c("span", { staticClass: "has-error" }, [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(_vm.errors.birthplace[0]) +
-                                "\n            "
-                            )
-                          ])
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
                     _c(
                       "div",
                       { staticClass: "form-group" },
@@ -40421,6 +40387,23 @@ var render = function() {
                         "col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3"
                     },
                     [
+                      _vm.errors.message
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "alert alert-danger alert-dismissable"
+                            },
+                            [
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(_vm.errors.message) +
+                                  "\n          "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { attrs: { for: "surname" } }, [
                           _vm._v("Department")
