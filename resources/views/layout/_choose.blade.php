@@ -4,7 +4,7 @@
                         <div class="col-md-8 col-md-offset-2">
                             <h2 class="text-center">Why <strong>Choose</strong> Us</h2>
                             <div class="separator"></div>
-                            <p class="large text-center">We at Paradise Digital World always aim to deliver top notch products and services to our clients, we believe we have what it takes to satisfy all your digital needs.</p>
+                            <p class="large text-center">At Paradise Digital World we deliver top notch digital products and services to our clients, we believe we have what it takes to satisfy all your digital needs.</p>
                             <br>
                         </div>
                     </div>

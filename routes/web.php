@@ -29,6 +29,10 @@ Route::get('/store', function () {
     return view('pages.store');
 })->name('site.store');
 
+Route::get('/programs', function () {
+    return view('pages.reg');
+})->name('site.fun-reg');
+
 Route::get('/register', function () {
     return view('pages.register');
 })->name('site.register');

@@ -5,10 +5,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="footer-content">
-                            <div class="logo-footer"><img id="logo-footer" src="/assets/images/logo_light_blue.png" alt=""></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Accusantium animi architecto
-                                nostrum ut vel voluptate.
+                            <div class="logo-footer"><img width="85px" id="logo-footer" src="/assets/images/dlogo.png" alt=""></div>
+                            <p>At Paradise Digital World, we guarantee rapid, reliable and robust information technology solutions that work.
+                                <br>
                                 <a href="{{ route('site.about') }}">
                                     Learn More
                                     <i class="fa fa-long-arrow-right pl-5"></i>

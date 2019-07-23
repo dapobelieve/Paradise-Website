@@ -439,9 +439,9 @@
                 this.form.userId = this.user.id;
 
                 // format date
-              if(this.form.dob !== null) {
-                this.form.dob = moment(this.form.dob).format('YYYY-MM-DD');
-              }
+                if(this.form.dob !== null) {
+                  this.form.dob = moment(this.form.dob).format('YYYY-MM-DD');
+                }
 
               //persist to ls
               localStorage.setItem('partTimeUser', JSON.stringify(this.form));

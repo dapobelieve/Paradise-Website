@@ -376,7 +376,7 @@
   export default {
     data () {
       return {
-        tab: 9,
+        tab: 1,
         authUser: false,
         max: 9,
         user: {},

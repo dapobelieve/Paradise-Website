@@ -368,7 +368,7 @@ import moment from 'moment';
 export default {
   data () {
     return {
-      tab: 7,
+      tab: 1,
       authUser: false,
       max: 7,
       errors: [],

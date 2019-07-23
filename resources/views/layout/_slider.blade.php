@@ -7,7 +7,7 @@
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-1.jpg" alt="slidebg1" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-1.jpg" alt="slidebg1" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
                     
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -37,7 +37,7 @@
                         data-speed="500"
                         data-start="1300"
                         data-easing="easeOutQuad"
-                        data-endspeed="600">We offer a wide range of digital services, for <br>individual businesses and coporate organisations.<br>
+                        data-endspeed="600">Here we offer a wide range of digital services, for <br>individual businesses and coporate organisations.<br>
                     </div>
 
                     <!-- LAYER NR. 4 -->
@@ -59,7 +59,7 @@
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
 
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -108,7 +108,7 @@
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-3.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
 
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -139,24 +139,13 @@
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
                     </div>  
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
-                    </div>
-
                     <!-- LAYER NR. 4 -->
                 </li>
 
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-5.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
 
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -189,14 +178,6 @@
                     </div>  
 
                     <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
-                    </div>
 
                     <!-- LAYER NR. 4 -->
                 </li>
@@ -252,7 +233,7 @@
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-4.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
 
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -272,53 +253,6 @@
                     >
                         <span style="text-shadow: 0px 2px black">
                             Solar Power Installations
-                        </span>
-                    </div>  
-
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption sfb fadeout text-center large_dark tp-resizeme hidden-xs"
-                        data-x="center"
-                        data-y="150"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"><div class="separator light"></div>
-                    </div>  
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
-                </li>
-                <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
-                
-                    <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
-
-                    <!-- Transparent Background -->
-                    <div class="tp-caption dark-translucent-bg"
-                        data-x="center"
-                        data-y="bottom"
-                        data-speed="600"
-                        data-start="0">
-                    </div>
-
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption sfb fadeout text-center large_white"
-                        data-x="center"
-                        data-y="120"
-                        data-speed="500"
-                        data-start="1000"
-                        data-easing="easeOutQuad"
-                    >
-                        <span style="text-shadow: 0px 2px black">
-                            General Contracts
                         </span>
                     </div>  
 

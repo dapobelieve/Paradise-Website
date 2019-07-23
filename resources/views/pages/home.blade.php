@@ -14,7 +14,7 @@
     <!-- banner end -->
         
     <div id="page-start"></div>
-
+    @include('layout._choose')
     <section class="light-gray-bg pv-30 clearfix">
         <div class="container">
             <div class="row">
@@ -80,7 +80,7 @@
         </div>
     </section>
     <!-- section end -->
-    @include('layout._choose')
+
 
     @include('layout._stats')
     @include('layout._cta')

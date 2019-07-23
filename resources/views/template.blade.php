@@ -40,7 +40,8 @@
 
                                     <!-- logo -->
                                     <div id="logo" class="logo">
-                                        <a href="{{ route('site.home') }}"><img id="logo_img" src="/assets/images/logo_light_blue.png" alt="The Project"></a>
+                                        <a href="{{ route('site.home') }}">
+                                            <img width="85px"  id="logo_img" src="/assets/images/dlogo.png" alt="Paradise Logo"></a>
                                     </div>
 
                                     <!-- name-and-slogan -->
@@ -67,12 +68,17 @@
 
             @include('layout._footer')
         </div>
+        @include('layout._modal')
 
         @include('layout._scripts')
 <script>
-    @if(Session::has('errorMessage'))
-        alert('{{ Session::get('errorMessage') }}')
-    @endif
+@if(Session::has('errorMessage'))
+    alert('{{ Session::get('errorMessage') }}')
+@endif
+(function () {
+    $('#paradiseAlert').modal('show');
+})();
+    
 </script>
     </body>
 </html>
