@@ -75,10 +75,8 @@
 @if(Session::has('errorMessage'))
     alert('{{ Session::get('errorMessage') }}')
 @endif
-(function () {
-    $('#paradiseAlert').modal('show');
-})();
-    
+   
 </script>
+@yield('site.scripts')
     </body>
 </html>

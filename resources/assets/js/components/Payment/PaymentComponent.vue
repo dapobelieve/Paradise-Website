@@ -92,15 +92,6 @@
             close (){
                 alert("INCOMPLETE PAYMENT!!!");
             },
-            updateRefCode () {
-              // axios.get(`api/ref-update/${this.transaction.id}`)
-              //     .then(response => {
-              //         console.log("UPDATED REF CODE");
-              //     })
-              //     .catch(error => {
-              //         console.log("ERROR UPDATING REF CODE");
-              //     })
-            },
             loadScript(callback) {
                 // load paystack's inline js script
                 const script = document.createElement('script');
@@ -123,9 +114,7 @@
             },
             payWithPaystack() {
                 this.button.enable = true;
-                // this.updateRefCode();
                 this.scriptLoaded.then(() => {
-
                     const paystackOptions = {
                         key: this.payObj.psKey,
                         email: this.payObj.email,

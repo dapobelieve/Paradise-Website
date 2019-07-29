@@ -24,13 +24,11 @@
                             <bold></bold>
                         </p>
                         <form method="get" action="https://res.cloudinary.com/invitro/image/upload/v1563906228/paradise/POST_UTME_APPLICATION_FORM.pdf">
-                           <button class="btn btn-default" type="submit">Download</button>
+                           <button class="btn btn-default" type="submit">Download Post UTME Form</button>
                         </form>
+
+                        <p>FUNAAB POST JAMB PAST QUESTION AVAILABLE <a href="{{ route('site.post-jamb') }}">HERE</a></p>
                     </div>
-                    {{-- <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-default">Save changes</button>
-                    </div> --}}
                 </div>
             </div>
         </div>

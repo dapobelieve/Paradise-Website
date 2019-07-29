@@ -20,6 +20,11 @@ Route::get('/about', function () {
 })->name('site.about');
 
 
+Route::get('/post-utme', function () {
+    return view('pages.jamb');
+})->name('site.post-jamb');
+
+
 Route::get('/services', function () {
     return view('pages.service');
 })->name('site.services');

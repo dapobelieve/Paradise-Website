@@ -87,3 +87,12 @@
 
 
 @stop
+
+@section('site.scripts')
+<script>
+  (function () {
+    $('#paradiseAlert').modal('show');
+})();  
+</script>
+
+@stop
