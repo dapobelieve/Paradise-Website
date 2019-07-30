@@ -37,8 +37,9 @@ class SolarController extends Controller
             'address' => $request->address,
         ]);
 
-
-        dd($request->all());
+        return view('site.solar')->with([
+            'message' => 'Registration Successful'
+        ])
     }
 
     public function index()
