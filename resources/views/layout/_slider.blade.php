@@ -89,16 +89,6 @@
                         data-speed="500"
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
-                    </div>  
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
                     </div>
 
                     <!-- LAYER NR. 4 -->
@@ -138,7 +128,7 @@
                         data-speed="500"
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
-                    </div>  
+                    </div>
                     <!-- LAYER NR. 4 -->
                 </li>
 
@@ -175,17 +165,13 @@
                         data-speed="500"
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
-                    </div>  
-
-                    <!-- LAYER NR. 3 -->
-
-                    <!-- LAYER NR. 4 -->
+                    </div>
                 </li>
 
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
                 
                     <!-- main image -->
-                    <img src="/assets/images/slider-fullwidth-slide-2.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
+                    <img src="/assets/images/para-6.jpg" alt="slidebg2" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover">
 
                     <!-- Transparent Background -->
                     <div class="tp-caption dark-translucent-bg"
@@ -216,18 +202,6 @@
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
                     </div>  
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
                 </li>
 
                 <li data-transition="random" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" >
@@ -264,18 +238,6 @@
                         data-start="1300"
                         data-easing="easeOutQuad"><div class="separator light"></div>
                     </div>  
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb fadeout medium_white text-center hidden-xs"
-                        data-x="center"
-                        data-y="190"
-                        data-speed="500"
-                        data-start="1300"
-                        data-easing="easeOutQuad"
-                        data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur fugiat dolorum sapiente eligendi...
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
                 </li>
             </ul>
             {{-- <div class="tp-bannertimer"></div> --}}

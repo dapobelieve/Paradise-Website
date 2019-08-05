@@ -449,7 +449,7 @@
                 /**
                  * use fd to send form data with image
                  * if field is empty send empty value
-                 * @type {FormData}
+                 * @type {FormData}t
                  */
                 const fd = new FormData();
                 fd.append('userId', this.form.userId);

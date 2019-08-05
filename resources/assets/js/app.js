@@ -14,7 +14,8 @@ Vue.use(VueSweetalert2);
 // admin section
 Vue.component('admin-app', require('./components/Admin/index.vue'));
 Vue.component('mainApp', require('./components/App.vue'));
-Vue.component('jamb', require('./components/Jamb.vue'))
+Vue.component('jamb', require('./components/Jamb.vue'));
+Vue.component('solar', require('./components/Solar.vue'));
 Vue.use(Datetime);
 
 const app = new Vue({

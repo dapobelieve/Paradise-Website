@@ -13,22 +13,8 @@
         
             <!-- header-container start -->
             <div class="header-container">
-                
-                <!-- header-top start -->
-                <!-- classes:  -->
-                <!-- "dark": dark version of header top e.g. class="header-top dark" -->
-                <!-- "colored": colored version of header top e.g. class="header-top colored" -->
                 <!-- ================ -->
                 @include('layout._header-dark')
-                <!-- header-top end -->
-                
-                <!-- header start -->
-                <!-- classes:  -->
-                <!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
-                <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
-                <!-- "full-width": mandatory class for the full-width menu layout -->
-                <!-- "centered": mandatory class for the centered logo layout -->
-                <!-- ================ --> 
                 <header class="header  fixed   clearfix">
                     
                     <div class="container">
@@ -73,7 +59,7 @@
         @include('layout._scripts')
 <script>
 @if(Session::has('errorMessage'))
-    alert('{{ Session::get('errorMessage') }}')
+    alert('{{ Session::get('errorMessage') }}');
 @endif
    
 </script>

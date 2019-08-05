@@ -37,5 +37,10 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('get-students', 'Api\RegController@getAllReg');
     Route::get('student-detail/{student}', 'Api\RegController@getStudent');
 
+    /**
+     * Solar Registration
+     */
+    Route::post('solar-register', 'Api\SolarController@save');
+
 
 });
