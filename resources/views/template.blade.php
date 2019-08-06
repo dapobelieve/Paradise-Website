@@ -6,9 +6,6 @@
     <body class="no-trans front-page transparent-header ">
 
         <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
-        
-        <!-- page wrapper start -->
-        <!-- ================ -->
         <div class="page-wrapper">
         
             <!-- header-container start -->

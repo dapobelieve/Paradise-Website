@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-8">
-                                    <button :disabled="btn.state" @click.prevent="processForm" class="btn btn-group btn-default btn-animated">Register <i class="fa fa-check"></i></button>
+                                    <button :disabled="btn.state" @click.prevent="processForm" class="btn btn-group btn-default btn-animated">{{btn.text}} <i class="fa fa-check"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -99,8 +99,8 @@
                     amount:    5000 * 100,
                     format:    '',
                     reference: '',
-                    psKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
-                    // psKey: 'pk_live_967e39181d8db4c87169f67f633802a96d120849',
+                    // psKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
+                    psKey: 'pk_live_967e39181d8db4c87169f67f633802a96d120849',
                     bearer: 'ParadiseDigitalWorld'
                 },
                 btn: {
@@ -205,7 +205,8 @@
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
-                        console.log(error.response.data)
+                        this.btn.state = !this.btn.state;
+                        this.btn.text = 'Register';
                     });
             },
             showAlertmessage(message, type, time=1000) {

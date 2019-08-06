@@ -56068,7 +56068,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56182,8 +56182,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 amount: 5000 * 100,
                 format: '',
                 reference: '',
-                psKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
-                // psKey: 'pk_live_967e39181d8db4c87169f67f633802a96d120849',
+                // psKey: 'pk_test_19aea219c7afdf61293b3cdeed729a8dce1fc5ac',
+                psKey: 'pk_live_967e39181d8db4c87169f67f633802a96d120849',
                 bearer: 'ParadiseDigitalWorld'
             },
             btn: {
@@ -56293,7 +56293,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // console.log(response.data);
             }).catch(function (error) {
                 _this3.errors = error.response.data.errors;
-                console.log(error.response.data);
+                _this3.btn.state = !_this3.btn.state;
+                _this3.btn.text = 'Register';
             });
         },
         showAlertmessage: function showAlertmessage(message, type) {
@@ -56673,7 +56674,7 @@ var render = function() {
                             }
                           },
                           [
-                            _vm._v("Register "),
+                            _vm._v(_vm._s(_vm.btn.text) + " "),
                             _c("i", { staticClass: "fa fa-check" })
                           ]
                         )

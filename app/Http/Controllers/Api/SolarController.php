@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Training;
 use GuzzleHttp\Client;
+use Mail;
+use App\Mail\TrainingMail;
 
 class SolarController extends Controller
 {
@@ -33,7 +35,7 @@ class SolarController extends Controller
         // check if reference code is in the request
 
         // validate transaction
-        $paymentDetails = $this->validatePayment($request->reference);
+        $paymentDetails = $this->validatePayment($request->payRef);
 
         if ($paymentDetails['data']['status']  === 'success') {
             $training = Training::firstOrCreate([
@@ -42,11 +44,12 @@ class SolarController extends Controller
                 'phone' => $request->phone,
                 'type' => $request->status,
                 'address' => $request->address,
-                'ref' => $request->reference,
+                'ref' => $request->payRef,
                 'p_status' => true
             ]);
 
             // send mail here
+            Mail::to($training->email)->send(new TrainingMail($training));
 
             return response()->json([
                 'message' => 'Registration Successful',
