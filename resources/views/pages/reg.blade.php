@@ -6,15 +6,14 @@
     {{-- set user data if user is logged in --}}
     <script>
         @if(Auth::check())
-        localStorage.setItem('paraUser', '{!! Auth::user() !!}')
+            localStorage.setItem('paraUser', '{!! Auth::user() !!}')
         @else
-        localStorage.removeItem('paraUser');
+            localStorage.removeItem('paraUser');
         @endif
     </script>
     <div id="store" class="store">
 
         <main-app></main-app>
-
     </div>
     @include('layout._cta')
 @stop

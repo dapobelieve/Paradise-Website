@@ -1,13 +1,21 @@
 <template>
   <div class="main col-md-12">
     <div class="row">
-        <div class="col-md-12">
-            <h1>FUNAAB POST JAMB PAST QUESTION AVAILABLE HERE. IF U ARE INTERESTED, CLICK HERE TO DOWNLOAD. JUST 1K ONLY</h1>
-            <div v-if="!showLink" style="flex; justify-content: center">
-                <button @click.prevent="payWithPaystack()" class="btn btn-lg btn-default" >Download Past Questions</button>
-            </div>
-            <div v-else>
-              <a href="https://res.cloudinary.com/invitro/image/upload/v1563953269/paradise/FUNAAB_SCIENCE_PAST_QUESTION_AND_ANSWER_FINAL.pdf">Download</a>
+        <div class="col-md-12" >
+            <h3 class="text-center">POST JAMB PAST QUESTION AVAILABLE HERE. IF YOU ARE INTERESTED, CLICK HERE TO DOWNLOAD. JUST 1K ONLY</h3>
+            <div class="download-buttons">
+                <span>
+                <button v-if="!files.funaab" @click.prevent="payWithPaystack($event)" id="funaab" class="btn btn-lg btn-default" >Download Past Questions (FUNAAB)</button>
+                    <a v-else href="https://res.cloudinary.com/invitro/image/upload/v1563953269/paradise/FUNAAB_SCIENCE_PAST_QUESTION_AND_ANSWER_FINAL.pdf">Download</a>
+                </span>
+                <span>
+                    <button v-if="!files.oou" @click.prevent="payWithPaystack($event)" id="oou" class="btn btn-lg btn-default" >Download Past Questions (OOU)</button>
+                    <a v-else href="https://res.cloudinary.com/invitro/image/upload/v1565140767/paradise/OOU_Past_Questions._Olawale.pdf">Download</a>
+                </span>
+                <span>
+                    <button v-if="!files.unilorin" @click.prevent="payWithPaystack($event)" id="unilorin" class="btn btn-lg btn-default" >Download Past Questions (UNILORIN)</button>
+                    <a v-else href="https://res.cloudinary.com/invitro/image/upload/v1565140767/paradise/DOC-20190620-WA0010.pdf">Download</a>
+                </span>
             </div>
         </div>
     </div>
@@ -18,6 +26,12 @@
   export default {
     data () {
       return {
+          selected: null,
+        files: {
+           oou: false,
+           funaab: false,
+           unilorin: false
+        },
         showLink: false,
         payObj: {
           email:     'support@paradisedigitalworld.net',
@@ -78,7 +92,8 @@
           }
         }
       },
-      payWithPaystack() {
+      payWithPaystack(event) {
+          this.selected = event.target.id;
         this.scriptLoaded.then(() => {
           const paystackOptions = {
             key: this.payObj.psKey,
@@ -87,8 +102,8 @@
             ref: this.payObj.reference,
             callback: (response) => {
               if (response.status === "success")
-                this.showLink = !this.showLink;
-              console.log(response);
+                this.files[this.selected] = true;
+                console.log(response);
             },
             onClose: () => {
               this.close()
@@ -108,3 +123,17 @@
     }
   }
 </script>
+
+<style>
+    .download-buttons {
+        display:flex;
+        justify-content: space-between;
+    }
+    @media(max-width: 960px) {
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

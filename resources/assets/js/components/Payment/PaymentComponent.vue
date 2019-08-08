@@ -83,7 +83,7 @@
                 .then(response => {
                     this.paySuccess = true;
                     alert('Payment Successful');
-                    console.log(response.data)
+                    // console.log(response.data)
                 })
                 .catch(error => {
                     alert(error.response);

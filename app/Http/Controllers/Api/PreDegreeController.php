@@ -226,22 +226,10 @@ class PreDegreeController extends Controller
             'finished' => $request->finished
         ];
 
-        //process the passport image
-        $originalImagePath = public_path('storage/reg/');
-        $imageName = 'fun_reg_'.uniqid() .".jpg";
-
-        $image = Image::make($request->image);
-
-        $this->regImage = 'reg/'.$imageName;
-
-        $image->resize(400, 400, function($constraint) {
-//                $constraint->upsize();
-        })->save($originalImagePath.$imageName, 65);
 
         // use the user instance to create record
         $student = $user->students()->firstOrCreate([
             'surname' => $request->surname,
-            'image'  => $this->regImage,
             'email'   => $request->email,
             'firstname' => $request->firstname,
             'middlename' => $request->middlename,
@@ -264,6 +252,15 @@ class PreDegreeController extends Controller
             'session' => config('site.defaults.session'),
             'type'    => 'Pre Degree',
         ]);
+
+        $file = $request->image;
+        $imageData = $this->upload($file,'funaab-reg', 360,null);
+        $data = [
+            'public_id' => $imageData['public_id'],
+            'secure_url' => $imageData['secure_url']
+        ];
+        $student->image = json_encode($data);
+        $student->save();
 
         // create all the students ssce results
         foreach (json_decode($request->subjects) as $key) {

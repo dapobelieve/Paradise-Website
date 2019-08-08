@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\Student;
 use App\Payment;
-use GuzzleHttp\Client;
+use App\Traits\PayStackVerify;
 
 class VerifyPayment extends Controller
 {
@@ -18,19 +18,13 @@ class VerifyPayment extends Controller
      * transaction reference
      * @return Boolean
      */
+
+    use PayStackVerify;
+
     public function verify(Transaction $transaction, $ref)
     {
 
-        $client = new Client();
-
-        $response = $client->request('GET', "https://api.paystack.co/transaction/verify/{$ref}",  [
-            'headers' => [
-                'Authorization' => 'Bearer '.config('site.keys.paystack_sk'),
-                'Accept' => 'application/json'
-            ],
-        ]);
-
-        $res = json_decode($response->getBody()->getContents(), true);
+        $res = $this->PayStackVerify($ref);
 
 
         $student = $transaction->student;

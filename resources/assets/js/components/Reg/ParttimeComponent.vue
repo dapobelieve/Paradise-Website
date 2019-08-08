@@ -415,6 +415,7 @@ export default {
       //persist to ls
       localStorage.setItem('partTimeUser', JSON.stringify(this.form));
 
+
       /**
        * use fd to send form data with image
        * if field is empty send empty value
@@ -477,9 +478,12 @@ export default {
       
       // tab 7
       fd.append('image', this.image);
-      
+      let instance = axios.create({
+        baseURL: '/'
+      });
+
       // send axios request
-      axios.post('api/save_pt_record', fd)
+      instance.post('api/save_pt_record', fd)
       .then((response) => {
         this.$swal({
           title: 'Registration Successful',
@@ -497,7 +501,7 @@ export default {
       })
       .catch(error => {
         // console.log(error.response)
-        this.errors = error.response.data.errors
+        this.errors = error.response.data.errors;
         this.tab = error.response.data.tab
       })
       
@@ -569,9 +573,11 @@ export default {
       this.authUser = true;
     }
 
-    // this.form = JSON.parse(localStorage.getItem('partTimeUser'));
+    let oldData = JSON.parse(localStorage.getItem('partTimeUser'));
+    if ( typeof  oldData !== 'undefined') {
+      this.form = oldData;
+    }
     // this.subjects = this.form.subjects
-    // console.log(paraUser);
   }
 }
 </script>

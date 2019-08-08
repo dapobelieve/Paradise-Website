@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Student;
-use Image;
+use App\Traits\CloudinaryUpload;
 use Validator;
 
 
 class PartTimeController extends Controller
 {
-    private $regImage;
+    use CloudinaryUpload;
 
     public function save(Request $request)
     {
@@ -45,6 +45,7 @@ class PartTimeController extends Controller
         ], [
 
             'phone.required' => 'Phone Number Required',
+            'phone.unique' => 'Phone Number already exists',
             'surname.required' => 'Enter your surname',
             'firstname.required' => 'Enter your Firstname',
             'dob.required' => 'Select your date of birth',
@@ -94,6 +95,7 @@ class PartTimeController extends Controller
             'madd_state.required' => 'Enter State of mailing address',
             'madd_city.required' => 'Enter City of mailing address',
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors(),
@@ -206,22 +208,11 @@ class PartTimeController extends Controller
             ]
         ];
 
-        //store image
-        $originalImagePath = public_path('storage/reg/');
-        $imageName = 'fun_reg_'.uniqid() .".jpg";
 
-        $image = Image::make($request->image);
-
-        $this->regImage = 'reg/'.$imageName;
-
-        $image->resize(360, 230, function($constraint) {
-//                $constraint->upsize();
-        })->save($originalImagePath.$imageName, 65);
 
         // use the user instance to create record
         $student = $user->students()->firstOrCreate([
             'surname' => $request->surname,
-            'image'  => $this->regImage,
             'email'   => $request->email,
             'firstname' => $request->firstname,
             'middlename' => $request->middlename,
@@ -243,6 +234,15 @@ class PartTimeController extends Controller
             'session' => config('site.defaults.session'),
             'type'    => 'Part Time',
         ]);
+
+        $file = $request->image;
+        $imageData = $this->upload($file,'funaab-reg', 360,null);
+        $data = [
+            'public_id' => $imageData['public_id'],
+            'secure_url' => $imageData['secure_url']
+        ];
+        $student->image = json_encode($data);
+        $student->save();
         
         // create all the students ssce results
         foreach (json_decode($request->subjects) as $key) {

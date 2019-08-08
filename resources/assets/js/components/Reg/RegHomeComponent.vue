@@ -1,12 +1,11 @@
 <template>
   <div class="store-home">
-        <div class="row">
-            <div class="main col-md-12">
-                <h1 class="page-title text-center"><strong>Funaab Registrations</strong></h1>
+      <div class="main col-md-12">
+                <h3 class="page-title text-center"><strong>Funaab Registrations</strong></h3>
                 <div class="separator"></div>
                 <div class="tab-content clear-style">
                     <div class="tab-pane active">                       
-                        <div class="row masonry-grid-fitrows grid-space-10">
+                        <div class="row" style="height: auto">
                           <div class="col-sm-6 col-md-4">
                             <div class="image-box style-2 mb-20 bordered text-center">
                               <div class="body shadow ">
@@ -42,14 +41,11 @@
                     </div>
                 </div>
             </div>
-        </div>
   </div>
 </template>
 <script>
 export default {
-  mounted() {
-    // alert('Registrations Here')
-  }
+
 }
 </script>
 <style>

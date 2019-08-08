@@ -205,20 +205,10 @@ class PostGraduateController extends Controller
         ];
 
 
-        //store image
-        $originalImagePath = public_path('storage/reg/');
-        $imageName = 'fun_reg_'.uniqid() .".jpg";
-
-        $image = Image::make($request->image);
-
-        $this->regImage = 'reg/'.$imageName;
-
-        $image->save($originalImagePath.$imageName, 80);
 
         // use the user intance to create record
         $student = $user->students()->firstOrCreate([
             'surname' => $request->surname,
-            'image'  => $this->regImage,
             'email'   => $request->email,
             'firstname' => $request->firstname,
             'middlename' => $request->middlename,
@@ -238,6 +228,15 @@ class PostGraduateController extends Controller
             'session' => config('site.defaults.session'),
             'type'    => 'Post Graduate',
         ]);
+
+        $file = $request->image;
+        $imageData = $this->upload($file,'funaab-reg', 360,null);
+        $data = [
+            'public_id' => $imageData['public_id'],
+            'secure_url' => $imageData['secure_url']
+        ];
+        $student->image = json_encode($data);
+        $student->save();
         
         // create all the students ssce results
         foreach (json_decode($request->subjects) as $key) {
