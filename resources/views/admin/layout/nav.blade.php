@@ -14,7 +14,14 @@
         </li>
 
         <li class="submenu">
-            <a href="#"><i class="fa fa-flask"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>
+            <a href="#"><i class="fa fa-home"></i> <span>Properties</span> <i class="arrow fa fa-chevron-right"></i></a>
+            <ul>
+                <li><a href="{{ route('all-properties') }}">All Properties</a></li>
+                <li><a href="{{ route('property.add') }}">Add Property</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="fa fa-shopping-cart"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>
             <ul>
                 <li><a href="{{ route('store.index') }}">All Product</a></li>
                 <li><a href="{{ route('store.add') }}">Add Product</a></li>

@@ -539,7 +539,7 @@
             })
           })
           .catch(error => {
-            this.errors = error.response.data.errors
+            this.errors = error.response.data.errors;
             this.tab = error.response.data.tab
             // window.scrollTo(20, 0);
           })

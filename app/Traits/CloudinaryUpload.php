@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 use Cloudder;
+
 trait CloudinaryUpload
 {
     public function upload($file, $folder, $width, $height=null, $quality='auto')
@@ -12,6 +13,7 @@ trait CloudinaryUpload
             'width'    => $width,
             'quality'  => $quality,
         ));
+
         return Cloudder::getResult();
     }
     public function deletePicture($imagePubId)

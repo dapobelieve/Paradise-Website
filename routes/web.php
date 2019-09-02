@@ -42,6 +42,7 @@ Route::get('/register', function () {
     return view('pages.register');
 })->name('site.register');
 
+Route::get('properties', 'Property\PropertyController@home');
 
 Route::post('/register', 'AuthController@register')->name('site.register');
 
@@ -51,8 +52,6 @@ Route::post('/solar/register', 'SolarController@save')->name('solar.register');
 Route::post('/login', 'AuthController@login')->name('site.login');
 
 Route::get('/logout', 'AuthController@logout')->name('site.logout');
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -75,7 +74,10 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/registrations', 'Api\RegController@index')->name('get-regs');
 
-
     Route::get('training', 'SolarController@index')->name('solar.index');
+
+    Route::view('all-properties', 'admin.all-properties')->name('all-properties');
+
+    Route::view('add-property', 'admin.add-property')->name('property.add');
 
 });

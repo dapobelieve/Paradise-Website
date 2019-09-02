@@ -42,5 +42,8 @@ Route::group(['middleware' => 'api'], function () {
      */
     Route::post('solar-register', 'Api\SolarController@save');
 
-
+    /**
+     * Properties
+     */
+    Route::post('create-property', 'Property\PropertyController@create');
 });

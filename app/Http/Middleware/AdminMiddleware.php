@@ -17,9 +17,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->isAdmin == 5) {
+        if (Auth::check() && Auth::user()->isAdmin == 5) {
             return $next($request);
         }
-        return redirect()->back();
+        return redirect()->route('site.home');
     }
 }

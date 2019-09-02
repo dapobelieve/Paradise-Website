@@ -51,7 +51,7 @@
 
             @include('layout._footer')
         </div>
-        @include('layout._modal')
+        {{--@include('layout._modal')--}}
 
         @include('layout._scripts')
 <script>

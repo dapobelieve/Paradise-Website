@@ -18,9 +18,9 @@ class PostGraduateController extends Controller
         // fetch user
         $user = User::find($request->userId);
 
-//        if (!$user) {
-//            return response()->json('INVALID USER', 500);
-//        }
+        if (!$user) {
+            return response()->json('INVALID USER', 500);
+        }
 
 //        return response()->json($request->surname);
         /**
@@ -62,7 +62,7 @@ class PostGraduateController extends Controller
 
 
         // validate tab 3
-        $validator = Validator::make($request, [
+        $validator = Validator::make($request->all(), [
             'hmadd_country' => 'required',
             'hmadd_state' => 'required',
             'hmadd_city' => 'required',
@@ -123,7 +123,7 @@ class PostGraduateController extends Controller
         // check if fields are completely filled
         foreach(json_decode($request->subjects) as $key) {
 
-            if($key->name == "" || $key->cgpa == "") {
+            if ($key->name == "" || $key->cgpa == "") {
                 return response()->json([
                     'tab' => 5,
                     'errors' => [
@@ -179,7 +179,7 @@ class PostGraduateController extends Controller
             }
         }
 
-        
+
         // courses array
         $course = [
             'department' => $request->department,
@@ -237,7 +237,7 @@ class PostGraduateController extends Controller
         ];
         $student->image = json_encode($data);
         $student->save();
-        
+
         // create all the students ssce results
         foreach (json_decode($request->subjects) as $key) {
             $student->results()->firstOrCreate([

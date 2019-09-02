@@ -10,7 +10,7 @@
         <div class="breadcrumb-container">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{{route('home')}}">Home</a></li>
+                    <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{{route('site.home')}}">Home</a></li>
                     <li class="active"> About</li>
                 </ol>
             </div>
