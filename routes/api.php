@@ -46,4 +46,10 @@ Route::group(['middleware' => 'api'], function () {
      * Properties
      */
     Route::post('create-property', 'Property\PropertyController@create');
+
+    /**
+     * Agent Routes
+     */
+    Route::get('{user}/statistics', 'Dashboard\DashboardController@agentStatistics');
+    Route::post('/create', 'Dashboard\DashboardController@create');
 });
