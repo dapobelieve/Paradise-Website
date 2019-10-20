@@ -11,7 +11,7 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'name'   => $faker->name(),
         'email'  => $faker->freeEmail(),
         'status' => 'NOT PAID',
-        'ref' => str_random(12),
+        'ref' => 'PRD_'.strtoupper(str_random(12)),
         'paid_at'  => $faker->dateTimeBetween('-30 days', 'now', 'Africa/Lagos'),
         'created_at'  => $faker->dateTimeBetween(Carbon::now()->startOfMonth(), 'now', 'Africa/Lagos')
     ];

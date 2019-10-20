@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="stats">
         <div class="col-md-12">
             Transactions
         </div>

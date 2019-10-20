@@ -2,7 +2,7 @@
     <div class="create-training">
         <div class="row">
             <div class="col-xs-12">
-                <div v-if="error.status" class="alert alert-danger">
+                <div v-show="error.status" class="alert alert-primary">
                     {{ error.message }}
                     <a href="#" data-dismiss="alert" class="close">×</a>
                 </div>
@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-3 col-lg-2 control-label">Transaction</label>
                                 <div class="col-sm-9 col-md-9 col-lg-10">
-                                    <input type="text" required v-model="form.title" placeholder="Photocopy, online registration, " class="form-control input-sm" />
+                                    <input type="text" required v-model="form.service" placeholder="Photocopy, online registration, " class="form-control input-sm" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -50,9 +50,6 @@
                                     <input type="email" required v-model="form.email" placeholder="" class="form-control input-sm" />
                                 </div>
                             </div>
-<!--                            <div class="form-actions" v-if="btn.state">-->
-<!--                                <loader></loader>-->
-<!--                            </div>-->
 
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-primary btn-sm">{{btn.text}}</button>
@@ -60,7 +57,6 @@
                           </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -92,6 +88,8 @@
     methods: {
       submitCourse ()
       {
+        this.form.userId = localStorage.getItem('paraUser');
+
 
         this.btn.state = true;
         let api = axios.create({
@@ -101,7 +99,9 @@
         api.post('api/create', this.form)
         .then((response) => {
             this.btn.state = !this.btn.state;
-            console.log(response.data.message);
+            this.form = {};
+            this.error.message = "Submitted Successfully";
+            this.error.status = true;
 
         })
         .catch((error) => {

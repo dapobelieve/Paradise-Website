@@ -52,4 +52,12 @@ Route::group(['middleware' => 'api'], function () {
      */
     Route::get('{user}/statistics', 'Dashboard\DashboardController@agentStatistics');
     Route::post('/create', 'Dashboard\DashboardController@create');
+
+    /**
+     * Cashier Routes
+     */
+    Route::get('{user}/paid-records', 'Dashboard\DashboardController@cashierStatistics');
+
+    //search
+    Route::get('/q={query}', 'Dashboard\DashboardController@searchRecords');
 });
