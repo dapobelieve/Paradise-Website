@@ -14,8 +14,8 @@ class CreateRecordsTable extends Migration
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->text('service');
             $table->float('price', 8, 2);
             $table->string('name')->nullable();
