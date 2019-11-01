@@ -22,7 +22,7 @@ class CreateRecordsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone', 11)->nullable();
             $table->enum('status', ['PAID', 'NOT PAID'])->default('NOT PAID');
-            $table->string('ref', 12)->unique();
+            $table->string('ref', 16)->unique();
             $table->softDeletes();
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

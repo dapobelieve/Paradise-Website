@@ -9,7 +9,7 @@
                         <span class="icon"><i class="fa fa-signal"></i></span>
                         <h5>Todays Transactions</h5>
                         <div>
-                            <input class="search" v-model="search" type="text" placeholder="Search">
+                            <input class="search" v-model="search" type="text" placeholder="Search service code">
                             <button @click.prevent="searchRecord" class="btn btn-xs btn-primary">Search</button>
                         </div>
                         <div style="margin-left: auto; align-self: flex-end;" class="buttons">
@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th></th>
+                                <th>Agent</th>
                                 <th>Name</th>
                                 <th>Service</th>
                                 <th>Service code</th>
@@ -33,15 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(record, index) in today" :key="record.id" class="gradeC">
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ record.name }}</td>
-                                <td>{{ record.service }}</td>
-                                <td>{{ record.ref }}</td>
-                                <td>{{ record.price }}</td>
-                                <td>{{ record.status }}</td>
-                                <td>{{ record.created_at }}</td>
-                            </tr>
+                            <cashier-dashboard-record v-for="(record, index) in today" :record="record" :index="index" :key="record.id"></cashier-dashboard-record>
                             </tbody>
                         </table>
                     </div>
@@ -53,6 +46,7 @@
 
 <script>
     import AgentDashboardStatistics from "../agent/AgentDashboardStatistics";
+    import CashierDashboardRecord from "./CashierDashboardRecord";
     export default {
         name: "AgentDashboard",
         data () {
@@ -63,7 +57,8 @@
             }
         },
         components: {
-            AgentDashboardStatistics
+            AgentDashboardStatistics,
+            CashierDashboardRecord
         },
         methods: {
             searchRecord () 
@@ -99,5 +94,9 @@
     font-size: smaller;
     padding: 8px
 }
+
+</style>
+
+<style>
 
 </style>

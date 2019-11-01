@@ -41,11 +41,11 @@ class DashboardController extends Controller
     {
         if ($user->roles()->get()->contains('name', 'Agent')) {
             $records = $user->records()
-                ->where('created_at', '>=', Carbon::now()->startOfMonth())
+                ->where('created_at', '>=', Carbon::now()->subDays(30))
                 ->get();
             $stats = (new Collection([
                 'month' => $records->filter(function (Record $record) {
-                    return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfMonth());
+                    return $record->created_at->greaterThanOrEqualTo(Carbon::now()->subDays(30));
                 }),
                 'week'  => $records->filter(function (Record $record) {
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfWeek());
@@ -86,11 +86,11 @@ class DashboardController extends Controller
     {
         if ($user->roles()->get()->contains('name', 'Cashier')) {
             $records = Record::where('status', 'PAID')
-                ->where('created_at', '>=', Carbon::now()->startOfMonth())
+                ->where('created_at', '>=', Carbon::now()->subDays(30))
                 ->get();
             $stats = (new Collection([
                 'month' => $records->filter(function (Record $record) {
-                    return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfMonth());
+                    return $record->created_at->greaterThanOrEqualTo(Carbon::now()->subDays(30));
                 }),
                 'week'  => $records->filter(function (Record $record) {
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfWeek());
@@ -112,8 +112,9 @@ class DashboardController extends Controller
             })->toArray();
 
             $todaysRecords = Record::latest()
-                ->where('status', 'PAID')
+                ->where('status', 'NOT PAID')
                 ->where('created_at', '>=', Carbon::now()->startOfDay())
+                ->with('user:id,name')
                 ->get();
 
             return response()->json([
@@ -140,5 +141,10 @@ class DashboardController extends Controller
 
 
         dd($records);
+    }
+
+    public function approve(Request $request, User $user, Record $record)
+    {
+        //
     }
 }

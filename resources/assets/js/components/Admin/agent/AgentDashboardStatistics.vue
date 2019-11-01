@@ -45,7 +45,7 @@
         <div class="col-md-3">
             <div class="alert alert-info alert-block">
                     <span style="display: flex; align-items: center; justify-content: space-between">
-                         <small style="font-weight: bolder">This month:</small>
+                         <small style="font-weight: bolder">Last 30 Days:</small>
                         <p style="padding-top: 4px; font-weight: bold; font-size: x-large; display: inline"> {{ stats.month.total }}</p>
                     </span>
                 <hr>
