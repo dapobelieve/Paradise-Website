@@ -27,7 +27,15 @@
         },
         methods: {
             approve () {
-                axios.post(``)
+                let user = JSON.parse(localStorage.getItem('paraUser'));
+                axios.post(`api/approve/user/${user}/record/${this.record.id}`)
+                    .then(response => {
+                        alert('Transaction Approved');
+                        this.$emit('loadData')
+                    })
+                    .catch(err => {
+                        console.log(err.response.data);
+                    })
             }
         }
     }

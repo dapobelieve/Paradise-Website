@@ -62,5 +62,9 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/q={query}', 'Dashboard\DashboardController@searchRecords');
 
     //Approve pay
-    Route::post('approve/user/{user}/record/{record}', 'Dasboard\DashboardController@approve');
+    Route::post('approve/user/{user}/record/{record}', 'Dashboard\DashboardController@approve');
+
+    // Admin Stats
+    Route::get('admin-stats/{user}', 'Dashboard\AdminController@adminStats');
+    Route::get('admin-stats/{user}/yesterday', 'Dashboard\AdminController@yesterday');
 });

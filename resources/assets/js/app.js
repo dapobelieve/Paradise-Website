@@ -20,8 +20,10 @@ Vue.component('addProperty', require('./components/Admin/CreateProperty.vue'));
 Vue.component('transact', require('./components/Admin/agent/Transact.vue'));
 Vue.component('AgentDashboardComponent', require('./components/Admin/agent/AgentDashboard.vue'));
 Vue.component('CashierDashboardComponent', require('./components/Admin/cashier/CashierDashboard.vue'));
-Vue.use(Datetime);
+Vue.component('AdminStatistics', require('./components/Admin/admin/index.vue'));
 
+
+Vue.use(Datetime);
 const app = new Vue({
     el: '#store',
     store,

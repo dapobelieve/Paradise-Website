@@ -52,7 +52,7 @@ class DashboardController extends Controller
                 }),
                 'yesterday' => $records->filter(function (Record $record) {
                     $yesterday =  new Carbon($record->created_at->toDateString());
-                    return $yesterday->equalTo(Carbon::yesterday());
+                    return Carbon::yesterday()->dayOfWeek == 0 ? 0 : $yesterday->equalTo(Carbon::yesterday());
                 }),
                 'today'   => $records->filter(function (Record $record) {
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfDay());
@@ -86,6 +86,7 @@ class DashboardController extends Controller
     {
         if ($user->roles()->get()->contains('name', 'Cashier')) {
             $records = Record::where('status', 'PAID')
+                ->whereNotNull('paid_at')
                 ->where('created_at', '>=', Carbon::now()->subDays(30))
                 ->get();
             $stats = (new Collection([
@@ -93,11 +94,11 @@ class DashboardController extends Controller
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->subDays(30));
                 }),
                 'week'  => $records->filter(function (Record $record) {
-                    return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfWeek());
+                    return  $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfWeek());
                 }),
                 'yesterday' => $records->filter(function (Record $record) {
                     $yesterday =  new Carbon($record->created_at->toDateString());
-                    return $yesterday->equalTo(Carbon::yesterday());
+                    return Carbon::yesterday()->dayOfWeek == 0 ? 0 : $yesterday->equalTo(Carbon::yesterday());
                 }),
                 'today'   => $records->filter(function (Record $record) {
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->startOfDay());
@@ -139,12 +140,19 @@ class DashboardController extends Controller
         ->get()
         ->toArray();
 
-
         dd($records);
     }
 
     public function approve(Request $request, User $user, Record $record)
     {
-        //
+        if ($user->roles()->get()->contains('name', 'Cashier')) {
+            $record->update([
+                'status' => 'PAID',
+                'paid_at' => Carbon::now()
+            ]);
+            return response()->json([
+                'message' => 'Record Updated'
+            ], 200);
+        }
     }
 }

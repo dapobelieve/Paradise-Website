@@ -19,7 +19,7 @@
                         </div>
                         @if(Auth::user()->hasRole(['admin', 'agent', 'cashier']))
                             <div class="btn-group">
-                                <a href="{{route('dashboard')}}" class=" btn-sm">
+                                <a href="{{url('dashboard#/stats')}}" class=" btn-sm">
                                     <i class=" pr-10"></i>Dashboard
                                 </a>
                             </div>
