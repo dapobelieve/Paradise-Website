@@ -4,10 +4,7 @@
 
 <script>
     export default {
-        name: "index",
-        mounted() {
-            console.log('INDEX_OF_ADMIN')
-        }
+        name: "index"
     }
 </script>
 

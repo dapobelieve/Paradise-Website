@@ -5,9 +5,9 @@
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="icon"><i class="fa fa-signal"></i></span>
-                        <h5>Todays Transactions</h5>
+                        <h5>Transactions Breakdown for Yesterday</h5>
                         <div class="buttons">
-                            <a @click.prevent="getRecords()" href="#" class="btn">
+                            <a @click.prevent="getBreakdown()" href="#" class="btn">
                                 <i class="fa fa-refresh"></i>
                                 <span class="text">Refresh</span>
                             </a>
@@ -19,24 +19,16 @@
                             <tr>
                                 <th></th>
                                 <th>Agent</th>
-                                <th>Name</th>
-                                <th>Service</th>
-                                <th>Service code</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th>Time</th>
+                                <th>Transactions</th>
+                                <th>Total Amount</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(record, index) in today" :key="record.id" class="gradeC">
-                                <td>{{ index + 1 }}</td>
-                                <td>@{{ record.user.name }}</td>
-                                <td>{{ record.name }}</td>
-                                <td>{{ record.service }}</td>
-                                <td>{{ record.ref }}</td>
-                                <td>{{ record.price }}</td>
-                                <td>{{ record.status }}</td>
-                                <td>{{ record.created_at }}</td>
+                            <tr v-for="(record, index) in records" :key="record.id" class="gradeC">
+                                <td style="text-align: center">{{ index + 1 }}</td>
+                                <td style="text-align: center">@{{ record.name }}</td>
+                                <td style="text-align: center">{{ record.transactions }}</td>
+                                <td style="text-align: center">{{ record.amount }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -52,12 +44,16 @@
         name: "AdminYesterday",
         data () {
             return {
-                user: null
+                user: null,
+                records: []
             }
         },
         methods: {
             getBreakdown () {
                 axios.get(`/api/admin-stats/${this.user}/yesterday`)
+                    .then (response => {
+                        this.records = response.data.stats
+                    })
             }
         },
         mounted() {

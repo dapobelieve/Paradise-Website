@@ -65,15 +65,17 @@ class AdminController extends Controller
     {
         if ($user->roles()->get()->contains('name', 'Admin')) {
 
-            $records = DB::select('select users.name, 
-                                    sum(price) as amount, 
-                                    count(records.id) as transactions from records, users, role_user
-                                    where records.user_id = users.id
-                                    and users.id = role_user.user_id
-                                    and role_user.role_id = 2
-                                    and records.created_at >= subdate(curdate(), 1)
-                                    and records.created_at < curdate()
-                                    group by records.user_id');
+            $records = DB::select('SELECT users.name, 
+                                    sum(price) AS amount, 
+                                    count(records.id) AS transactions 
+                                    FROM role_user, records
+                                    JOIN users 
+                                    ON records.user_id = users.id
+                                    WHERE users.id = role_user.user_id
+                                    AND role_user.role_id = 2
+                                    AND records.created_at >= subdate(curdate(), 1)
+                                    AND records.created_at < curdate()
+                                    GROUP BY records.user_id');
             return response()->json([
                 'stats' => $records,
             ]);
@@ -83,5 +85,53 @@ class AdminController extends Controller
             ], 401);
         }
 
+    }
+
+    public function week(Request $request, User $user)
+    {
+        if ($user->roles()->get()->contains('name', 'Admin')) {
+
+            $records = DB::select('SELECT users.name, 
+                                    round(sum(price), 2) AS amount, 
+                                    count(records.id) AS transactions 
+                                    FROM role_user, records
+                                    JOIN users 
+                                    ON records.user_id = users.id
+                                    WHERE users.id = role_user.user_id
+                                    AND role_user.role_id = 2
+                                    AND records.created_at >= DATE_ADD(curdate(), INTERVAL (-weekday(curdate())) DAY)
+                                    GROUP BY records.user_id');
+            return response()->json([
+                'stats' => $records,
+            ]);
+        }else {
+            return response()->json([
+                'message' => 'Invalid User'
+            ], 401);
+        }
+
+    }
+
+    public function thirtyDays(Request $request, User $user)
+    {
+        if ($user->roles()->get()->contains('name', 'Admin')) {
+            $records = DB::select('SELECT users.name, 
+                                    round(sum(price), 2) AS amount, 
+                                    count(records.id) AS transactions 
+                                    FROM role_user, records
+                                    JOIN users 
+                                    ON records.user_id = users.id
+                                    WHERE users.id = role_user.user_id
+                                    AND role_user.role_id = 2
+                                    AND records.created_at >= CURDATE() - INTERVAL 30 DAY
+                                    GROUP BY records.user_id');
+            return response()->json([
+                'stats' => $records,
+            ]);
+        }else {
+            return response()->json([
+                'message' => 'Invalid User'
+            ], 401);
+        }
     }
 }

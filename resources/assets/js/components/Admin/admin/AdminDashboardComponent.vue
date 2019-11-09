@@ -4,8 +4,8 @@
         <div class="col-xs-12">
             <div class="col-md-3"><router-link :to="{name: 'admin-today'}">view more</router-link></div>
             <div class="col-md-3"><router-link :to="{name: 'admin-analytics-yesterday'}">view more</router-link></div>
-            <div class="col-md-3"><a href="#">view more</a></div>
-            <div class="col-md-3"><a href="#">view more</a></div>
+            <div class="col-md-3"><router-link :to="{name: 'admin-analytics-week'}">view more</router-link></div>
+            <div class="col-md-3"><router-link :to="{name: 'admin-analytics-30'}">view more</router-link></div>
         </div>
         <div class="row">
             <div class="col-xs-12">
@@ -72,7 +72,7 @@
             {
                 let user = JSON.parse(localStorage.getItem('paraUser'));
 
-                let data = axios.get(`api/admin-stats/${user}`).then(response => {
+                axios.get(`api/admin-stats/${user}`).then(response => {
                     this.stats = response.data.stats;
                     this.today = response.data.todaysRecords;
                 });

@@ -22,6 +22,9 @@
                         <li><a href="{{ route('property.add') }}">Add Property</a></li>
                     </ul>
                 </li>
+                <li><a href="#">
+                        <i class="fa fa-home"></i> <span>Orders</span></a>
+                </li>
                 <li class="submenu">
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>
                     <ul>

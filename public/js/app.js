@@ -31682,6 +31682,10 @@ module.exports = function spread(callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Admin__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Admin_admin_AdminWeek__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Admin_admin_AdminWeek___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Admin_admin_AdminWeek__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Admin_admin_AdminMonth__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Admin_admin_AdminMonth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Admin_admin_AdminMonth__);
 
 /**
  * Here we import vue router first
@@ -31693,6 +31697,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 /**
  * import components to be used */
+
+
 
 
 
@@ -31713,12 +31719,20 @@ var routes = [{
         name: 'admin-stats'
     }, {
         path: '/today-analytics',
-        component: __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__["c" /* AdminToday */],
+        component: __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__["d" /* AdminToday */],
         name: 'admin-today'
     }, {
         path: '/yesterday-analytics',
-        component: __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__["d" /* AdminYesterday */],
+        component: __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__["e" /* AdminYesterday */],
         name: 'admin-analytics-yesterday'
+    }, {
+        path: '/week-analytics',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Admin_admin_AdminWeek___default.a,
+        name: 'admin-analytics-week'
+    }, {
+        path: '/last-30-days-analytics',
+        component: __WEBPACK_IMPORTED_MODULE_3__components_Admin_admin__["c" /* AdminThirty */],
+        name: 'admin-analytics-30'
     }]
 }, {
     path: '/cart',
@@ -45518,8 +45532,10 @@ if (false) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AdminStats; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AdminToday; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AdminYesterday; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AdminToday; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return AdminYesterday; });
+/* unused harmony export AdminWeek */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AdminThirty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 
@@ -45527,7 +45543,9 @@ if (false) {
 var AdminIndex = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-index', __webpack_require__(146));
 var AdminStats = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-stats', __webpack_require__(222));
 var AdminToday = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-today', __webpack_require__(231));
-var AdminYesterday = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-today', __webpack_require__(320));
+var AdminYesterday = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-yesterday', __webpack_require__(320));
+var AdminWeek = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-week', __webpack_require__(325));
+var AdminThirty = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-thirty', __webpack_require__(330));
 
 /***/ }),
 /* 218 */
@@ -45564,7 +45582,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45581,10 +45599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "index",
-    mounted: function mounted() {
-        console.log('INDEX_OF_ADMIN');
-    }
+    name: "index"
 });
 
 /***/ }),
@@ -45782,7 +45797,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var user = JSON.parse(localStorage.getItem('paraUser'));
 
-            var data = axios.get("api/admin-stats/" + user).then(function (response) {
+            axios.get("api/admin-stats/" + user).then(function (response) {
                 _this.stats = response.data.stats;
                 _this.today = response.data.todaysRecords;
             });
@@ -45915,7 +45930,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.stats
+  return _vm.stats.today
     ? _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _vm._v("\n        Transactions\n    ")
@@ -46224,16 +46239,38 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "col-md-3" },
+          [
+            _c(
+              "router-link",
+              { attrs: { to: { name: "admin-analytics-week" } } },
+              [_vm._v("view more")]
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm._m(1)
+        _c(
+          "div",
+          { staticClass: "col-md-3" },
+          [
+            _c(
+              "router-link",
+              { attrs: { to: { name: "admin-analytics-30" } } },
+              [_vm._v("view more")]
+            )
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-xs-12" }, [
           _c("div", { staticClass: "widget-box" }, [
             _c("div", { staticClass: "widget-title" }, [
-              _vm._m(2),
+              _vm._m(0),
               _vm._v(" "),
               _c("h5", [_vm._v("Todays Transactions")]),
               _vm._v(" "),
@@ -46267,7 +46304,7 @@ var render = function() {
                     "table table-bordered table-striped table-hover data-table"
                 },
                 [
-                  _vm._m(3),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -46306,22 +46343,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("view more")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("view more")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -60024,7 +60045,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60076,26 +60097,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "AdminYesterday",
     data: function data() {
         return {
-            user: null
+            user: null,
+            records: []
         };
     },
 
     methods: {
         getBreakdown: function getBreakdown() {
-            axios.get("/api/admin-stats/" + this.user + "/yesterday");
+            var _this = this;
+
+            axios.get("/api/admin-stats/" + this.user + "/yesterday").then(function (response) {
+                _this.records = response.data.stats;
+            });
         }
     },
     mounted: function mounted() {
@@ -60119,7 +60137,7 @@ var render = function() {
           _c("div", { staticClass: "widget-title" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c("h5", [_vm._v("Todays Transactions")]),
+            _c("h5", [_vm._v("Transactions Breakdown for Yesterday")]),
             _vm._v(" "),
             _c("div", { staticClass: "buttons" }, [
               _c(
@@ -60130,7 +60148,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      _vm.getRecords()
+                      _vm.getBreakdown()
                     }
                   }
                 },
@@ -60155,23 +60173,23 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.today, function(record, index) {
+                  _vm._l(_vm.records, function(record, index) {
                     return _c("tr", { key: record.id, staticClass: "gradeC" }, [
-                      _c("td", [_vm._v(_vm._s(index + 1))]),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("@" + _vm._s(record.user.name))]),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v("@" + _vm._s(record.name))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.name))]),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.transactions))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.service))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.ref))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.price))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.status))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(record.created_at))])
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.amount))
+                      ])
                     ])
                   })
                 )
@@ -60202,17 +60220,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Agent")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Transactions")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Service")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Service code")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Price")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Time")])
+        _c("th", [_vm._v("Total Amount")])
       ])
     ])
   }
@@ -60223,6 +60233,560 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-756deaec", module.exports)
+  }
+}
+
+/***/ }),
+/* 325 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(326)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(328)
+/* template */
+var __vue_template__ = __webpack_require__(329)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-fb0111c8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Admin/admin/AdminWeek.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fb0111c8", Component.options)
+  } else {
+    hotAPI.reload("data-v-fb0111c8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(327);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("14962838", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb0111c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AdminWeek.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb0111c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AdminWeek.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 328 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "AdminWeek",
+    data: function data() {
+        return {
+            user: null,
+            records: []
+        };
+    },
+
+    methods: {
+        getBreakdown: function getBreakdown() {
+            var _this = this;
+
+            axios.get("/api/admin-stats/" + this.user + "/week").then(function (response) {
+                _this.records = response.data.stats;
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.user = JSON.parse(localStorage.getItem('paraUser'));
+        this.getBreakdown();
+    }
+});
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12" }, [
+        _c("div", { staticClass: "widget-box" }, [
+          _c("div", { staticClass: "widget-title" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("h5", [_vm._v("Transactions Breakdown for this week")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "buttons" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.getBreakdown()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-refresh" }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text" }, [_vm._v("Refresh")])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "widget-content nopadding" }, [
+            _c(
+              "table",
+              {
+                staticClass:
+                  "table table-bordered table-striped table-hover data-table"
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.records, function(record, index) {
+                    return _c("tr", { key: record.id, staticClass: "gradeC" }, [
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v("@" + _vm._s(record.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.transactions))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.amount))
+                      ])
+                    ])
+                  })
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-signal" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agent")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Transactions")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-fb0111c8", module.exports)
+  }
+}
+
+/***/ }),
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(331)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(333)
+/* template */
+var __vue_template__ = __webpack_require__(334)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-00132888"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Admin/admin/AdminMonth.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-00132888", Component.options)
+  } else {
+    hotAPI.reload("data-v-00132888", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(332);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("5f4ae246", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-00132888\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AdminMonth.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-00132888\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AdminMonth.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 333 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "AdminWeek",
+    data: function data() {
+        return {
+            user: null,
+            records: []
+        };
+    },
+
+    methods: {
+        getBreakdown: function getBreakdown() {
+            var _this = this;
+
+            axios.get("/api/admin-stats/" + this.user + "/thirtyDays").then(function (response) {
+                _this.records = response.data.stats;
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.user = JSON.parse(localStorage.getItem('paraUser'));
+        this.getBreakdown();
+    }
+});
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12" }, [
+        _c("div", { staticClass: "widget-box" }, [
+          _c("div", { staticClass: "widget-title" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("h5", [_vm._v("Transactions Breakdown for the last 30 days")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "buttons" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.getBreakdown()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-refresh" }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text" }, [_vm._v("Refresh")])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "widget-content nopadding" }, [
+            _c(
+              "table",
+              {
+                staticClass:
+                  "table table-bordered table-striped table-hover data-table"
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.records, function(record, index) {
+                    return _c("tr", { key: record.id, staticClass: "gradeC" }, [
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v("@" + _vm._s(record.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.transactions))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.amount))
+                      ])
+                    ])
+                  })
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-signal" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agent")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Transactions")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-00132888", module.exports)
   }
 }
 

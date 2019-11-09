@@ -22,7 +22,7 @@ import {
 } from './../components'
 
 import {
-    AdminIndex, AdminStats, AdminToday, AdminYesterday
+    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty
 } from './../components/Admin/admin'
 
 import {
@@ -30,6 +30,8 @@ import {
     Index,
     StudentDetails
 } from './../components/Admin'
+import AdminWeek from "../components/Admin/admin/AdminWeek";
+import AdminMonth from "../components/Admin/admin/AdminMonth";
 
 
 const routes = [
@@ -56,6 +58,16 @@ const routes = [
                 path: '/yesterday-analytics',
                 component: AdminYesterday,
                 name: 'admin-analytics-yesterday'
+            },
+            {
+                path: '/week-analytics',
+                component: AdminWeek,
+                name: 'admin-analytics-week'
+            },
+            {
+                path: '/last-30-days-analytics',
+                component: AdminThirty,
+                name: 'admin-analytics-30'
             }
         ]
     },
