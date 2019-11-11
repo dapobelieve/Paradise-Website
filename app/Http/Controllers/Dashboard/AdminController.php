@@ -61,6 +61,31 @@ class AdminController extends Controller
         }
     }
 
+    public function today(Request $request, User $user)
+    {
+        if ($user->roles()->get()->contains('name', 'Admin')) {
+
+            $records = DB::select('SELECT users.name, 
+                                    sum(price) AS amount, 
+                                    count(records.id) AS transactions 
+                                    FROM role_user, records
+                                    JOIN users 
+                                    ON records.user_id = users.id
+                                    WHERE users.id = role_user.user_id
+                                    AND role_user.role_id = 2
+                                    AND records.created_at >= curdate()
+                                    GROUP BY records.user_id');
+            return response()->json([
+                'stats' => $records,
+            ]);
+        }else {
+            return response()->json([
+                'message' => 'Invalid User'
+            ], 401);
+        }
+
+    }
+
     public function yesterday(Request $request, User $user)
     {
         if ($user->roles()->get()->contains('name', 'Admin')) {
@@ -133,5 +158,12 @@ class AdminController extends Controller
                 'message' => 'Invalid User'
             ], 401);
         }
+    }
+
+    public function users(Request $request)
+    {
+        $user = User::get();
+
+        return view('admin.add-user')->with('users', $user);
     }
 }

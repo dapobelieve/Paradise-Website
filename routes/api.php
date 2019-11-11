@@ -66,6 +66,7 @@ Route::group(['middleware' => 'api'], function () {
 
     // Admin Stats
     Route::get('admin-stats/{user}', 'Dashboard\AdminController@adminStats');
+    Route::get('admin-stats/{user}/today', 'Dashboard\AdminController@today');
     Route::get('admin-stats/{user}/yesterday', 'Dashboard\AdminController@yesterday');
     Route::get('admin-stats/{user}/week', 'Dashboard\AdminController@week');
     Route::get('admin-stats/{user}/thirtyDays', 'Dashboard\AdminController@thirtyDays');

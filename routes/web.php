@@ -82,6 +82,8 @@ Route::group(['middleware' => 'role:ADMIN'], function () {
 
     Route::view('add-property', 'admin.add-property')->name('property.add');
 
+    Route::get('add-user', 'Dashboard\AdminController@users')->name('add.user');
+
 });
 
 

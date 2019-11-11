@@ -22,8 +22,15 @@
                         <li><a href="{{ route('property.add') }}">Add Property</a></li>
                     </ul>
                 </li>
-                <li><a href="#">
-                        <i class="fa fa-home"></i> <span>Orders</span></a>
+                <li class="submenu">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>Workers</span><i class="arrow fa fa-chevron-right"></i>
+                    </a>
+                    <ul>
+                        <li><a href="#">All Users</a></li>
+{{--                        <li><a href="{{ route('add.user') }}">Add User</a></li>--}}
+{{--                        <li><a href="{{ route('property.add') }}">Add Property</a></li>--}}
+                    </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>

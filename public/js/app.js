@@ -46471,7 +46471,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46488,11 +46488,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "today",
+    name: "AdminWeek",
+    data: function data() {
+        return {
+            user: null,
+            records: []
+        };
+    },
+
+    methods: {
+        getBreakdown: function getBreakdown() {
+            var _this = this;
+
+            axios.get("/api/admin-stats/" + this.user + "/today").then(function (response) {
+                _this.records = response.data.stats;
+            });
+        }
+    },
     mounted: function mounted() {
-        console.log('GET_TODAYS_BREAKDOWN');
+        this.user = JSON.parse(localStorage.getItem('paraUser'));
+        this.getBreakdown();
     }
 });
 
@@ -46504,9 +46556,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "today" })
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12" }, [
+        _c("div", { staticClass: "widget-box" }, [
+          _c("div", { staticClass: "widget-title" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("h5", [_vm._v("Transactions Breakdown for Today")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "buttons" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.getBreakdown()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-refresh" }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text" }, [_vm._v("Refresh")])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "widget-content nopadding" }, [
+            _c(
+              "table",
+              {
+                staticClass:
+                  "table table-bordered table-striped table-hover data-table"
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.records, function(record, index) {
+                    return _c("tr", { key: record.id, staticClass: "gradeC" }, [
+                      _c(
+                        "td",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            color: "#0c9ec7 !important"
+                          }
+                        },
+                        [_vm._v(_vm._s(index + 1))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v("@" + _vm._s(record.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.transactions))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "center" } }, [
+                        _vm._v(_vm._s(record.amount))
+                      ])
+                    ])
+                  })
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-signal" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agent")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Transactions")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -60729,9 +60882,16 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.records, function(record, index) {
                     return _c("tr", { key: record.id, staticClass: "gradeC" }, [
-                      _c("td", { staticStyle: { "text-align": "center" } }, [
-                        _vm._v(_vm._s(index + 1))
-                      ]),
+                      _c(
+                        "td",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            color: "#0c9ec7"
+                          }
+                        },
+                        [_vm._v(_vm._s(index + 1))]
+                      ),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "center" } }, [
                         _vm._v("@" + _vm._s(record.name))

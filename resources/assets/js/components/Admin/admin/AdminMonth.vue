@@ -25,7 +25,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="(record, index) in records" :key="record.id" class="gradeC">
-                                <td style="text-align: center">{{ index + 1 }}</td>
+                                <td style="text-align: center; color: #0c9ec7">{{ index + 1 }}</td>
                                 <td style="text-align: center">@{{ record.name }}</td>
                                 <td style="text-align: center">{{ record.transactions }}</td>
                                 <td style="text-align: center">{{ record.amount }}</td>
