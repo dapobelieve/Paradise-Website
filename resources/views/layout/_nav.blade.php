@@ -19,10 +19,16 @@
                         <a href="{{ route('site.home') }}">Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('site.services') }}">Services</a>
+                        {{--<a href="{{ route('site.services') }}">Services</a>--}}
                     </li>
                     <li>
                         <a href="{{ route('site.store') }}">Store</a>
+                    </li>
+                    <li>
+                        {{-- <a href="{{ route('site.post-jamb') }}">Post UTME </a> --}}
+                    </li>
+                    <li>
+                        {{-- <a href="{{ url('/programs#/funaab-registrations') }}">Funaab Registrations</a> --}}
                     </li>
                     <li>
                         <a href="{{ route('site.about') }}">About</a>

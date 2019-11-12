@@ -1,6 +1,6 @@
 <meta charset="utf-8">
         <title>@yield('site.title')</title>
-        <meta name="description" content="{{ config()->get('site.defaults.name') }}">
+        <meta name="description" content="{{ config()->get('site.defaults.description') }}">
         <meta name="author" content="dapobelieve 07069494803">
 
         <!-- Mobile Meta -->
@@ -29,3 +29,6 @@
         <link href="/assets/css/style.css" rel="stylesheet" >
         <!-- Custom css --> 
         <link href="/assets/css/custom.css" rel="stylesheet">
+        {{--<link href="#" data-style="styles" rel="stylesheet">--}}
+        <link href="/assets/style-switcher/style-switcher.css" rel="stylesheet">
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="fa0674da-a683-47a4-bb0f-8f1b4fe691fe";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>

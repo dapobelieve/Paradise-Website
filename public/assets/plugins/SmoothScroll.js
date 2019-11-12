@@ -315,7 +315,7 @@
                 }
                 
                 scrollArray(overflowing, -deltaX, -deltaY);
-                event.preventDefault();
+                //event.preventDefault();
             }
 
             /**

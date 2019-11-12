@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Lagos',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -176,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        JD\Cloudder\CloudderServiceProvider::class,
 
     ],
 
@@ -224,7 +225,9 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class
 
     ],
 

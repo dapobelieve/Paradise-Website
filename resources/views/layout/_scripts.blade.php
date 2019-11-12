@@ -34,4 +34,19 @@
         <!-- Custom Scripts -->
         <script type="text/javascript" src="/assets/js/custom.js"></script>
         <!-- Color Switcher (Remove these lines) -->
+        <script type="text/javascript" src="/assets/style-switcher/style-switcher.js"></script>
+        <div class="style-switcher closed">
+        <div class="header">
+                <a class="trigger" href="#">Pay</a>
+                <h2>Pay Now</h2>
+        </div>
+        <div class="clearfix body">
+                <h3 class="text-center">Make Payment for any of our services</h3>
+                <ul class="resetAll text-center">
+                        <li class="btn btn-default btn-sm" title="Reset">
+                                <a href="https://paystack.com/pay/q76vbu2cxv">Pay Now</a>
+                        </li>
+                </ul>
+        </div>
+</div>
         <!-- Color Switcher End -->
