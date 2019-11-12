@@ -2,8 +2,11 @@
     <div class="create-training">
         <div class="row">
             <div class="col-xs-12">
-                <div v-show="error.status" class="alert alert-primary">
+                <div v-show="error.status" class="alert alert-success">
                     {{ error.message }}
+                    <br>
+                    <hr>
+                    Reference Code:<strong> {{ code }}</strong>
                     <a href="#" data-dismiss="alert" class="close">×</a>
                 </div>
                 <div class="widget-box">
@@ -71,6 +74,7 @@
   export default {
     data () {
       return {
+          code: null,
         btn: {
             state: false,
             text: 'Submit'
@@ -102,6 +106,7 @@
             this.form = {};
             this.error.message = "Submitted Successfully";
             this.error.status = true;
+            this.code = response.data.data.ref;
 
         })
         .catch((error) => {

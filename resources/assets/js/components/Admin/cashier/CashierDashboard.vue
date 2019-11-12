@@ -9,7 +9,7 @@
                         <span class="icon"><i class="fa fa-signal"></i></span>
                         <h5>Todays Transactions</h5>
                         <div>
-                            <input class="search" v-model="search" type="text" placeholder="Search service code">
+                            <input class="search" v-model="search" autofocus type="text" placeholder="Search service code">
                             <button @click.prevent="searchRecord" class="btn btn-xs btn-primary">Search</button>
                         </div>
                         <div style="margin-left: auto; align-self: flex-end;" class="buttons">
@@ -34,7 +34,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <cashier-dashboard-record @loadData="getRecords" v-for="(record, index) in today" :record="record" :index="index" :key="record.id"></cashier-dashboard-record>
+                            <cashier-dashboard-record v-if="filteredRecords && filteredRecords.length > 0" @loadData="getRecords" v-for="(record, index) in filteredRecords" :record="record" :index="index" :key="record.id"></cashier-dashboard-record>
+                            <tr v-else>
+                                No Records Found
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -53,7 +56,20 @@
             return {
                 search: '',
                 stats: {},
-                today: []
+                today: [],
+            }
+        },
+        computed: {
+            filteredRecords () {
+                let data = this.today;
+                // quick search
+                data = data.filter((row) => {
+                    return Object.keys(row).some((key) => {
+                        return String(row[key]).toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+                    });
+                });
+
+                return data;
             }
         },
         components: {

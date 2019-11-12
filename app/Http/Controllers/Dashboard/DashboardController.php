@@ -33,7 +33,8 @@ class DashboardController extends Controller
 
        return response()->json([
             'status' => 201,
-            'message'=> 'Created'
+            'message'=> 'Created',
+           'data' => $record,
        ]);
    }
     
@@ -140,7 +141,10 @@ class DashboardController extends Controller
         ->get()
         ->toArray();
 
-        dd($records);
+        return response()->json([
+            'status' => 200,
+            'data' => $records
+        ]);
     }
 
     public function approve(Request $request, User $user, Record $record)

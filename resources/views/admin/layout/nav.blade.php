@@ -52,11 +52,11 @@
                     </a>
                 </li>
             @elseif(Auth::user()->hasRole(['admin', 'cashier']))
-                <li>
-                    <a href="">
-                        <i class="fa fa-home"></i> <span>Modify</span>
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="">--}}
+{{--                        <i class="fa fa-home"></i> <span>Modify</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
             @endif
             <li>
                 <a href="{{ route('site.home') }}" target="_blank">

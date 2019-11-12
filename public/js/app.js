@@ -58863,6 +58863,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // import Bus from '../../../../helpers/bus.js'
@@ -58870,6 +58873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      code: null,
       btn: {
         state: false,
         text: 'Submit'
@@ -58901,6 +58905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.form = {};
         _this.error.message = "Submitted Successfully";
         _this.error.status = true;
+        _this.code = response.data.data.ref;
       }).catch(function (error) {
         _this.errors = error.response.data.errors;
         console.log(error.response.data);
@@ -58931,7 +58936,7 @@ var render = function() {
                 expression: "error.status"
               }
             ],
-            staticClass: "alert alert-primary"
+            staticClass: "alert alert-success"
           },
           [
             _vm._v(
@@ -58939,6 +58944,12 @@ var render = function() {
                 _vm._s(_vm.error.message) +
                 "\n                "
             ),
+            _c("br"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v("\n                Reference Code:"),
+            _c("strong", [_vm._v(" " + _vm._s(_vm.code))]),
+            _vm._v(" "),
             _c(
               "a",
               {
@@ -59631,7 +59642,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59692,6 +59703,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -59705,6 +59719,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        filteredRecords: function filteredRecords() {
+            var _this = this;
+
+            var data = this.today;
+            // quick search
+            data = data.filter(function (row) {
+                return Object.keys(row).some(function (key) {
+                    return String(row[key]).toLowerCase().indexOf(_this.search.toLowerCase()) > -1;
+                });
+            });
+
+            return data;
+        }
+    },
     components: {
         AgentDashboardStatistics: __WEBPACK_IMPORTED_MODULE_0__agent_AgentDashboardStatistics___default.a,
         CashierDashboardRecord: __WEBPACK_IMPORTED_MODULE_1__CashierDashboardRecord___default.a
@@ -59716,13 +59745,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getRecords: function getRecords() {
-            var _this = this;
+            var _this2 = this;
 
             var user = JSON.parse(localStorage.getItem('paraUser'));
 
             var data = axios.get("api/" + user + "/paid-records").then(function (response) {
-                _this.stats = response.data.stats;
-                _this.today = response.data.todaysRecords;
+                _this2.stats = response.data.stats;
+                _this2.today = response.data.todaysRecords;
             });
         }
     },
@@ -59966,7 +59995,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "search",
-                    attrs: { type: "text", placeholder: "Search service code" },
+                    attrs: {
+                      autofocus: "",
+                      type: "text",
+                      placeholder: "Search service code"
+                    },
                     domProps: { value: _vm.search },
                     on: {
                       input: function($event) {
@@ -60038,12 +60071,19 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.today, function(record, index) {
-                      return _c("cashier-dashboard-record", {
-                        key: record.id,
-                        attrs: { record: record, index: index },
-                        on: { loadData: _vm.getRecords }
-                      })
+                    _vm._l(_vm.filteredRecords, function(record, index) {
+                      return _vm.filteredRecords &&
+                        _vm.filteredRecords.length > 0
+                        ? _c("cashier-dashboard-record", {
+                            key: record.id,
+                            attrs: { record: record, index: index },
+                            on: { loadData: _vm.getRecords }
+                          })
+                        : _c("tr", [
+                            _vm._v(
+                              "\n                            No Records Found\n                        "
+                            )
+                          ])
                     })
                   )
                 ]
