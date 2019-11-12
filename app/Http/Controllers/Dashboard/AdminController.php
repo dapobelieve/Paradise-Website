@@ -163,7 +163,22 @@ class AdminController extends Controller
     public function users(Request $request)
     {
         $user = User::get();
-
         return view('admin.add-user')->with('users', $user);
+    }
+
+    public function editUser(Request $request, User $user)
+    {
+        return view('admin.edit-user')->with('user', $user);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $this->validate($request, [
+            'role' => 'required|in:2,3'
+        ]);
+
+        $user->roles()->sync([$request->role]);
+
+        return redirect()->back()->with('success', 'User Role updated');
     }
 }

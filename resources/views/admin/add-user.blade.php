@@ -7,7 +7,7 @@
         </div>
         <div id="breadcrumb">
             <a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-            <a href="#" class="current">Applicants</a>
+            <a href="#" class="current">Users</a>
         </div>
         <div class="container-fluid">
             <br />
@@ -30,6 +30,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Ip address</th>
+                                        <th>Role(s)</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -40,8 +41,12 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->ip }}</td>
-                                            <td><a href="#">Edit</a></td>
-{{--                                            <td>{{ $user->name }}</td>--}}
+                                            <td>
+                                            @foreach($user->roles()->get() as $role)
+                                                {{ $role->name }}
+                                            @endforeach
+                                            </td>
+                                            <td><a href="{{ route('edit-user', ['user' => $user->id]) }}">Edit Role</a></td>
                                         </tr>
                                     @endforeach
 

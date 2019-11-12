@@ -11,7 +11,7 @@
                 <div class="col-xs-12">
                     <div class="widget-box">
                         <div style="display: flex;  align-items: center" class="widget-title">
-                            <h5>Send</h5>
+                            <h5>Edit User: {{$user->name}}</h5>
                         </div>
                         <div class="widget-content">
                         <span>
@@ -26,27 +26,29 @@
                                 @if(Session::has('success'))
                                     <strong style="color: green">* {{ Session::get('success') }}</strong>
                                 @endif
-                                <form method="post" action="{{ route('wallet.send') }}" class="form-horizontal">
+                                <form method="post" action="#" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Address</label>
+                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Name</label>
                                         <div class="col-sm-9 col-md-6 col-lg-6">
-                                            <input id="wallet" value="" type="text" name="address" class="form-control input-sm" />
+                                            <input readonly id="wallet" value="{{ $user->name }}" type="text" name="address" class="form-control input-sm" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Amount </label>
+                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Email</label>
                                         <div class="col-sm-9 col-md-6 col-lg-6">
-                                            <input value="" id="amount" name="amount" placeholder="Amount" type="text" class="form-control input-sm" />
+                                            <input id="wallet" value="{{ $user->email }}" readonly type="text" name="address" class="form-control input-sm" />
                                         </div>
                                     </div>
-                                    <input type="text" value="" name="fromWallet" hidden>
                                     <div class="form-group">
-                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Notes</label>
+                                        <label for="wallet" class="col-sm-3 col-md-3 col-lg-2 control-label">Role </label>
                                         <div class="col-sm-9 col-md-6 col-lg-6">
-                                            <textarea name="" id="" cols="61" rows="5"></textarea>
+                                            <select name="role" id="">
+                                                <option selected value="">Select Role</option>
+                                                <option value="2">Sales Agent</option>
+                                                <option value="3">Cashier</option>
+                                            </select>
                                         </div>
                                     </div>
-
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                     </div>

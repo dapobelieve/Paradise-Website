@@ -12,21 +12,21 @@
                     <!-- ================ -->
                     <div class="header-top-dropdown text-right">
                         @if (Auth::check())
-                        <div class="btn-group">
-                            <a href="#" class=" btn-sm">
-                                <i class=" pr-10"></i>Hello, {{ Auth::user()->name }}
-                            </a>
-                        </div>
-                        @if(Auth::user()->hasRole(['admin', 'agent', 'cashier']))
-                            <div class="btn-group">
-                                <a href="{{url('dashboard#/stats')}}" class=" btn-sm">
-                                    <i class=" pr-10"></i>Dashboard
+                            <div class="">
+                                <a href="#" class=" btn-sm">
+                                    <i class=" pr-10"></i>Hello, {{ Auth::user()->name }}
                                 </a>
                             </div>
-                            @endif
-                        <div class="btn-group">
-                            <a href="{{ route('site.logout') }}">Logout</a>
-                        </div>
+                            @if(Auth::user()->hasRole(['admin', 'agent', 'cashier']))
+                                <div class="btn-group">
+                                    <a href="{{url('dashboard#/stats')}}" class=" btn-sm">
+                                        <i class=" pr-10"></i>Dashboard
+                                    </a>
+                                </div>
+                                @endif
+                            <div class="btn-group">
+                                <a href="{{ route('site.logout') }}">Logout</a>
+                            </div>
                         @else
                         <div class="btn-group">
                             <a href="{{ route('site.register') }}" class="btn btn-default btn-sm"><i class="fa fa-user pr-10"></i> Register</a>
