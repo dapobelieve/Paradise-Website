@@ -11,8 +11,9 @@ h2,p{
 body{
     font-family:Roboto,sans-serif;
     font-size:15px;
-    line-height:1.46666667;
-    color:#777;
+    line-height: 1.46666667;
+    color:black;
+    font-weight: bolder !important;
     background-color:#fff;
     font-weight:300
 }

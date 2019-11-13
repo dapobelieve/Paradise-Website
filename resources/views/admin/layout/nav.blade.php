@@ -6,18 +6,35 @@
         </button>
     </div> --}}  
     <ul>
-        <li class="active"><a href="#">
+        <li><a href="#">
             <i class="fa fa-home"></i> <span>Dashboard</span></a>
         </li>
+        <li><a href="{{ url('registrations#/list') }}">
+                <i class="fa fa-users"></i> <span>Registrations</span></a>
+        </li>
 
-        {{-- <li class="submenu">
-            <a href="#"><i class="fa fa-flask"></i> <span>UI Lab</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <li class="submenu">
+            <a href="#"><i class="fa fa-home"></i> <span>Properties</span> <i class="arrow fa fa-chevron-right"></i></a>
             <ul>
-                <li><a href="interface.html">Interface Elements</a></li>
-                <li><a href="jquery-ui.html">jQuery UI</a></li>
-                <li><a href="buttons.html">Buttons &amp; icons</a></li>
+                <li><a href="{{ route('all-properties') }}">All Properties</a></li>
+                <li><a href="{{ route('property.add') }}">Add Property</a></li>
             </ul>
-        </li> --}}
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="fa fa-shopping-cart"></i> <span>Products</span> <i class="arrow fa fa-chevron-right"></i></a>
+            <ul>
+                <li><a href="{{ route('store.index') }}">All Product</a></li>
+                <li><a href="{{ route('store.add') }}">Add Product</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">
+            <i class="fa fa-home"></i> <span>Orders</span></a>
+        </li>
+
+        <li><a href="{{ route('solar.index') }}">
+            <i class="fa fa-home"></i> <span>Solar Training</span></a>
+        </li>
 
         {{-- <li><a href="tables.html"><i class="fa fa-th"></i> <span>Tables</span></a></li>
         <li><a href="grid.html"><i class="fa fa-th-list"></i> <span>Grid Layout</span></a></li> --}}

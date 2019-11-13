@@ -11,6 +11,8 @@ class Training extends Model
         'email',
         'phone',
         'address',
-        'type'
+        'type',
+        'p_status',
+        'ref'
     ];
 }

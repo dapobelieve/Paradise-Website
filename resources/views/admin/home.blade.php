@@ -36,8 +36,14 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-4">
                                             <ul class="site-stats">
-                                                <li><div class="cc"><i class="fa fa-user"></i> <strong>1433</strong> <small>Total Users</small></div></li>
-                                                <li><div class="cc"><i class="fa fa-arrow-right"></i> <strong>16</strong> <small>New Users (last week)</small></div></li>
+                                                <li>
+                                                    <div class="cc"><i class="fa fa-user"></i> 
+                                                        <strong>1433</strong> 
+                                                        <small>Total Users</small>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="cc"><i class="fa fa-arrow-right"></i> <strong>16</strong> <small>New Users (last week)</small></div></li>
                                                 <li class="divider"></li>
                                                 <li><div class="cc"><i class="fa fa-shopping-cart"></i> <strong>259</strong> <small>Total Shop Items</small></div></li>
                                                 <li><div class="cc"><i class="fa fa-tag"></i> <strong>8650</strong> <small>Total Orders</small></div></li>

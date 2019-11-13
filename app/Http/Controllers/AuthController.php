@@ -42,11 +42,21 @@ class AuthController extends Controller
 
         User::firstOrCreate([
             'email' => $request->email,
+            'browser' => $request->userAgent(),
+            'ip' => $request->ip(),
             'name'  => $request->fname,
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('site.home');
+        // automatically login user
+        Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        // send a mail here
+
+        return redirect()->route('site.home')->with('errorMessage','Welcome '.$request->name);
     }
 
     public function logout(Request $request)

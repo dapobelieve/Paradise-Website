@@ -19,7 +19,7 @@ class CreateStoresTable extends Migration
             $table->float('price')->default(0);
             $table->string('image')->nullable();
             $table->text('body')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }

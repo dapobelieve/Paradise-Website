@@ -5,17 +5,27 @@ import Vue from 'vue'
 
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 /**
- * import components to be used
- */
+ * import components to be used */
 
 import {
     Home,
     Cart,
-    Info
+    Info,
+    FunaabReg,
+    PartTime,
+    PostGradute,
+    PreDegree,
+    Payment
 } from './../components'
+
+import {
+    StudentList,
+    Index,
+    StudentDetails
+} from './../components/Admin'
 
 
 const routes = [
@@ -30,20 +40,60 @@ const routes = [
         name: 'cart'
     },
     {
+        path: '/funaab-registrations',
+        component: FunaabReg,
+        name: 'funaab-reg'
+    },
+    {
+        path: '/part-time-registrations',
+        component: PartTime,
+        name: 'part-time'
+    },
+    {
+        path: '/post-graduate-registration',
+        component: PostGradute,
+        name: 'post-graduate'
+    },
+    {
+        path: '/pre-degree',
+        component: PreDegree,
+        name: 'pre-degree'
+    },
+    {
         path: '/info',
         component: Info,
         name: 'info'
+    },
+    {
+        path: '/pay/:id',
+        component: Payment,
+        name: 'regPay'
+    },
+    {
+        path: '',
+        component: Index,
+        children: [
+            {
+                path: '/list',
+                component: StudentList,
+                name: 'students-list'
+            },
+            {
+                path: '/details/:studentId',
+                component: StudentDetails,
+                name: 'student-details'
+            }
+        ]
     }
 ];
 
 const router = new Router({
     routes: routes
-})
+});
 
 /**
  * Do all the beforeEach logics here
  */
-
 
 
 /**

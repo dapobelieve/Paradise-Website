@@ -1,6 +1,6 @@
 <meta charset="utf-8">
         <title>@yield('site.title')</title>
-        <meta name="description" content="{{ config()->get('site.defaults.name') }}">
+        <meta name="description" content="{{ config()->get('site.defaults.description') }}">
         <meta name="author" content="dapobelieve 07069494803">
 
         <!-- Mobile Meta -->
@@ -29,3 +29,5 @@
         <link href="/assets/css/style.css" rel="stylesheet" >
         <!-- Custom css --> 
         <link href="/assets/css/custom.css" rel="stylesheet">
+        {{--<link href="#" data-style="styles" rel="stylesheet">--}}
+        <link href="/assets/style-switcher/style-switcher.css" rel="stylesheet">

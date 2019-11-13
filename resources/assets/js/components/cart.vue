@@ -35,7 +35,7 @@
                 <tbody v-else>
                     No items in cart <br>
                     <router-link :to="{name: 'home'}" class="btn btn-lg btn-default">
-                        Start Shopping
+                        Continue Shopping
                     </router-link>
                 </tbody>
             </table>
