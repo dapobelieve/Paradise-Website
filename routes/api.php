@@ -46,4 +46,28 @@ Route::group(['middleware' => 'api'], function () {
      * Properties
      */
     Route::post('create-property', 'Property\PropertyController@create');
+
+    /**
+     * Agent Routes
+     */
+    Route::get('{user}/statistics', 'Dashboard\DashboardController@agentStatistics');
+    Route::post('/create', 'Dashboard\DashboardController@create');
+
+    /**
+     * Cashier Routes
+     */
+    Route::get('{user}/paid-records', 'Dashboard\DashboardController@cashierStatistics');
+
+    //search
+    Route::get('/q={query}', 'Dashboard\DashboardController@searchRecords');
+
+    //Approve pay
+    Route::post('approve/user/{user}/record/{record}', 'Dashboard\DashboardController@approve');
+
+    // Admin Stats
+    Route::get('admin-stats/{user}', 'Dashboard\AdminController@adminStats');
+    Route::get('admin-stats/{user}/today', 'Dashboard\AdminController@today');
+    Route::get('admin-stats/{user}/yesterday', 'Dashboard\AdminController@yesterday');
+    Route::get('admin-stats/{user}/week', 'Dashboard\AdminController@week');
+    Route::get('admin-stats/{user}/thirtyDays', 'Dashboard\AdminController@thirtyDays');
 });
