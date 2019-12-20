@@ -20,9 +20,9 @@ Route::get('/about', function () {
 })->name('site.about');
 
 
-Route::get('/post-utme', function () {
-    return view('pages.jamb');
-})->name('site.post-jamb');
+//Route::get('/post-utme', function () {
+//    return view('pages.jamb');
+//})->name('site.post-jamb');
 
 
 Route::get('/services', function () {
@@ -42,7 +42,7 @@ Route::get('/register', function () {
     return view('pages.register');
 })->name('site.register');
 
-Route::get('properties', 'Property\PropertyController@home');
+Route::get('properties', 'Property\PropertyController@home')->name('properties');
 
 Route::post('/register', 'AuthController@register')->name('site.register');
 

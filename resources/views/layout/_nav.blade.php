@@ -25,7 +25,7 @@
                         <a href="{{ route('site.store') }}">Store</a>
                     </li>
                     <li>
-                        <a href="{{ route('site.post-jamb') }}">Post UTME </a>
+                        <a href="{{ route('properties') }}">Properties </a>
                     </li>
                     <li>
                         <a href="{{ url('/programs#/funaab-registrations') }}">Funaab Registrations</a>

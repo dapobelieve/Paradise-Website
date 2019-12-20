@@ -17,9 +17,7 @@ class PropertyController extends Controller
     {
         $properties = Property::with('images')->get();
 
-        dd($properties);
-
-        return view('pages.proerty')->with([
+        return view('pages.property')->with([
             $properties
         ]);
     }
