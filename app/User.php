@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Role;
 
 class User extends Authenticatable
 {
@@ -30,5 +31,24 @@ class User extends Authenticatable
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($roles)
+    {
+        foreach($roles as $key => $role) {
+            if ($this->roles->contains('name', ucfirst(strtolower($role))))
+                return true;
+        }
+        return false;
+    }
+
+    public function records()
+    {
+        return $this->hasMany('App\Record');
     }
 }

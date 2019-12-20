@@ -1,5 +1,5 @@
 <?php
-
+Route::get('/test', 'TestController@index');
 
 Route::get('/', function () {
     return view('pages.home');
@@ -23,6 +23,9 @@ Route::get('/about', function () {
 //Route::get('/post-utme', function () {
 //    return view('pages.jamb');
 //})->name('site.post-jamb');
+// Route::get('/post-utme', function () {
+//     return view('pages.jamb');
+// })->name('site.post-jamb');
 
 
 Route::get('/services', function () {
@@ -34,9 +37,9 @@ Route::get('/store', function () {
     return view('pages.store');
 })->name('site.store');
 
-Route::get('/programs', function () {
-    return view('pages.reg');
-})->name('site.fun-reg');
+// Route::get('/programs', function () {
+//     return view('pages.reg');
+// })->name('site.fun-reg');
 
 Route::get('/register', function () {
     return view('pages.register');
@@ -48,7 +51,6 @@ Route::post('/register', 'AuthController@register')->name('site.register');
 
 Route::post('/solar/register', 'SolarController@save')->name('solar.register');
 
-
 Route::post('/login', 'AuthController@login')->name('site.login');
 
 Route::get('/logout', 'AuthController@logout')->name('site.logout');
@@ -58,11 +60,14 @@ Route::get('/logout', 'AuthController@logout')->name('site.logout');
 /**
  * Dashboard Section
  */
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['prefix' => 'dashboard'], function () {
+    
+ Route::get('/', function () {
+    return view('admin.home');
+})->name('dashboard')->middleware('role:ADMIN,AGENT,CASHIER');
 
-    Route::get('dashboard', function () {
-        return view('admin.home');
-    });
+
+Route::group(['middleware' => 'role:ADMIN'], function () {
 
     Route::get('all-products', 'Store\AddController@index')->name('store.index');
 
@@ -80,4 +85,16 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::view('add-property', 'admin.add-property')->name('property.add');
 
+    Route::get('add-user', 'Dashboard\AdminController@users')->name('add.user');
+    Route::get('edit-user/{user}', 'Dashboard\AdminController@editUser')->name('edit-user');
+    Route::post('edit-user/{user}', 'Dashboard\AdminController@update')->name('edit-user');
+
 });
+
+
+// sales agent route
+Route::view('/transaction', 'admin.pages.transact')->name('agent.transact')->middleware('role:admin,agent');
+
+   
+});
+

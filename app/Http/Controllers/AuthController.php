@@ -23,7 +23,7 @@ class AuthController extends Controller
                 'password' => $request->input('password')
             ])){
             
-            return redirect()->back()->with('errorMessage','Could not sign you in. Invalid Details');
+            return redirect()->route('site.home')->with('errorMessage','Could not sign you in. Invalid Details');
         }
 
         return redirect()->route('site.home');
@@ -49,14 +49,10 @@ class AuthController extends Controller
         ]);
 
         // automatically login user
-        Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,])) {
+            return redirect()->route('site.home')->with('errorMessage','Welcome '.$request->name);
+        }
 
-        // send a mail here
-
-        return redirect()->route('site.home')->with('errorMessage','Welcome '.$request->name);
     }
 
     public function logout(Request $request)
