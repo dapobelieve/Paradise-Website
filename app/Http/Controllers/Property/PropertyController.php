@@ -15,11 +15,10 @@ class PropertyController extends Controller
 
     public function home()
     {
-        $properties = Property::with('images')->get();
+        $properties = Property::with('images')->latest()->get();
 
-        return view('pages.property')->with([
-            $properties
-        ]);
+//        dd(json_decode($properties->images[0]->url, true)['secure_url']);
+        return view('pages.property')->with('properties', $properties);
     }
 
     public function create(Request $request)
@@ -70,5 +69,14 @@ class PropertyController extends Controller
             ],
             'message' => 'Property Added!'
         ]);
+    }
+
+    public function details(Property $property)
+    {
+        if(!$property) {
+            abort(404);
+        }
+
+        return view('pages.property-details')->with('property', $property->load('images'));
     }
 }

@@ -13,7 +13,6 @@
             <a href="#" class="current">Add Property</a>
         </div>
         <div class="container-fluid">
-            {{-- @include('admin.layout.stats') --}}
             <br />
 
             <div class="row">
