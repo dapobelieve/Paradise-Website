@@ -11,7 +11,7 @@
                 <!-- main start -->
                 <!-- ================ -->
                 <div class="main col-md-8">
-                    <h1 class="page-title">Blog Post</h1>
+                    <h1 class="page-title">{{$property->title}}</h1>
                     <article class="blogpost full">
                         <header>
                             <div class="post-info">

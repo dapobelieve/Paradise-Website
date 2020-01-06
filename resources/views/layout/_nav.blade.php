@@ -29,7 +29,7 @@
                         {{-- <a href="{{ route('site.post-jamb') }}">Post UTME </a> --}}
                     </li>
                     <li>
-                        {{-- <a href="{{ url('/programs#/funaab-registrations') }}">Funaab Registrations</a> --}}
+                         <a href="{{ url('/programs#/funaab-registrations') }}">Funaab Registrations</a>
                     </li>
                     <li>
                         <a href="{{ route('site.about') }}">About</a>
