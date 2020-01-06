@@ -14,4 +14,14 @@ class Property extends Model
     {
         return $this->morphMany('App\Image', 'imageable');
     }
+
+    public function link()
+    {
+        return url('property-details/'.$this->slug);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

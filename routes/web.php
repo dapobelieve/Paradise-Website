@@ -1,5 +1,5 @@
 <?php
-Route::get('/test', 'TestController@index');
+//Route::get('/test', 'TestController@index');
 
 Route::get('/', function () {
     return view('pages.home');
@@ -20,6 +20,9 @@ Route::get('/about', function () {
 })->name('site.about');
 
 
+//Route::get('/post-utme', function () {
+//    return view('pages.jamb');
+//})->name('site.post-jamb');
 // Route::get('/post-utme', function () {
 //     return view('pages.jamb');
 // })->name('site.post-jamb');
@@ -34,15 +37,16 @@ Route::get('/store', function () {
     return view('pages.store');
 })->name('site.store');
 
-// Route::get('/programs', function () {
-//     return view('pages.reg');
-// })->name('site.fun-reg');
+ Route::get('/programs', function () {
+     return view('pages.reg');
+ })->name('site.fun-reg');
 
 Route::get('/register', function () {
     return view('pages.register');
 })->name('site.register');
 
-Route::get('properties', 'Property\PropertyController@home');
+Route::get('properties', 'Property\PropertyController@home')->name('properties');
+Route::get('property-details/{property}', 'Property\PropertyController@details')->name('property.details');
 
 Route::post('/register', 'AuthController@register')->name('site.register');
 
