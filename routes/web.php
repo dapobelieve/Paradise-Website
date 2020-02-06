@@ -84,8 +84,6 @@ Route::group(['middleware' => 'role:ADMIN'], function () {
 
     Route::view('all-properties', 'admin.all-properties')->name('all-properties');
 
-    Route::view('add-property', 'admin.add-property')->name('property.add');
-
     Route::get('add-user', 'Dashboard\AdminController@users')->name('add.user');
     Route::get('edit-user/{user}', 'Dashboard\AdminController@editUser')->name('edit-user');
     Route::post('edit-user/{user}', 'Dashboard\AdminController@update')->name('edit-user');

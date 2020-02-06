@@ -1,3 +1,3 @@
 <span id="store">
-<admin-statistics></admin-statistics>
+    <admin-app></admin-app>
 </span>

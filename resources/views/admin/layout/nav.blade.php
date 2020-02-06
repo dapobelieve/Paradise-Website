@@ -18,8 +18,15 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-home"></i> <span>Properties</span> <i class="arrow fa fa-chevron-right"></i></a>
                     <ul>
-                        <li><a href="{{ route('all-properties') }}">All Properties</a></li>
-                        <li><a href="{{ route('property.add') }}">Add Property</a></li>
+                        <li><a href="{{ url('dashboard#/list-property') }}">Properties</a></li>
+                        <li><a href="{{ url('dashboard#/create-property') }}">Add Property</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-gears"></i> <span>Services</span> <i class="arrow fa fa-chevron-right"></i></a>
+                    <ul>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Add Services</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

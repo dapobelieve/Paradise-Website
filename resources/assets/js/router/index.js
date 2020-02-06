@@ -22,14 +22,9 @@ import {
 } from './../components'
 
 import {
-    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty
-} from './../components/Admin/admin'
+    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty, CreateProperty, ListProperty
+} from './../components/Admin/'
 
-import {
-    StudentList,
-    Index,
-    StudentDetails
-} from './../components/Admin'
 import AdminWeek from "../components/Admin/admin/AdminWeek";
 import AdminMonth from "../components/Admin/admin/AdminMonth";
 
@@ -50,24 +45,34 @@ const routes = [
                 name: 'admin-stats'
             },
             {
-                path: '/today-analytics',
+                path: '/stats/today-analytics',
                 component: AdminToday,
                 name: 'admin-today'
             },
             {
-                path: '/yesterday-analytics',
+                path: '/stats/yesterday-analytics',
                 component: AdminYesterday,
                 name: 'admin-analytics-yesterday'
             },
             {
-                path: '/week-analytics',
+                path: '/stats/week-analytics',
                 component: AdminWeek,
                 name: 'admin-analytics-week'
             },
             {
-                path: '/last-30-days-analytics',
+                path: '/stats/last-30-days-analytics',
                 component: AdminThirty,
                 name: 'admin-analytics-30'
+            },
+            {
+                name: 'create-property',
+                component: CreateProperty,
+                path: '/create-property'
+            },
+            {
+                name: 'all-property',
+                component: ListProperty,
+                path: '/list-property'
             }
         ]
     },
@@ -106,22 +111,6 @@ const routes = [
         component: Payment,
         name: 'regPay'
     },
-    {
-        path: '',
-        component: Index,
-        children: [
-            {
-                path: '/list',
-                component: StudentList,
-                name: 'students-list'
-            },
-            {
-                path: '/details/:studentId',
-                component: StudentDetails,
-                name: 'student-details'
-            }
-        ]
-    }
 ];
 
 const router = new Router({
@@ -131,8 +120,11 @@ const router = new Router({
 /**
  * Do all the beforeEach logics here
  */
-
-
+//
+// router.beforeEach((to, from, next) => {
+//     console.log(to)
+//     next();
+// })
 /**
  * Export router
  */

@@ -12,12 +12,20 @@ use Cloudder;
 class PropertyController extends Controller
 {
     use CloudinaryUpload;
+    public function index()
+    {
+        $properties = Property::latest()->get();
+        return response()->json([
+            'data' => $properties,
+            'message' => 'success'
+        ], 200);
+    }
+
 
     public function home()
     {
         $properties = Property::with('images')->latest()->get();
 
-//        dd(json_decode($properties->images[0]->url, true)['secure_url']);
         return view('pages.property')->with('properties', $properties);
     }
 
