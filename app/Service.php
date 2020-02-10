@@ -9,6 +9,8 @@ class Service extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function images()
     {
         return $this->morphMany('App\Image', 'imageable');

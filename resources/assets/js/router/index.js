@@ -22,7 +22,15 @@ import {
 } from './../components'
 
 import {
-    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty, CreateProperty, ListProperty, EditProperty
+    AdminIndex,
+    AdminStats,
+    AdminToday,
+    AdminYesterday,
+    AdminThirty,
+    CreateProperty,
+    ListProperty,
+    EditProperty,
+    CreateService, EditService, ListService
 } from './../components/Admin/'
 
 import AdminWeek from "../components/Admin/admin/AdminWeek";
@@ -39,6 +47,21 @@ const routes = [
         path: '',
         component: AdminIndex,
         children: [
+            {
+                name: 'create-service',
+                path: 'create-service',
+                component: CreateService
+            },
+            {
+                path: 'service/:id/edit',
+                name: 'edit-service',
+                component: EditService
+            },
+            {
+                name: 'list-service',
+                path: 'list-service',
+                component: ListService
+            },
             {
                 path: '/stats',
                 component: AdminStats,

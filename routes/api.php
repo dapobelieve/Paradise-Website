@@ -57,10 +57,10 @@ Route::group(['middleware' => 'api'], function () {
     /**
      * Services
      */
-    Route::post('create-property', 'Property\PropertyController@create');
-    Route::get('property', 'Property\PropertyController@index');
-    Route::get('property/{property}/edit', 'Property\PropertyController@edit');
-    Route::post('property/edit/{id}', 'Property\PropertyController@update');
+    Route::post('create-service', 'Service\ServiceController@create');
+    Route::get('service', 'Service\ServiceController@index');
+    Route::get('service/{service}/edit', 'Service\ServiceController@edit');
+    Route::post('service/edit/{id}', 'Service\ServiceController@update');
     Route::delete('property/{id}', 'Property\PropertyController@delete');
 
     //Delete a property image

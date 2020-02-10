@@ -25,8 +25,8 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-gears"></i> <span>Services</span> <i class="arrow fa fa-chevron-right"></i></a>
                     <ul>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Add Services</a></li>
+                        <li><a href="{{ url('dashboard#/list-service') }}">Services</a></li>
+                        <li><a href="{{ url('dashboard#/create-service') }}">Add Services</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

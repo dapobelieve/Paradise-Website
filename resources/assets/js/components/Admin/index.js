@@ -19,3 +19,10 @@ export const CreateProperty = Vue.component('admin-create-property', require('./
 export const ListProperty = Vue.component('admin-list-property', require('./property/list'))
 export const EditProperty = Vue.component('admin-edit-property', require('./property/edit'))
 
+/**
+ * Service dashboard pages
+ */
+export const CreateService = Vue.component('create-service', require('./service/create'))
+export const ListService = Vue.component('list-service', require('./service/list'))
+export const EditService = Vue.component('edit-service', require('./service/edit'))
+
