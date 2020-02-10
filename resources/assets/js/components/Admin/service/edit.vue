@@ -20,13 +20,13 @@
             <div class="row">
               <form @submit.prevent="submitCourse" class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 col-md-3 col-lg-2 control-label">Property</label>
+                  <label class="col-sm-3 col-md-3 col-lg-2 control-label">Service Title</label>
                   <div class="col-sm-9 col-md-9 col-lg-10">
                     <input type="text" v-model="course.title" placeholder="Enter a serice, IT Services, Broadband services" class="form-control input-sm" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-3 col-md-3 col-lg-2 control-label">Property Details</label>
+                  <label class="col-sm-3 col-md-3 col-lg-2 control-label">Service Details</label>
                   <div class="col-sm-9 col-md-9 col-lg-10">
                     <textarea name="" v-model="course.details" cols="90" rows="10"></textarea>
                   </div>

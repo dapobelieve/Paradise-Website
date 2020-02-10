@@ -53800,7 +53800,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                 _context2.prev = 1;
                 _context2.next = 4;
-                return __WEBPACK_IMPORTED_MODULE_1__helpers_Api__["a" /* default */].delete('api/property/' + id);
+                return __WEBPACK_IMPORTED_MODULE_1__helpers_Api__["a" /* default */].delete('api/service/' + id);
 
               case 4:
                 alert("Record deleted");
@@ -55701,7 +55701,7 @@ var render = function() {
                       {
                         staticClass: "col-sm-3 col-md-3 col-lg-2 control-label"
                       },
-                      [_vm._v("Property")]
+                      [_vm._v("Service Title")]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-9 col-md-9 col-lg-10" }, [
@@ -55739,7 +55739,7 @@ var render = function() {
                       {
                         staticClass: "col-sm-3 col-md-3 col-lg-2 control-label"
                       },
-                      [_vm._v("Property Details")]
+                      [_vm._v("Service Details")]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-9 col-md-9 col-lg-10" }, [

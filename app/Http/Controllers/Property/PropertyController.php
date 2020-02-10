@@ -147,7 +147,9 @@ class PropertyController extends Controller
     public function delete($id) {
         $property = Property::find($id);
 
-        $property->delete();
+        if($property) {
+            $property->delete();
+        }
 
         return response()->json([
             'message' => 'Property deleted'

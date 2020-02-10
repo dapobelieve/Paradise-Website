@@ -63,7 +63,7 @@
       async deleteProp(id) {
         if (confirm("Are you want to delete this record?")) {
           try {
-            await Api.delete(`api/property/${id}`)
+            await Api.delete(`api/service/${id}`)
             alert("Record deleted");
             this.data = this.data.filter((e) => {
               return e.id !== id
