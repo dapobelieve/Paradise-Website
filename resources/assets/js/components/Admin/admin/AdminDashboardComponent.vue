@@ -57,6 +57,7 @@
 
 <script>
     import AgentDashboardStatistics from "../agent/AgentDashboardStatistics";
+    import Api from '../../../helpers/Api'
     export default {
         name: "AdminDashboardComponent",
         data () {
@@ -69,15 +70,20 @@
             AgentDashboardStatistics
         },
         methods: {
-            getRecords()
+            async getRecords()
             {
                 let user = JSON.parse(localStorage.getItem('paraUser'));
 
-                axios.get(`api/admin-stats/${user}`).then(response => {
+                try {
+                    let response = await Api.get(`api/admin-stats/${user}`)
+
                     this.stats = response.data.stats;
                     this.today = response.data.todaysRecords;
-                });
+                }catch (e) {
+                    console.log(e)
+                }
             }
+
         },
         created () {
             this.getRecords();

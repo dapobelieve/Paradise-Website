@@ -28,11 +28,11 @@
               <tr v-for="(record, index) in data" :key="record.id" class="gradeC">
                 <td>{{index + 1}}</td>
                 <td>{{record.title}}</td>
-                <td>{{record.price}}</td>
+                <td>&#x20A6;{{record.price.toLocaleString()}}</td>
                 <td>{{record.created_at | customizedTime}}</td>
                 <td>
-                  <button class="btn btn-xs btn-primary">Edit</button>
-                  <button class="btn btn-xs btn-danger">Delete</button>
+                  <router-link :to="{ name: 'edit-property', params: {id: record.id} }" class="btn btn-xs btn-primary">Edit</router-link>
+                  <button @click="deleteProp(record.id)" class="btn btn-xs btn-danger">Delete</button>
                 </td>
               </tr>
               </tbody>
@@ -44,6 +44,7 @@
   </div>
 </template>
 <script>
+  import Api from '../../../helpers/Api'
   export default {
     data () {
       return {
@@ -52,18 +53,25 @@
     },
     methods: {
       async getAllProperties() {
-        let api = axios.create({
-          baseURL: '/'
-        });
-
-       try {
-         let response = await api.get('api/property')
+        try {
+         let response = await Api.get('api/property')
          this.data = response.data.data
        }catch (e) {
          console.log(e)
        }
-
-
+      },
+      async deleteProp(id) {
+        if (confirm("Are you want to delete this record?")) {
+          try {
+            await Api.delete(`api/property/${id}`)
+            alert("Record deleted");
+            this.data = this.data.filter((e) => {
+              return e.id !== id
+            })
+          }catch (e) {
+            console.log(e)
+          }
+        }
       }
     },
     mounted() {

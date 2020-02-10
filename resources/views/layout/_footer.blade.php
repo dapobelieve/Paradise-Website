@@ -43,6 +43,7 @@
                             <h2 class="title">We are Social</h2>
                             <div class="separator-2"></div>
                             <ul class="social-links circle animated-effect-1">
+                                <li class=""><a target="_blank" href="https://wa.me/2348039109394"><i class="fa fa-whatsapp"></i></a></li>
                                 <li class="facebook"><a target="_blank" href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                                 <li class="twitter"><a target="_blank" href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
                                 <li class="googleplus"><a target="_blank" href="http://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>

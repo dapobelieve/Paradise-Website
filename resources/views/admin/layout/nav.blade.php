@@ -34,9 +34,7 @@
                         <i class="fa fa-users"></i> <span>Workers</span><i class="arrow fa fa-chevron-right"></i>
                     </a>
                     <ul>
-{{--                        <li><a href="#">All Users</a></li>--}}
                         <li><a href="{{ route('add.user') }}">All Users</a></li>
-{{--                        <li><a href="{{ route('property.add') }}">Add Property</a></li>--}}
                     </ul>
                 </li>
                 <li class="submenu">

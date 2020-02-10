@@ -77,8 +77,7 @@
 <script>
 import vueDropzone from "vue2-dropzone";
 import loader from '../../../helpers/loader.vue'
-// import Bus from '../../../../helpers/bus.js'
-// import moment from 'moment';
+import Api from '../../../helpers/Api'
 export default {
     name: "create",
     data () {
@@ -165,11 +164,10 @@ export default {
 
                 td.append('images['+ i +']', aFile);
             }
-            let api = axios.create({
-                baseURL: '/'
-            });
 
-            api.post('api/create-property', td, {
+
+
+            Api.post('api/create-property', td, {
                 headers: {
                     "Content-type": "multipart/form-data"
                 },

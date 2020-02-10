@@ -47,6 +47,24 @@ Route::group(['middleware' => 'api'], function () {
      */
     Route::post('create-property', 'Property\PropertyController@create');
     Route::get('property', 'Property\PropertyController@index');
+    Route::get('property/{property}/edit', 'Property\PropertyController@edit');
+    Route::post('property/edit/{id}', 'Property\PropertyController@update');
+    Route::delete('property/{id}', 'Property\PropertyController@delete');
+
+    //Delete a property image
+    Route::delete('image/{image}/delete', 'Property\PropertyController@deleteImage');
+
+    /**
+     * Services
+     */
+    Route::post('create-property', 'Property\PropertyController@create');
+    Route::get('property', 'Property\PropertyController@index');
+    Route::get('property/{property}/edit', 'Property\PropertyController@edit');
+    Route::post('property/edit/{id}', 'Property\PropertyController@update');
+    Route::delete('property/{id}', 'Property\PropertyController@delete');
+
+    //Delete a property image
+    Route::delete('image/{image}/delete', 'Property\PropertyController@deleteImage');
 
     /**
      * Agent Routes

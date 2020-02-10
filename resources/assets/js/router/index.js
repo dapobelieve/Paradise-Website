@@ -22,7 +22,7 @@ import {
 } from './../components'
 
 import {
-    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty, CreateProperty, ListProperty
+    AdminIndex, AdminStats, AdminToday, AdminYesterday, AdminThirty, CreateProperty, ListProperty, EditProperty
 } from './../components/Admin/'
 
 import AdminWeek from "../components/Admin/admin/AdminWeek";
@@ -73,6 +73,11 @@ const routes = [
                 name: 'all-property',
                 component: ListProperty,
                 path: '/list-property'
+            },
+            {
+                path: "/property/:id/edit",
+                name: 'edit-property',
+                component: EditProperty
             }
         ]
     },

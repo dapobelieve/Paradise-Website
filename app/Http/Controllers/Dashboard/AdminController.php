@@ -21,7 +21,7 @@ class AdminController extends Controller
             })->pluck('id')->toArray();
 
             $records = Record::whereIn('user_id', $agents)
-            ->where('created_at', '>=', Carbon::now()->subDays(30))->get();
+                ->where('created_at', '>=', Carbon::now()->subDays(30))->get();
             $stats = (new Collection([
                 'month' => $records->filter(function (Record $record) {
                     return $record->created_at->greaterThanOrEqualTo(Carbon::now()->subDays(30));
@@ -74,7 +74,7 @@ class AdminController extends Controller
                                     WHERE users.id = role_user.user_id
                                     AND role_user.role_id = 2
                                     AND records.created_at >= curdate()
-                                    GROUP BY records.user_id');
+                                    GROUP BY records.user_id, users.name');
             return response()->json([
                 'stats' => $records,
             ]);
@@ -100,7 +100,7 @@ class AdminController extends Controller
                                     AND role_user.role_id = 2
                                     AND records.created_at >= subdate(curdate(), 1)
                                     AND records.created_at < curdate()
-                                    GROUP BY records.user_id');
+                                    GROUP BY records.user_id, users.name');
             return response()->json([
                 'stats' => $records,
             ]);
@@ -116,16 +116,14 @@ class AdminController extends Controller
     {
         if ($user->roles()->get()->contains('name', 'Admin')) {
 
-            $records = DB::select('SELECT users.name, 
-                                    round(sum(price), 2) AS amount, 
-                                    count(records.id) AS transactions 
+            $records = DB::select('SELECT users.name, round(sum(price), 2) AS amount,count(records.id) AS transactions 
                                     FROM role_user, records
                                     JOIN users 
                                     ON records.user_id = users.id
                                     WHERE users.id = role_user.user_id
                                     AND role_user.role_id = 2
                                     AND records.created_at >= DATE_ADD(curdate(), INTERVAL (-weekday(curdate())) DAY)
-                                    GROUP BY records.user_id');
+                                    GROUP BY records.user_id, users.name');
             return response()->json([
                 'stats' => $records,
             ]);
@@ -149,7 +147,7 @@ class AdminController extends Controller
                                     WHERE users.id = role_user.user_id
                                     AND role_user.role_id = 2
                                     AND records.created_at >= CURDATE() - INTERVAL 30 DAY
-                                    GROUP BY records.user_id');
+                                    GROUP BY records.user_id, users.name');
             return response()->json([
                 'stats' => $records,
             ]);

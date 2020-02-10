@@ -17,4 +17,5 @@ export const AdminThirty = Vue.component('admin-thirty', require('./admin/AdminM
 
 export const CreateProperty = Vue.component('admin-create-property', require('./property/create'))
 export const ListProperty = Vue.component('admin-list-property', require('./property/list'))
+export const EditProperty = Vue.component('admin-edit-property', require('./property/edit'))
 
