@@ -11,6 +11,13 @@ class ServiceController extends Controller
 {
     use CloudinaryUpload;
 
+    public function home(Request $request)
+    {
+        $services = Service::with('images')->latest()->get();
+
+        return view('pages.service',compact('services', $services));
+    }
+
     public function index(Request $request)
     {
         $services = Service::latest()->get();

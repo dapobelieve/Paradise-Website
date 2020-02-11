@@ -28,9 +28,7 @@ Route::get('/about', function () {
 // })->name('site.post-jamb');
 
 
-Route::get('/services', function () {
-    return view('pages.service');
-})->name('site.services');
+Route::get('services', 'Service\ServiceController@home')->name('site.services');
 
 
 Route::get('/store', function () {
