@@ -6,6 +6,11 @@ Route::group(['middleware' => 'api'], function () {
     /**
      * Funaab Registrations
      */
+    /**
+     * Advanced search
+     */
+    Route::get('{user}/agents', 'Dashboard\AdminController@agents');
+    Route::get('search/{user}', 'Dashboard\AdminController@search');
 
     // parttime endpoint
     Route::post('save_pt_record', 'Api\PartTimeController@save');

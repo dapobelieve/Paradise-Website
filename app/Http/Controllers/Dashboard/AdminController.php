@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Record;
+use App\Role;
 use App\User;
 use DB;
 use Carbon\Carbon;
@@ -135,6 +136,22 @@ class AdminController extends Controller
 
     }
 
+    public function search(Request $request, User $user)
+    {
+        $start =  $request->query()['start'];
+        $end = $request->query()['end'];
+
+        $userRecords = $user->records()->whereBetween('created_at', [$start, $end])->get();
+
+
+        return response()->json([
+            'user' => $user->name,
+            'records' => $userRecords,
+            'start' => $start,
+            'end' => $end
+        ]);
+    }
+
     public function thirtyDays(Request $request, User $user)
     {
         if ($user->roles()->get()->contains('name', 'Admin')) {
@@ -160,8 +177,20 @@ class AdminController extends Controller
 
     public function users(Request $request)
     {
-        $user = User::get();
+        $user = User::where('id', '!=', 1)->get();
         return view('admin.add-user')->with('users', $user);
+    }
+
+    public function agents(Request $request, User $user)
+    {
+        if ($user->roles()->get()->contains('name', 'Admin')) {
+
+            $users = Role::with('users')->where('name', 'Agent')->get()->pluck('users')->flatten();
+
+            return response()->json([
+                'data' => $users
+            ]);
+        }
     }
 
     public function editUser(Request $request, User $user)

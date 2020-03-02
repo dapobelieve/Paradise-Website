@@ -29,6 +29,7 @@ Route::get('/about', function () {
 
 
 Route::get('services', 'Service\ServiceController@home')->name('site.services');
+Route::get('service-details/{service}', 'Service\ServiceController@details')->name('service.details');
 
 
 Route::get('/store', function () {

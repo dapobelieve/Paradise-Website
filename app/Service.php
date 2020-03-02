@@ -16,9 +16,13 @@ class Service extends Model
         return $this->morphMany('App\Image', 'imageable');
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function getFirstImage()
     {
-//        {{ json_decode($property->images[0]->url, true)['secure_url'] }}
         $imageUrl = $this->images()->first();
         if (!$imageUrl) {
             return "";
@@ -28,7 +32,7 @@ class Service extends Model
 
     public function link()
     {
-        return url('property-details/'.$this->slug);
+        return url('service-details/'.$this->slug);
     }
 
 }

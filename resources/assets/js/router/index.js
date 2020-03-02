@@ -30,7 +30,7 @@ import {
     CreateProperty,
     ListProperty,
     EditProperty,
-    CreateService, EditService, ListService
+    CreateService, EditService, ListService, AdvancedSearch
 } from './../components/Admin/'
 
 import AdminWeek from "../components/Admin/admin/AdminWeek";
@@ -96,6 +96,11 @@ const routes = [
                 name: 'all-property',
                 component: ListProperty,
                 path: '/list-property'
+            },
+            {
+                name: 'advanced-search',
+                path: 'advanced-search',
+                component: AdvancedSearch
             },
             {
                 path: "/property/:id/edit",

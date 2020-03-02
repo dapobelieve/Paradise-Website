@@ -119,9 +119,10 @@ class ServiceController extends Controller
             'data' => [
                 'service' => $service->load('images')
             ],
-            'message' => 'Service Added!'
+            'message' => 'Service Updated!'
         ], 201);
     }
+
     public function delete($id) {
         $service = Service::find($id);
         if (!$service) {
@@ -134,10 +135,14 @@ class ServiceController extends Controller
         ], 204);
 
     }
+
+    public function details(Request $request, Service $service) {
+        return view('pages.service-details')->with('service', $service->load('images'));
+    }
+
     public function edit($id)
     {
         $service = Service::find($id);
-
         return response()->json($service->load('images'));
     }
 }

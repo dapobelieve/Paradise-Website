@@ -12,6 +12,11 @@ export const AdminWeek = Vue.component('admin-week', require('./admin/AdminWeek.
 export const AdminThirty = Vue.component('admin-thirty', require('./admin/AdminMonth.vue'));
 
 /**
+ * Advanced search
+ */
+export const AdvancedSearch = Vue.component('advanced-search', require('./admin/SalesByDate'));
+
+/**
  * Other dashboard pages
  */
 

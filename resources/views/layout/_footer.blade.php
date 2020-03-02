@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p class="text-center">{{ config()->get('site.defaults.name') }} © {{ date('Y') }} Built by
-                            <a target="_blank" class="link-dark" href="#">Dapo Michaels</a>. </p>
+                            <a target="_blank" class="link-dark" href="">Dapo Michaels</a>. </p>
                     </div>
                 </div>
             </div>

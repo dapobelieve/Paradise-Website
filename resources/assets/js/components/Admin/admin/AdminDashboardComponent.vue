@@ -1,11 +1,18 @@
 <template>
     <div class="container-fluid">
         <agent-dashboard-statistics :stats="stats"></agent-dashboard-statistics>
-        <div class="col-xs-12">
-            <div class="col-md-3"><router-link :to="{name: 'admin-today'}">view more</router-link></div>
-            <div class="col-md-3"><router-link :to="{name: 'admin-analytics-yesterday'}">view more</router-link></div>
-            <div class="col-md-3"><router-link :to="{name: 'admin-analytics-week'}">view more</router-link></div>
-            <div class="col-md-3"><router-link :to="{name: 'admin-analytics-30'}">view more</router-link></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-md-3"><router-link :to="{name: 'admin-today'}">view more</router-link></div>
+                <div class="col-md-3"><router-link :to="{name: 'admin-analytics-yesterday'}">view more</router-link></div>
+                <div class="col-md-3"><router-link :to="{name: 'admin-analytics-week'}">view more</router-link></div>
+                <div class="col-md-3"><router-link :to="{name: 'admin-analytics-30'}">view more</router-link></div>
+            </div>
+        </div>
+        <div class="search row">
+            <div class="col-xs-12">
+                <router-link :to="{name: 'advanced-search'}" class="btn btn-dark-blue btn-lg">Advanced Search</router-link>
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
@@ -51,7 +58,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -92,5 +98,7 @@
 </script>
 
 <style scoped>
-
+.search {
+    margin-top: 15px;
+}
 </style>

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('layout._head')        
+    @include('layout._head')
+    <style>
+        .para:hover, .para:after {
+            background-color: #2ecc25 !important;
+        }
+    </style>
 </head>
-    <body class="no-trans front-page transparent-header ">
-
+    <body class="no-trans">
+    <ul style="position: fixed; z-index: 1000; top: 177px" class="social-links circle animated-effect-1">
+        <li class="">
+            <a class="para" style="background-color: #2ecc25 " target="_blank" href="https://wa.me/2348039109394">
+                <i class="fa fa-whatsapp"></i></a></li>
+    </ul>
         <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
         <div class="page-wrapper">
         
