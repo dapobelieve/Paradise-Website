@@ -1,3 +1,3 @@
 # Paradise Website
 
-(http://paradisedigitalworld.net)[website]
+[website](http://paradisedigitalworld.net)
