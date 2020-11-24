@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - user=believe
+        - uid=1000
+      dockerfile: Dockerfile
+    container_name: paradise
+    volumes:
+      - ".:/var/www"
+    restart: unless-stopped
+
+  nginx:
+    restart: unless-stopped
+    image: nginx:1.17-alpine
+    ports:
+      - "8000:80"
+    depends_on:
+      - app
+    volumes:
+      - .:/var/www
+      - ./nginx/php.conf:/etc/nginx/conf.d/default.conf
+
+  mysql:
+    image: mysql:5.7.22
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: paradise
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+
+  npm:
+    image: node:erbium
+    container_name: npm
+    volumes:
+      - ./:/var/www
+    entrypoint: ["npm"]
+    working_dir: /var/www
+
