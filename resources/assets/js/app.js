@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import Datetime from 'vue-datetime'
 import '../../../node_modules/vue-datetime/dist/vue-datetime.css'
-import 'vue2-dropzone/dist/vue2Dropzone.css';
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import { format, formatDistanceToNow } from 'date-fns';
 

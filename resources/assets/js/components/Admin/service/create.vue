@@ -65,6 +65,7 @@
 
 <script>
   import vueDropzone from "vue2-dropzone";
+
   import loader from '../../../helpers/loader.vue'
   import Api from '../../../helpers/Api'
   export default {
