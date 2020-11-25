@@ -13,15 +13,15 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-//        Schema::create('properties', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('title');
-//            $table->float('price')->nullable();
-//            $table->text('details')->nullable();
-//            $table->text('slug')->nullable();
-//            $table->softDeletes();
-//            $table->timestamps();
-//        });
+        Schema::create('properties', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->float('price')->nullable();
+            $table->text('details')->nullable();
+            $table->text('slug')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**

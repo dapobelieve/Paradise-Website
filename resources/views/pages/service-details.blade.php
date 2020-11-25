@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 {{--                            <h4>Price:  &#8358;{{  number_format($property->price) }}</h4>--}}
-                            <p>{{$service->body}}</p>
+                            <div>{!! nl2br($service->text) !!}</div>
                         </div>
                     </article>
                 </div>
