@@ -27,6 +27,7 @@ Vue.component('solar', require('./components/Solar.vue'));
 Vue.component('transact', require('./components/Admin/agent/Transact.vue'));
 Vue.component('AgentDashboardComponent', require('./components/Admin/agent/AgentDashboard.vue'));
 Vue.component('CashierDashboardComponent', require('./components/Admin/cashier/CashierDashboard.vue'));
+Vue.component('AddFile', require('./components/Admin/files/Add.vue'));
 
 
 Vue.use(Datetime);

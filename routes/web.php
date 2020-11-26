@@ -87,12 +87,13 @@ Route::group(['middleware' => 'role:ADMIN'], function () {
     Route::get('edit-user/{user}', 'Dashboard\AdminController@editUser')->name('edit-user');
     Route::post('edit-user/{user}', 'Dashboard\AdminController@update')->name('edit-user');
 
+    Route::view('/files', 'admin.pages.file')->name('all-files');
+    Route::view('/file/add', 'admin.pages.add-file')->name('add-file');
+
 });
 
 
 // sales agent route
 Route::view('/transaction', 'admin.pages.transact')->name('agent.transact')->middleware('role:admin,agent');
-
-   
 });
 

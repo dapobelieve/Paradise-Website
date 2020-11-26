@@ -30109,6 +30109,7 @@ Vue.component('solar', __webpack_require__(565));
 Vue.component('transact', __webpack_require__(570));
 Vue.component('AgentDashboardComponent', __webpack_require__(573));
 Vue.component('CashierDashboardComponent', __webpack_require__(578));
+Vue.component('AddFile', __webpack_require__(598));
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_datetime___default.a);
 
@@ -87553,6 +87554,557 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(601)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(600)
+/* template */
+var __vue_template__ = __webpack_require__(603)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-d14bf67c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Admin/files/Add.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d14bf67c", Component.options)
+  } else {
+    hotAPI.reload("data-v-d14bf67c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 599 */,
+/* 600 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// import UploadMixin  from "@/mixins/UploadMixin.js";
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "gallery-create",
+  // mixins: [UploadMixin],
+  props: ['homeurl'],
+  data: function data() {
+    return {
+      uploads: [],
+      dragging: false,
+      draggingCount: 0,
+      errors: {},
+      btn: {
+        state: false
+      }
+    };
+  },
+
+  methods: {
+    imagePreview: function imagePreview(file) {
+      if (file.type === 'application/pdf') {
+        return 'https://res.cloudinary.com/rohing/image/upload/v1606349138/paradise/assets/488px-PDF_file_icon.svg.png';
+      }
+      return URL.createObjectURL(file);
+    },
+    removeFile: function removeFile(file) {
+      this.uploads.splice(this.uploads.indexOf(file), 1);
+    },
+    handleChoseFiles: function handleChoseFiles(e) {
+      var _this = this;
+
+      var files = e.target.files;
+      var arr = Array.from(files).map(function (file) {
+        return {
+          caption: file.name,
+          file: file
+        };
+      });
+
+      arr.map(function (file) {
+        if (_this.uploads.length < 5) {
+          _this.uploads.push(file);
+        }
+      });
+    },
+    handleDragOver: function handleDragOver(e) {
+      this.dragging = true;
+      this.draggingCount = e.dataTransfer.items.length;
+    },
+    handleDragLeave: function handleDragLeave() {
+      this.dragging = false;
+      this.draggingCount = 0;
+    },
+    validateUploads: function validateUploads() {
+      var _this2 = this;
+
+      this.uploads.map(function (item) {
+        // this.errors = true
+        if (item.caption === "") {
+          _this2.errors[item.file.name] = "Enter a caption for this image " + item.file.name;
+          _this2.$forceUpdate();
+        }
+      });
+    },
+    submit: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, x, res;
+
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.errors = {};
+                this.btn.state = true;
+
+                if (this.uploads.length === 0) {
+                  alert("Please Upload an image");
+                  this.btn.state = false;
+                }
+
+                this.validateUploads();
+
+                if (!(Object.keys(this.errors).length > 0)) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt('return');
+
+              case 8:
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 11;
+                _iterator = this.uploads[Symbol.iterator]();
+
+              case 13:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context.next = 21;
+                  break;
+                }
+
+                x = _step.value;
+                _context.next = 17;
+                return this.uploadFile(x.file, 'androcare/gallery');
+
+              case 17:
+                this.uploads[this.uploads.indexOf(x)].url = _context.sent;
+
+              case 18:
+                _iteratorNormalCompletion = true;
+                _context.next = 13;
+                break;
+
+              case 21:
+                _context.next = 27;
+                break;
+
+              case 23:
+                _context.prev = 23;
+                _context.t0 = _context['catch'](11);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
+
+              case 27:
+                _context.prev = 27;
+                _context.prev = 28;
+
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+
+              case 30:
+                _context.prev = 30;
+
+                if (!_didIteratorError) {
+                  _context.next = 33;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 33:
+                return _context.finish(30);
+
+              case 34:
+                return _context.finish(27);
+
+              case 35:
+                _context.next = 37;
+                return axios.post('/api/gallery', { data: this.uploads });
+
+              case 37:
+                res = _context.sent;
+
+                if (res.status === 201) {
+                  alert("Images saved to gallery successfully");
+                  window.location.replace('' + this.homeurl);
+                }
+
+              case 39:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[11, 23, 27, 35], [28,, 30, 34]]);
+      }));
+
+      function submit() {
+        return _ref.apply(this, arguments);
+      }
+
+      return submit;
+    }()
+  }
+});
+
+/***/ }),
+/* 601 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(602);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("9a0034ac", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d14bf67c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Add.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d14bf67c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Add.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 602 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nform[data-v-d14bf67c] {\n  border-radius: 0.5rem;\n  padding: 2.5rem;\n  border: 2px dashed #bfbfbf;\n  background-color: #ecf2f7;\n}\nform input[data-v-d14bf67c] {\n    opacity: 0;\n    top: 0;\n    left: 0;\n    cursor: pointer;\n}\n.upload-img[data-v-d14bf67c] {\n  height: 150px;\n  width: 150px;\n}\n.upload-img img[data-v-d14bf67c] {\n    height: 100%;\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n    border-radius: 5px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 603 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-8 col-lg-offset-2" }, [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "form",
+          {
+            staticClass:
+              "d-flex align-items-center justify-content-center position-relative mb-6",
+            staticStyle: {
+              position: "relative",
+              display: "flex",
+              "align-content": "center",
+              "justify-content": "center",
+              "margin-bottom": "12px"
+            },
+            attrs: {
+              enctype: "multipart/form-data",
+              novalidate: "",
+              action: ""
+            },
+            on: {
+              dragover: function($event) {
+                $event.preventDefault()
+                return _vm.handleDragOver($event)
+              },
+              dragleave: function($event) {
+                $event.preventDefault()
+                return _vm.handleDragLeave($event)
+              }
+            }
+          },
+          [
+            _c("input", {
+              staticStyle: {
+                height: "100%",
+                width: "100%",
+                position: "absolute"
+              },
+              attrs: { type: "file", multiple: "" },
+              on: { change: _vm.handleChoseFiles }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.uploads.length > 0
+      ? _c(
+          "div",
+          { staticClass: "col-lg-12" },
+          [
+            _c("div", [
+              _c("strong", [_vm._v(_vm._s(_vm.uploads.length))]),
+              _vm._v(" items selected\n    ")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.uploads, function(upload, index) {
+              return _c(
+                "div",
+                {
+                  staticClass: "card",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "d-flex align-items-center",
+                      staticStyle: { display: "flex", "align-items": "center" }
+                    },
+                    [
+                      _c("div", { staticClass: "upload-img" }, [
+                        _c("img", {
+                          attrs: { src: _vm.imagePreview(upload.file), alt: "" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "upload-name",
+                          staticStyle: { "margin-left": "12px" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticStyle: { width: "1000px", height: "30px" }
+                            },
+                            [
+                              _c("div", [
+                                _vm._v("File Caption: "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: upload.caption,
+                                      expression: "upload.caption"
+                                    }
+                                  ],
+                                  staticClass: "w-50 ml-2",
+                                  staticStyle: {
+                                    width: "50%",
+                                    "margin-left": "0.5rem"
+                                  },
+                                  attrs: {
+                                    placeholder:
+                                      "Enter caption for " + upload.file.name,
+                                    type: "text"
+                                  },
+                                  domProps: { value: upload.caption },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        upload,
+                                        "caption",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _vm.errors[upload.file.name]
+                                ? _c(
+                                    "small",
+                                    { staticStyle: { color: "red" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.errors[upload.file.name])
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "ml-auto mr-4",
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              return _vm.removeFile(upload)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash-o fa-2x" })]
+                      )
+                    ]
+                  )
+                ]
+              )
+            })
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.uploads.length > 0
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-12 mb-5",
+            staticStyle: { "margin-top": "50px", "margin-bottom": "50px" }
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-block btn-success",
+                attrs: { type: "button" },
+                on: { click: _vm.submit }
+              },
+              [_vm._v("Upload")]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _vm._v("\n          Drop here to upload or "),
+      _c("span", [_vm._v("choose files")]),
+      _vm._v(".Max 5 at once\n        ")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d14bf67c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
